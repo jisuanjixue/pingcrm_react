@@ -1,10 +1,8 @@
 import React from 'react';
-import { Head, Link } from "@inertiajs/inertia-react"
-import { Box, Button, Flex, FormControl, FormLabel, HStack, Avatar, Input, Select, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { Head, Link, useForm } from "@inertiajs/inertia-react"
+import { Box, Button, Flex, FormControl, FormLabel, HStack, Avatar, Input, Select, Table, Tbody, Td, Th, Thead, Tr, FormErrorMessage, FormHelperText } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons'
-import { useFormik } from "formik";
 import pickBy from 'lodash/pickBy';
-import { Inertia } from '@inertiajs/inertia'
 import * as Routes from "../../utils/routes";
 
 
@@ -16,70 +14,95 @@ type IProps = {
 }
 
 const Index = ({ users, filters, can }: IProps) => {
-  const query = (values) => {
-    let query = pickBy(values);
-    Inertia.get(
+  const { data, get, setData, processing, errors, reset } = useForm(filters)
+
+  const query = () => {
+    let query = pickBy(data);
+    get(
       Routes.users(
         Object.keys(query).length ? query : { remember: 'forget' },
       ),
-      {},
       {
         preserveState: true,
         preserveScroll: true,
         replace: true,
         only: ['users'],
       },
-    );
+    )
   }
-  // const [form, setForm] = useControllableState({ defaultValue: filters })
-  const formik = useFormik({
-    initialValues: filters,
-    onSubmit: (values) => query(values),
-    onReset: (values) => query(values)
-  });
+
   const header = ["Name", "Email", "Role"]
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    query()
+  }
+
+  const handleReset = (e) => {
+    e.preventDefault()
+    reset()
+    query()
+  }
+
+  const handleChange = (e, name) => {
+    const value = e.target.value
+    setData(name, value)
+  }
 
   return (
     <>
       <Head title="Users" />
       <h1 mb={32} fontSize={30} lineHeight={36} fontWeight={700}>Users</h1>
       <Flex mb={24} alignItems="center" justifyContent="space-between">
-        <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
+        <form onSubmit={handleSubmit} onReset={handleReset}>
           <HStack spacing={8}>
             <FormControl>
               <FormLabel htmlFor="role">role</FormLabel>
-              <Select placeholder='Select role' id='role' name='role'
-                onChange={formik.handleChange}
-                value={formik.values.role}
+              <Select placeholder='Select role'
+                onChange={(e) => handleChange(e, "role")}
+                value={data.role}
               >
                 <option value='null' />
                 <option value='user'>User</option>
                 <option value='owner'>Owner</option>
               </Select>
+              {errors.role && (
+                <FormHelperText>
+                  {errors.role}
+                </FormHelperText>
+              )}
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="trashed">trash</FormLabel>
-              <Select placeholder='Select Trashed' id='Trashed' name='Trashed'
-                onChange={formik.handleChange}
-                value={formik.values.trashed}
+              <Select placeholder='Select Trashed'
+                onChange={(e) => handleChange(e, "trashed")}
+                value={data.trashed}
               >
                 <option value='null' />
                 <option value='with'>With Trashed</option>
                 <option value='only'>Only Trashed</option>
               </Select>
+              {errors.trashed && (
+                <FormHelperText>
+                  {errors.trashed}
+                </FormHelperText>
+              )}
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="search">search</FormLabel>
               <Input
-                id="search"
-                name="search"
                 type="search"
                 variant="filled"
-                onChange={formik.handleChange}
-                value={formik.values.search}
+                onChange={(e) => handleChange(e, "search")}
+                value={data.search}
               />
+              {errors.search && (
+                <FormHelperText>
+                  {errors.search}
+                </FormHelperText>
+              )}
             </FormControl>
-            <Button type="submit" colorScheme="purple" width="full">
+            <Button type="submit" colorScheme="purple" width="full" disabled={processing}>
               inquire
             </Button>
             <Button type="reset" colorScheme="purple" width="full">
@@ -87,13 +110,9 @@ const Index = ({ users, filters, can }: IProps) => {
             </Button>
           </HStack>
         </form>
-        <Link
-          v-if="can.create_user"
-          class="btn-indigo"
-          href={Routes.new_user()}
-        >
-          Create <span display={{ base: "none", md: "inline" }}>User</span>
-        </Link>
+        {can.create_user && <Button colorScheme='teal' variant='solid' size='md' onClick={() => Routes.new_user()}>
+          Create User
+        </Button>}
       </Flex>
       <Box overflowY="auto" borderRadius={4} bgColor="#ffffff" boxShadow='md'>
         <Table
@@ -185,13 +204,13 @@ const Index = ({ users, filters, can }: IProps) => {
                           fontSize="md"
                           fontWeight="hairline"
                         >
-                          <Link
-                            class="flex items-center px-6 py-4 focus:text-indigo-500"
+                          <Link display="flex" alignItems="center" pr={24} pl={24} pb={16} pt={16} _focus={{ color: "rgb(101 116 205)" }}
                             href={Routes.edit_user(item.id)}
                             aria-label="Edit"
                           >
                             {(i === 0 && item.photo) && <Avatar name='Photo' mt={-8} mb={-8} size='sm' src={item.photo} />}
                             {item[x]}
+                            {x === "owner" && item[x] ? 'Owner' : 'User'}
                             {(i === 0 && item.deleted_at) && <DeleteIcon w={12} h={12} fill="#64748b" flexShrink={0} ml={8} />}
                           </Link>
                         </Td>

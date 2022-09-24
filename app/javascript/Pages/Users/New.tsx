@@ -1,9 +1,15 @@
 import React from "react";
-import { Head, useForm } from "@inertiajs/inertia-react"
+import { Head } from "@inertiajs/inertia-react"
 import * as Routes from "../../utils/routes.js"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex } from "@chakra-ui/react";
+import UserForm from "./UserForm"
 
-const newIndex = () => {
+type IProps = {
+  user: any
+}
+
+const newIndex = ({ user }: IProps) => {
+
   return (
     <>
       <Head title="Create User"></Head>
@@ -25,7 +31,19 @@ const newIndex = () => {
         alignItems="center"
         justifyContent="center"
       >
-
+        <UserForm userForm={user} />
+        <Flex justify="end">
+          <Button
+            isLoading
+            loadingText='Loading'
+            colorScheme='teal'
+            variant='outline'
+            spinnerPlacement='start'
+            type='submit'
+          >
+            Create User
+          </Button>
+        </Flex>
       </Flex>
     </>
   )

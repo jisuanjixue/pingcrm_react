@@ -110,9 +110,8 @@ const Index = ({ users, filters, can }: IProps) => {
             </Button>
           </HStack>
         </form>
-        {can.create_user && <Button colorScheme='teal' variant='solid' size='md' onClick={() => Routes.new_user()}>
-          Create User
-        </Button>}
+        {can.create_user &&
+          <Link href={Routes.new_user()} as="button" type="button" colorScheme='teal' variant='solid' size='md' data>Create User</Link>}
       </Flex>
       <Box overflowY="auto" borderRadius={4} bgColor="#ffffff" boxShadow='md'>
         <Table

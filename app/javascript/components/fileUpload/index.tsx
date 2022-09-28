@@ -1,12 +1,31 @@
-import { FormControl } from "@chakra-ui/react";
-import React from "react";
+import { FormControl, Input, FormLabel } from "@chakra-ui/react";
+import React, { useRef } from "react";
 
-const FileUpload = () => {
+type IProps = {
+  setData: (name, file) => void;
+  label: string;
+}
+
+const FileUpload = ({ setData, label }: IProps) => {
+  const refFile = useRef();
   return (
-    <FormControl variant="floating">
-      <Input type="file" value={data.avatar} onChange={e => setData('avatar', e.target.files[0])} />
-    </FormControl>
+    <>
+      {label ?
+        <>
+          <FormLabel>
+            {label}
+          </FormLabel>
+          <FormControl>
+            <Input type="file" accept="accept" display="none" ref={refFile} onChange={(e) => setData('avatar', e.target.files[0])} />
+          </FormControl>
+        </>
+        : <>
+
+        </>}
+
+    </>
   )
 };
 
 export default FileUpload;
+

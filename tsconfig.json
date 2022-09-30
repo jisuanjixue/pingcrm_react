@@ -21,8 +21,10 @@
     "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types", "global.d.ts"],
     "paths": {
-      "@components": ["app/javascript/components"],
-      "@components/*": ["app/javascript/components/*"]
+      "@/*": ["app/javascript/*"],
+      "@components": ["app/javascript/components/*"],
+      "@hooks": ["app/javascript/hooks/*"],
+      "@data-types": ["app/javascript/data-types/*"]
     }
   },
   "exclude": ["node_modules"],

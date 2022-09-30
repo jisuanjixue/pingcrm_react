@@ -4,12 +4,14 @@ import FullReload from 'vite-plugin-full-reload';
 import react from '@vitejs/plugin-react';
 import { brotliCompressSync } from 'zlib';
 import gzipPlugin from 'rollup-plugin-gzip';
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   optimizeDeps: {
     include: ['@inertiajs/inertia'],
   },
   plugins: [
+    tsconfigPaths(),
     RubyPlugin(),
     FullReload(['config/routes.rb', 'app/views/**/*']),
     react(),
@@ -20,5 +22,5 @@ export default defineConfig({
       customCompression: (content) => brotliCompressSync(Buffer.from(content)),
       fileName: '.br',
     }),
-  ],
+  ]
 });

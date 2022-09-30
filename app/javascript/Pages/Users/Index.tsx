@@ -1,12 +1,11 @@
 import React from 'react';
 import { Head, Link, useForm } from "@inertiajs/inertia-react"
-import { Box, Button, Flex, FormControl, FormLabel, HStack, Avatar, Input, Select, Table, Tbody, Td, Th, Thead, Tr, FormErrorMessage, FormHelperText } from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, FormLabel, HStack, Avatar, Input, Select, Table, Tbody, Td, Th, Thead, Tr, Text, FormErrorMessage, FormHelperText } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons'
 import pickBy from 'lodash/pickBy';
 import * as Routes from "../../utils/routes";
 
-
-import { UserInfo, Filters, Can } from "../../data-types/user"
+import { UserInfo, Filters, Can } from "@/data-types/user"
 type IProps = {
   users: UserInfo[];
   filters: Filters;
@@ -52,7 +51,7 @@ const Index = ({ users, filters, can }: IProps) => {
   return (
     <>
       <Head title="Users" />
-      <h1 mb={32} fontSize={30} lineHeight={36} fontWeight={700}>Users</h1>
+      <Text mb={32} fontSize={30} lineHeight={36} fontWeight={700}>Users</Text>
       <Flex mb={24} alignItems="center" justifyContent="space-between">
         <form onSubmit={handleSubmit} onReset={handleReset}>
           <HStack spacing={8}>
@@ -203,15 +202,17 @@ const Index = ({ users, filters, can }: IProps) => {
                           fontSize="md"
                           fontWeight="hairline"
                         >
-                          <Link display="flex" alignItems="center" pr={24} pl={24} pb={16} pt={16} _focus={{ color: "rgb(101 116 205)" }}
-                            href={Routes.edit_user(item.id)}
-                            aria-label="Edit"
-                          >
-                            {(i === 0 && item.photo) && <Avatar name='Photo' mt={-8} mb={-8} size='sm' src={item.photo} />}
-                            {item[x]}
-                            {x === "owner" && item[x] ? 'Owner' : 'User'}
-                            {(i === 0 && item.deleted_at) && <DeleteIcon w={12} h={12} fill="#64748b" flexShrink={0} ml={8} />}
-                          </Link>
+                          <Box display="flex" alignItems="center" pr={24} pl={24} pb={16} pt={16} _focus={{ color: "rgb(101 116 205)" }}>
+                            <Link
+                              href={Routes.edit_user(item.id)}
+                              aria-label="Edit"
+                            >
+                              {(i === 0 && item.photo) && <Avatar name='Photo' mt={-8} mb={-8} size='sm' src={item.photo} />}
+                              {item[x]}
+                              {x === "owner" && item[x] ? 'Owner' : 'User'}
+                              {(i === 0 && item.deleted_at) && <DeleteIcon w={12} h={12} fill="#64748b" flexShrink={0} ml={8} />}
+                            </Link>
+                          </Box>
                         </Td>
                       </React.Fragment>
                     );

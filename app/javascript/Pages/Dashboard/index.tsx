@@ -1,10 +1,8 @@
 import React from 'react';
 import { Head } from '@inertiajs/inertia-react';
-// import { Inertia } from '@inertiajs/inertia';
 import * as timeago from 'timeago.js';
 import MainPanel from '../../Layouts/MainPanel';
 import { forwardRef, Link, Text } from '@chakra-ui/react';
-// import Footer from "@components/Footer";
 import PanelContent from '../../Layouts/PanelContent';
 import PanelContainer from '../../Layouts/PanelContainer';
 import Main from '../../Layouts/Main';

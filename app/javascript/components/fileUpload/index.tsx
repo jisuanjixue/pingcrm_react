@@ -4,25 +4,21 @@ import React, { useRef } from "react";
 type IProps = {
   setData: (name, file) => void;
   label: string;
+  errors: any;
+  photo: string;
+  type: string;
 }
 
 const FileUpload = ({ setData, label }: IProps) => {
   const refFile = useRef();
   return (
     <>
-      {label ?
-        <>
-          <FormLabel>
-            {label}
-          </FormLabel>
-          <FormControl>
-            <Input type="file" accept="accept" display="none" ref={refFile} onChange={(e) => setData('avatar', e.target.files[0])} />
-          </FormControl>
-        </>
-        : <>
-
-        </>}
-
+      {label && <FormLabel>
+        {label}
+      </FormLabel>}
+      <FormControl>
+        <Input type="file" accept="image/*" display="none" ref={refFile} onChange={(e) => setData('photo', e?.target?.files?.[0])} />
+      </FormControl>
     </>
   )
 };

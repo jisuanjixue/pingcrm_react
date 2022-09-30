@@ -11,11 +11,12 @@ import { ChevronDownIcon } from '@chakra-ui/icons'
 import React from "react";
 import { InertiaLink, Link } from '@inertiajs/inertia-react';
 import * as Routes from '../utils/routes.js';
-import Logo from "../components/Logo"
-import MainMenu from '../Shared/MainMenu';
-import FlashMessages from '../Shared/FlashMessages';
+import Logo from "@/components/Logo"
+import MainMenu from '@/components/MainMenu';
+import FlashMessages from '@/components/FlashMessages';
+import type { IProps } from "@/data-types/dashboard"
 
-const Main: React.FC = ({ auth, flash, errors }) => {
+const Main: React.FC = ({ auth, flash, errors }: IProps) => {
 
   const messageProps = { flash, errors }
   return (
@@ -24,13 +25,12 @@ const Main: React.FC = ({ auth, flash, errors }) => {
         <Flex flexShrink={{ md: 0 }}>
           <Flex align="center" justify={{ md: "center", base: "space-between" }} bgColor="rgb(25 30 56)" pr={24} pl={24} pt={16} pb={16} w={{ md: '224px' }} flexShrink={{ md: 0 }} >
             <InertiaLink
-              class="mt-1"
-              mb={4}
+              className="mt-1"
               href={Routes.root()}
               aria-label="Home"
               role="navigation"
             >
-              <Logo fill="#fff" w={120} h={28} />
+              <Logo />
             </InertiaLink>
           </Flex>
           <Flex w="100%" align="center" justify="space-between" borderBottomWidth={1} bgColor="rgb(255 255 255)" p={16} fontSize={14} lineHeight={20} pt={{ md: "0px" }} pb={{ md: "0px" }} pl={{ md: "48px" }} pr={{ md: "48px" }}>
@@ -39,7 +39,7 @@ const Main: React.FC = ({ auth, flash, errors }) => {
             </Box>
             <Menu>
               <MenuButton as={Box} rightIcon={<ChevronDownIcon />}>
-                <Box mr={4} whitespace="nowrap" color="rgb(30 42 59)" _focus={{ color: "rgb(86 97 179)" }}
+                <Box mr={4} whiteSpace="nowrap" color="rgb(30 42 59)" _focus={{ color: "rgb(86 97 179)" }}
                   _groupHover={{ color: "rgb(86 97 179)" }}>
                   {auth.user.first_name}
                 </Box>
@@ -74,8 +74,8 @@ const Main: React.FC = ({ auth, flash, errors }) => {
             </Menu>
           </Flex>
         </Flex>
-        <Flex flexGrow={{ md: 1 }} overFlow={{ md: "hidden" }}>
-          <MainMenu display={{ md: "block", base: "none" }} w={224} flexShrink={0} overflowY="auto" bgColor="rgb(47 54 95)" p={48}></MainMenu>
+        <Flex flexGrow={{ md: 1 }} overflow={{ md: "hidden" }}>
+          <MainMenu></MainMenu>
           <Box
             pl={16}
             pr={16}

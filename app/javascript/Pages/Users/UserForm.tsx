@@ -1,7 +1,8 @@
 import { Flex, FormControl, FormLabel, Input, SimpleGrid, Spacer, FormErrorMessage, Select } from "@chakra-ui/react";
 import { useForm } from "@inertiajs/inertia-react";
 import React from "react";
-import PasswordField from '../../components/passwordInput/PasswordField';
+import PasswordField from '@/components/passwordInput/PasswordField';
+import FileUpload from '@/components/fileUpload/index';
 
 type IProps = {
   userForm: any
@@ -12,6 +13,14 @@ const UserForm = ({ userForm }: IProps) => {
   const handValue = (e, name) => {
     const value = e.target.value
     setData(name, value)
+  }
+
+  const fileProps = {
+    setData,
+    label: "Photo",
+    errors,
+    photo: data.photo,
+    type: "file"
   }
 
   return (
@@ -116,7 +125,7 @@ const UserForm = ({ userForm }: IProps) => {
             </FormErrorMessage>
           )}
         </FormControl>
-
+        <FileUpload {...fileProps} ></FileUpload>
       </SimpleGrid>
     </form>
   );

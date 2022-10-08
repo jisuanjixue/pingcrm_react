@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box } from '@chakra-ui/react';
+import React from "react";
+import { Box } from "@chakra-ui/react";
 
 const Logo = () => (
   <Box fill="#fff" w={120} h={28}>

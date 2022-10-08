@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Box, useStyleConfig } from "@chakra-ui/react";
 
 function PanelContent(props) {

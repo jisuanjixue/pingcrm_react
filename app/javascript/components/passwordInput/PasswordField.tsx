@@ -1,16 +1,6 @@
-import {
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  IconButton,
-  Input,
-  InputGroup,
-  InputRightElement,
-  useDisclosure,
-  useMergeRefs,
-} from '@chakra-ui/react';
-import * as React from 'react';
-import { HiEye, HiEyeOff } from 'react-icons/hi';
+import { FormControl, FormErrorMessage, FormLabel, IconButton, Input, InputGroup, InputRightElement, useDisclosure, useMergeRefs } from "@chakra-ui/react";
+import * as React from "react";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
 type IProps = {
   password: string;
@@ -21,13 +11,7 @@ type IProps = {
   password_confirmation?: string;
 };
 
-const PasswordField = ({
-  password,
-  handValue,
-  ref,
-  isConfirm,
-  password_confirmation,
-}: IProps) => {
+const PasswordField = ({ password, handValue, ref, isConfirm, password_confirmation }: IProps) => {
   const { isOpen, onToggle } = useDisclosure();
   const inputRef: any = React.useRef();
 
@@ -46,33 +30,27 @@ const PasswordField = ({
     <FormControl variant="floating" isRequired>
       <InputGroup>
         <InputRightElement>
-          <IconButton
-            variant="link"
-            mb="-12px"
-            aria-label={isOpen ? 'Mask password' : 'Reveal password'}
-            icon={isOpen ? <HiEyeOff /> : <HiEye />}
-            onClick={onClickReveal}
-          />
+          <IconButton variant="link" mb="-12px" aria-label={isOpen ? "Mask password" : "Reveal password"} icon={isOpen ? <HiEyeOff /> : <HiEye />} onClick={onClickReveal} />
         </InputRightElement>
         <Input
-          id={isConfirm ? 'password_confirmation' : 'password'}
+          id={isConfirm ? "password_confirmation" : "password"}
           fontSize="sm"
           ms="4px"
           borderRadius="15px"
           placeholder=" "
           ref={mergeRef}
-          name={isConfirm ? 'password_confirmation' : 'password'}
-          type={isOpen ? 'text' : 'password'}
+          name={isConfirm ? "password_confirmation" : "password"}
+          type={isOpen ? "text" : "password"}
           autoComplete="current-password"
           required
           mb="24px"
           size="lg"
           variant="filled"
           value={isConfirm ? password_confirmation : password}
-          onChange={(e) => handValue(e)}
+          onChange={e => handValue(e)}
         />
         <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-          {isConfirm ? '密码确认' : '密码'}
+          {isConfirm ? "密码确认" : "密码"}
         </FormLabel>
         {isShortError && <FormErrorMessage>密码太短</FormErrorMessage>}
         {isConfirm && isError && <FormErrorMessage>密码错误</FormErrorMessage>}
@@ -81,6 +59,6 @@ const PasswordField = ({
   );
 };
 
-PasswordField.displayName = 'PasswordField';
+PasswordField.displayName = "PasswordField";
 
 export default PasswordField;

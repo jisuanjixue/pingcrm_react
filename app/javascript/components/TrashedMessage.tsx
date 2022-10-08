@@ -1,13 +1,13 @@
-import { Flex, Button } from '@chakra-ui/react';
-import React from 'react';
-import { DeleteIcon } from '@chakra-ui/icons';
+import { Flex, Button } from "@chakra-ui/react";
+import React from "react";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 type IProps = {
   restore: () => void;
-}
+};
 
 const TrashedMessage = ({ restore }: IProps) => {
-  const handRestore = () => restore()
+  const handRestore = () => restore();
 
   return (
     <>
@@ -20,7 +20,7 @@ const TrashedMessage = ({ restore }: IProps) => {
         </Flex>
       </Flex>
     </>
-  )
+  );
 };
 
-export default TrashedMessage
+export default TrashedMessage;

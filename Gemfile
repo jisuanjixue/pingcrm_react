@@ -87,3 +87,6 @@ gem 'oj'
 
 # Simple authorization solution for Rails. (https://github.com/CanCanCommunity/cancancan)
 gem 'cancancan'
+
+# Automatically generate TypeScript interfaces from your JSON serializers.
+gem 'types_from_serializers'

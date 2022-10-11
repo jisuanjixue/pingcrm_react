@@ -71,7 +71,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Inertia adapter for Rails (https://github.com/inertiajs/inertia-rails)
-gem 'inertia_rails', '>= 1.2.2'
+gem 'inertia_rails', '~> 3.0.0'
 
 # Easily generate fake data (https://github.com/faker-ruby/faker)
 gem 'faker', require: false

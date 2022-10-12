@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  # layout 'inertia_application'
+
   def index
     render inertia: 'Dashboard/Index', props: {
       git: {

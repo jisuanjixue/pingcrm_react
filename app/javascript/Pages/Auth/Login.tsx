@@ -1,46 +1,28 @@
-import React, { useState, useCallback } from 'react';
-import {
-  Box,
-  Flex,
-  Button,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  Switch,
-  Text,
-  useColorModeValue,
-  HStack,
-  useDisclosure,
-  FormErrorMessage,
-} from '@chakra-ui/react';
-import { useForm } from '@inertiajs/inertia-react';
+import React, { useState, useCallback } from "react";
+import { Box, Flex, Button, FormControl, FormLabel, Heading, Input, Switch, Text, useColorModeValue, HStack, useDisclosure, FormErrorMessage } from "@chakra-ui/react";
+import { useForm } from "@inertiajs/inertia-react";
 // import type { UserLogin } from '../../data-types/user';
-import * as Routes from '../../utils/routes.js';
-import PasswordField from '../../components/passwordInput/PasswordField';
-import { Head } from '@inertiajs/inertia-react';
-
+import * as Routes from "../../utils/routes.js";
+import PasswordField from "../../components/passwordInput/PasswordField";
+import { Head } from "@inertiajs/inertia-react";
 
 const Login = () => {
-  const titleColor = useColorModeValue('teal.300', 'teal.200');
-  const textColor = useColorModeValue('gray.400', 'white');
-  const bgColor = useColorModeValue('white', 'gray.700');
+  const titleColor = useColorModeValue("teal.300", "teal.200");
+  const textColor = useColorModeValue("gray.400", "white");
+  const bgColor = useColorModeValue("white", "gray.700");
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const modalProps = { isOpen, onOpen, onClose };
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  // const modalProps = { isOpen, onOpen, onClose };
 
   const { data, setData, post, processing, errors } = useForm({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     remember: false,
   });
 
-  const handValue = useCallback(
-    (e) => setData({ ...data, [e.target.name]: e.target.value }),
-    [data],
-  );
+  const handValue = useCallback(e => setData({ ...data, [e.target.name]: e.target.value }), [data]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     post(Routes.user_session());
   };
@@ -49,23 +31,8 @@ const Login = () => {
     <>
       <Head title="Login" />
       <Flex position="relative" mb="40px">
-        <Flex
-          h={{ sm: 'initial', md: '75vh', lg: '85vh' }}
-          w="100%"
-          maxW="1044px"
-          mx="auto"
-          justifyContent="space-between"
-          mb="30px"
-          pt={{ sm: '100px', md: '0px' }}
-        >
-          <Flex
-            alignItems="center"
-            justifyContent="start"
-            style={{ userSelect: 'none' }}
-            mb="60px"
-            mt="20px"
-            w={{ base: '100%', md: '100%', lg: '102%' }}
-          >
+        <Flex h={{ sm: "initial", md: "75vh", lg: "85vh" }} w="100%" maxW="1044px" mx="auto" justifyContent="space-between" mb="30px" pt={{ sm: "100px", md: "0px" }}>
+          <Flex alignItems="center" justifyContent="start" style={{ userSelect: "none" }} mb="60px" mt="20px" w={{ base: "100%", md: "100%", lg: "102%" }}>
             <Flex
               direction="column"
               w="440px"
@@ -73,21 +40,15 @@ const Login = () => {
               background="transparent"
               borderRadius="15px"
               p="40px"
-              mt={{ sm: '80px', md: '120px', lg: '200px', xl: '140px' }}
-              mx={{ base: '100px', md: '150px', lg: '80px' }}
+              mt={{ sm: "80px", md: "120px", lg: "200px", xl: "140px" }}
+              mx={{ base: "100px", md: "150px", lg: "80px" }}
               bg={bgColor}
               boxShadow="0 20px 27px 0 rgb(0 0 0 / 5%)"
             >
               <Heading color={titleColor} fontSize="32px" mb="10px">
                 欢迎回来
               </Heading>
-              <Text
-                mb="36px"
-                ms="4px"
-                color={textColor}
-                fontWeight="bold"
-                fontSize="14px"
-              >
+              <Text mb="36px" ms="4px" color={textColor} fontWeight="bold" fontSize="14px">
                 填入你的邮箱和密码
               </Text>
               <form onSubmit={handleSubmit}>
@@ -103,26 +64,14 @@ const Login = () => {
                     size="lg"
                     value={data?.email}
                     name="email"
-                    onChange={(e) => handValue(e)}
+                    onChange={e => handValue(e)}
                   />
-                  <FormLabel
-                    ms="4px"
-                    fontSize="sm"
-                    fontWeight="normal"
-                    htmlFor="login"
-                  >
+                  <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="login">
                     电子邮件
                   </FormLabel>
-                  {errors.email && (
-                    <FormErrorMessage>{errors.email}</FormErrorMessage>
-                  )}
+                  {errors.email && <FormErrorMessage>{errors.email}</FormErrorMessage>}
                 </FormControl>
-                <PasswordField
-                  password={data?.password}
-                  handValue={handValue}
-                  ref={undefined}
-                  isConfirm={false}
-                />
+                <PasswordField password={data?.password} handValue={handValue} ref={undefined} isConfirm={false} />
                 {/*
             <PasswordField
               password_confirmation={user.password_confirmation}
@@ -133,12 +82,7 @@ const Login = () => {
                 <HStack justify="space-between">
                   <FormControl display="flex" alignItems="center">
                     <Switch id="remember-login" colorScheme="teal" me="10px" />
-                    <FormLabel
-                      htmlFor="remember-login"
-                      mb="0"
-                      ms="1"
-                      fontWeight="normal"
-                    >
+                    <FormLabel htmlFor="remember-login" mb="0" ms="1" fontWeight="normal">
                       记住我
                     </FormLabel>
                   </FormControl>
@@ -161,13 +105,13 @@ const Login = () => {
                   color="white"
                   mt="20px"
                   _hover={{
-                    bg: 'teal.200',
+                    bg: "teal.200",
                   }}
                   _active={{
-                    bg: 'teal.400',
+                    bg: "teal.400",
                   }}
                   disabled={processing}
-                  onClick={(e) => handleSubmit(e)}
+                  onClick={e => handleSubmit(e)}
                 >
                   <Box fontSize="18px">登录</Box>
                 </Button>
@@ -191,13 +135,7 @@ const Login = () => {
             >
               <Box fontSize="18px">微信登录</Box>
             </Button> */}
-              <Flex
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                maxW="100%"
-                mt="0px"
-              >
+              <Flex flexDirection="column" justifyContent="center" alignItems="center" maxW="100%" mt="0px">
                 {/* <Text color={textColor} fontWeight="medium">
                 您还没有账号?
                 <Box
@@ -213,14 +151,7 @@ const Login = () => {
               </Flex>
             </Flex>
           </Flex>
-          <Box
-            display={{ base: 'none', md: 'block' }}
-            overflowX="hidden"
-            h="100%"
-            w="40vw"
-            position="absolute"
-            right="0px"
-          >
+          <Box display={{ base: "none", md: "block" }} overflowX="hidden" h="100%" w="40vw" position="absolute" right="0px">
             <Box
               // bgImage={signInImage}
               w="100%"

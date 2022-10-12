@@ -1,17 +1,18 @@
-import React from 'react';
-import { Head } from '@inertiajs/inertia-react';
-import * as timeago from 'timeago.js';
-import MainPanel from '../../Layouts/MainPanel';
-import { forwardRef, Link, Text } from '@chakra-ui/react';
-import PanelContent from '../../Layouts/PanelContent';
-import PanelContainer from '../../Layouts/PanelContainer';
-import Main from '../../Layouts/Main';
-import type { IProps } from "@/data-types/dashboard"
+import React from "react";
+import { Head } from "@inertiajs/inertia-react";
+import * as timeago from "timeago.js";
+import MainPanel from "../../Layouts/MainPanel";
+import { forwardRef, Link, Text } from "@chakra-ui/react";
+import PanelContent from "../../Layouts/PanelContent";
+import PanelContainer from "../../Layouts/PanelContainer";
+import Main from "../../Layouts/Main";
+import type { IProps } from "@/data-types/dashboard";
 
 const Dashboard = ({ git, auth, flash, errors }: IProps) => {
   // ref for main panel div
-  const mainProps = { auth, flash, errors }
+  const mainProps = { auth, flash, errors };
   const mainPanel = forwardRef(null);
+  console.log("23543645657")
 
   return (
     <MainPanel
@@ -25,8 +26,10 @@ const Dashboard = ({ git, auth, flash, errors }: IProps) => {
         <PanelContainer>
           <Head title="Dashboard" />
           <Main {...mainProps} />
-          <Text mb={8} fontSize={30} lineHeight={36} fontWeight={700}>Dashboard</Text>
-          <Text mb={32} lineHeight={1.5} >
+          <Text mb={8} fontSize={30} lineHeight={36} fontWeight={700}>
+            Dashboard
+          </Text>
+          <Text mb={32} lineHeight={1.5}>
             Hey there! Welcome to Ping CRM, a demo app designed to help illustrate how
             <Link
               fontWeight={700}
@@ -53,7 +56,7 @@ const Dashboard = ({ git, auth, flash, errors }: IProps) => {
           </Text>
           {git?.commit_url && (
             <Text mb={40} lineHeight={1.5}>
-              Version:{' '}
+              Version:{" "}
               <Link href={git.commit_url} textDecorationColor="underline">
                 {git.commit_sha}
               </Link>

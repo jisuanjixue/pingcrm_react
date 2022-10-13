@@ -12,7 +12,7 @@ const Dashboard = ({ git, auth, flash, errors }: IProps) => {
   // ref for main panel div
   const mainProps = { auth, flash, errors };
   const mainPanel = forwardRef(null);
-  console.log("23543645657")
+  console.log("23543546")
 
   return (
     <MainPanel

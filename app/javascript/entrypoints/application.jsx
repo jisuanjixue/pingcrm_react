@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 import React from "react";
-import { createRoot } from "react-dom/client";
+import { render } from "react-dom";
 
 import { Inertia } from "@inertiajs/inertia";
 import Plausible from "plausible-tracker";
@@ -25,20 +25,19 @@ if (plausibleUrl) {
   });
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const csrfToken = document.querySelector("meta[name=csrf-token]").content;
-//   axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
-// });
+document.addEventListener("DOMContentLoaded", () => {
+  const csrfToken = document.querySelector("meta[name=csrf-token]").content;
+  axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
+});
 
 InertiaProgress.init();
 
 const pages = import.meta.globEagerDefault("../Pages/**/*.tsx");
 console.log("🚀 ~ file: application.js ~ line 36 ~ pages", pages);
-const root = createRoot(document.getElementById("root"));
 
 createInertiaApp({
   resolve: name => {
-    const component = pages[`../Pages/${name}.tsx`];
+    const component = pages[`../Pages/**/${name}.tsx`];
     if (!component) throw new Error(`Unknown page ${name}. Is it located under Pages with a .tsx extension?`);
 
     return component;
@@ -46,5 +45,7 @@ createInertiaApp({
 
   title: title => (title ? `${title} - Ping CRM` : "Ping CRM"),
 
-  setup: ({ el, App, props }) => root.render(<App {...props} />, el),
+  setup({ el, App, props }) {
+    render(<App {...props} />, el);
+  },
 });

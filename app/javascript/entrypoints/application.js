@@ -45,7 +45,7 @@ createInertiaApp({
 
   title: title => (title ? `${title} - Ping CRM` : "Ping CRM"),
 
-  setup({ el, App, props }) {
+  setup: ({ el, App, props }) => {
     render(<App {...props} />, el);
   },
 });

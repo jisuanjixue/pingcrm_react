@@ -9,9 +9,12 @@ const MainPanel = props => {
     <Box
       __css={styles}
       {...rest}
+      display={{ md: "flex" }}
+      flexDirection={{ md: "column" }}
       w={{
+        md: "100%",
         base: "100%",
-        xl: "calc(100% - 275px)",
+        xl: "100%",
       }}
     >
       {children}

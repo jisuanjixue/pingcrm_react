@@ -27,7 +27,7 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # Debugging functionality for Ruby (https://github.com/ruby/debug)
-  gem "debug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "debug", '~> 1.6', '>= 1.6.2', platforms: [:mri, :mingw, :x64_mingw]
 
   # Automatic Ruby code style checking tool. (https://github.com/rubocop/rubocop)
   gem 'rubocop', require: false

@@ -1,2 +1,2 @@
-backend: bin/rails s -p 3000
+backend: rdbg -n --open=vscode -c -- bin/rails s -p 3000
 frontend: bin/vite dev

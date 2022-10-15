@@ -10,13 +10,12 @@ interface IProps {
       first_name: string;
       last_name;
       account: {
-        name: string
-      }
-    }
+        name: string;
+      };
+    };
   };
   flash: any;
   errors: any;
 }
-
 
 export { IProps };

@@ -20,11 +20,24 @@
   <link rel="icon" type="image/png" href="<%= vite_asset_path('images/favicon.png') %>">
 
   <%= vite_client_tag %>
-  <%= vite_javascript_tag 'application' %>
+  <%= vite_react_refresh_tag %>
+  <%= vite_javascript_tag 'application.jsx' %>
+  <!--
+      If using a TypeScript entrypoint file:
+        vite_typescript_tag 'application'
+
+      If using a .jsx or .tsx entrypoint, add the extension:
+        vite_javascript_tag 'application.jsx'
+
+      Visit the guide for more information: https://vite-ruby.netlify.app/guide/rails
+    -->
 </head>
 
-<body
-  style="font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji; line-height: 1; color: rgb(30 41 59)">
+<body style="font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+  Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1; color: rgb(30 41 59)">
   <noscript>
     <p>We're sorry but PingCRM doesn't work properly without JavaScript enabled. Please enable it to continue.</p>
   </noscript>

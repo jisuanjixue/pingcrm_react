@@ -3,12 +3,15 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import React from "react";
 import { InertiaLink, Link } from "@inertiajs/inertia-react";
 import * as Routes from "../utils/routes.js";
+
 import Logo from "@/components/Logo";
 import MainMenu from "@/components/MainMenu";
 import FlashMessages from "@/components/FlashMessages";
 import type { IProps } from "@/data-types/dashboard";
 
 const Main: React.FC = ({ auth, flash, errors }: IProps) => {
+  console.log("🚀 ~ file: Main.tsx ~ line 13 ~ auth", auth)
+  console.log(Routes, '1111')
   const messageProps = { flash, errors };
   return (
     <Flex direction={{ md: "column" }}>
@@ -34,18 +37,18 @@ const Main: React.FC = ({ auth, flash, errors }: IProps) => {
             pr={{ md: "48px" }}
           >
             <Box mt={4} mr={16}>
-              {auth.user.account.name}
+              {auth?.user.account.name}
             </Box>
             <Menu>
               <MenuButton as={Box} rightIcon={<ChevronDownIcon />}>
                 <Box mr={4} whiteSpace="nowrap" color="rgb(30 42 59)" _focus={{ color: "rgb(86 97 179)" }} _groupHover={{ color: "rgb(86 97 179)" }}>
-                  {auth.user.first_name}
+                  {auth?.user.first_name}
                 </Box>
-                <Text display={{ base: "none", md: "inline" }}>{auth.user.last_name}</Text>
+                <Text display={{ base: "none", md: "inline" }}>{auth?.user.last_name}</Text>
               </MenuButton>
               <MenuList>
                 <MenuItem>
-                  <Link role="navigation" href={Routes.edit_user(auth.user.id)}>
+                  <Link role="navigation" href={Routes.edit_user("1")}>
                     My Profile
                   </Link>
                 </MenuItem>

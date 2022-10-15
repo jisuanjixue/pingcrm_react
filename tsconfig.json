@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "target": "es2019",
+    "types": ["vite/client"],
     "module": "commonjs",
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "moduleResolution": "node",

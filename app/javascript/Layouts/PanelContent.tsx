@@ -1,15 +1,15 @@
 import React from "react";
 import { Box, useStyleConfig } from "@chakra-ui/react";
 
-function PanelContent(props) {
-  const { variant, children, ...rest } = props;
+const PanelContent: React.FC = props => {
+  const { variant, children, ...rest } = props as any;
   const styles = useStyleConfig("PanelContent", { variant });
   // Pass the computed styles into the `__css` prop
   return (
     <Box __css={styles} {...rest}>
-      {children}
+      {...children}
     </Box>
   );
-}
+};
 
 export default PanelContent;

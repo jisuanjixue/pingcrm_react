@@ -85,6 +85,9 @@ gem 'devise'
 # A fast JSON parser and serializer. (http://www.ohler.com/oj)
 gem 'oj'
 
+# Faster JSON serialization for Ruby on Rails. Easily migrate away from Active Model Serializers (https://github.com/ElMassimo/oj_serializers)
+gem 'oj_serializers'
+
 # Simple authorization solution for Rails. (https://github.com/CanCanCommunity/cancancan)
 gem 'cancancan'
 

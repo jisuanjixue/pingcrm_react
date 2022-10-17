@@ -302,6 +302,7 @@ DEPENDENCIES
   jbuilder
   js-routes
   oj
+  oj_serializers
   pagy
   pg (>= 0.18, < 2.0)
   puma (~> 5.0)

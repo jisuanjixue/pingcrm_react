@@ -16,12 +16,11 @@ import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
 
 const pages = import.meta.globEagerDefault("../Pages/**/*.tsx");
-console.log("🚀 ~ file: application.js ~ line 36 ~ pages", pages);
 
-const plausibleUrl = document?.querySelector('meta[name="plausible-url"]').content;
+const plausibleUrl = document.querySelector('meta[name="plausible-url"]')?.content;
 if (plausibleUrl) {
   const plausible = Plausible({
-    domain: document?.querySelector('meta[name="app-host"]').content,
+    domain: document?.querySelector('meta[name="app-host"]')?.content,
     apiHost: plausibleUrl,
   });
 
@@ -31,7 +30,7 @@ if (plausibleUrl) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const csrfToken = document.querySelector("meta[name=csrf-token]").content;
+  const csrfToken = document.querySelector("meta[name=csrf-token]")?.content;
   axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
 });
 

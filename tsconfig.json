@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "esnext",
     "types": ["vite/client"],
-    "module": "commonjs",
+    "module": "esnext",
     "isolatedModules": true,
     "useDefineForClassFields": true,
     "removeComments": true,
@@ -21,6 +21,7 @@
     "rootDir": ".",
     "jsx": "react-jsx",
     "allowJs": true,
+    "lib": ["WebWorker", "DOM"],
     "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types", "global.d.ts"],
     "paths": {

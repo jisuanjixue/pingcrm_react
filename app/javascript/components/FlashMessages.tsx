@@ -1,10 +1,11 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, CloseButton, useDisclosure } from "@chakra-ui/react";
 import React from "react";
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, CloseButton, useDisclosure } from "@chakra-ui/react";
+import { usePage } from "@inertiajs/inertia-react";
 
-const FlashMessages = ({ flash, errors }) => {
+const FlashMessages = () => {
   const { isOpen: isVisible, onClose } = useDisclosure({ defaultIsOpen: true });
   const status = ["error", "success", "warning", "info"];
-
+  const { flash, errors } = usePage().props as any;
   return (
     <>
       {isVisible && (

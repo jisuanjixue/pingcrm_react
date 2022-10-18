@@ -8,14 +8,11 @@ import MainPanel from "../../Layouts/MainPanel";
 import Main from "../../Layouts/Main";
 import type { IProps } from "@/data-types/dashboard";
 
-const Dashboard = ({ git, auth, flash, errors }: IProps) => {
-  // ref for main panel div
-  const mainProps = { auth, flash, errors };
-
+const Dashboard = ({ git }: IProps) => {
   return (
     <MainPanel>
       <Head title="Dashboard" />
-      <Main {...mainProps} />
+      <Main />
       <Text mb={8} fontSize={30} lineHeight={36} fontWeight={700}>
         Dashboard
       </Text>

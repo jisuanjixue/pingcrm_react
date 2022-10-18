@@ -13,8 +13,8 @@ account = Account.create!(name: 'Acme Corporation')
 account.users.create!(
   first_name: 'John',
   last_name: 'Doe',
-  email: 'johndoe@example.com',
-  password: 'secret',
+  email: 'bobo@example.com',
+  password: 'secret123',
   owner: true
 )
 

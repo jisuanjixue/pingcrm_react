@@ -13,17 +13,18 @@ const Login = () => {
 
   // const { isOpen, onOpen, onClose } = useDisclosure();
   // const modalProps = { isOpen, onOpen, onClose };
+  const defauleData = {
+    user: {
+      email: "johndoe@example.com",
+      password: "secret",
+      remember: null,
+    } as any,
+  };
+  const { data, setData, post, processing, errors } = useForm(defauleData);
 
-  const { data, setData, post, processing, errors } = useForm({
-    email: "",
-    password: "",
-    remember: false,
-  });
+  const handValue = useCallback(e => setData({ user: { ...data.user, [e.target.name]: e.target.value } }), [data]);
 
-  const handValue = useCallback(e => setData({ ...data, [e.target.name]: e.target.value }), [data]);
-
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = () => {
     post(Routes.user_session());
   };
 
@@ -62,16 +63,16 @@ const Login = () => {
                     type="text"
                     placeholder=" "
                     size="lg"
-                    value={data?.email}
+                    value={data?.user?.email}
                     name="email"
                     onChange={e => handValue(e)}
                   />
                   <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="login">
                     电子邮件
                   </FormLabel>
-                  {errors.email && <FormErrorMessage>{errors.email}</FormErrorMessage>}
+                  {/* {errors.user.email && <FormErrorMessage>{errors.user.email}</FormErrorMessage>} */}
                 </FormControl>
-                <PasswordField password={data?.password} handValue={handValue} ref={undefined} isConfirm={false} />
+                <PasswordField password={data?.user?.password} handValue={handValue} ref={undefined} isConfirm={false} />
                 {/*
             <PasswordField
               password_confirmation={user.password_confirmation}
@@ -111,7 +112,7 @@ const Login = () => {
                     bg: "teal.400",
                   }}
                   disabled={processing}
-                  onClick={e => handleSubmit(e)}
+                  onClick={() => handleSubmit()}
                 >
                   <Box fontSize="18px">登录</Box>
                 </Button>

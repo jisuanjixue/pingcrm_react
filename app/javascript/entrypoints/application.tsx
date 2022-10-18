@@ -39,7 +39,6 @@ InertiaProgress.init();
 createInertiaApp({
   resolve: name => {
     const page = pages[`../Pages/${name}.tsx`];
-    console.log("🚀 ~ file: application.jsx ~ line 42 ~ page", page);
     if (!page) throw new Error(`Unknown page ${name}. Is it located under Pages with a .tsx extension?`);
     return page;
   },

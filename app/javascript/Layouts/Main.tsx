@@ -1,16 +1,17 @@
 import { Flex, Menu, MenuButton, MenuList, MenuItem, Text, Box } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import React from "react";
-import { InertiaLink, Link } from "@inertiajs/inertia-react";
+import { InertiaLink, Link, usePage } from "@inertiajs/inertia-react";
 import * as Routes from "../utils/routes.js";
 
 import Logo from "@/components/Logo";
 import MainMenu from "@/components/MainMenu";
 import FlashMessages from "@/components/FlashMessages";
-import type { IProps } from "@/data-types/dashboard";
 
-const Main: React.FC = ({ auth, flash, errors }: IProps) => {
-  const messageProps = { flash, errors };
+const Main: React.FC = () => {
+  const {
+    auth: { user },
+  } = usePage().props as any;
   return (
     <Flex direction={{ md: "column" }} h={{ md: "100vh" }}>
       <Flex flexShrink={{ md: 0 }}>
@@ -34,14 +35,14 @@ const Main: React.FC = ({ auth, flash, errors }: IProps) => {
           pr={{ md: "48px" }}
         >
           <Box mt={4} mr={16}>
-            {auth?.user.account.name}
+            {user.account.name}
           </Box>
           <Menu>
             <MenuButton as={Box} rightIcon={<ChevronDownIcon />}>
               <Box mr={4} whiteSpace="nowrap" color="rgb(30 42 59)" _focus={{ color: "rgb(86 97 179)" }} _groupHover={{ color: "rgb(86 97 179)" }}>
-                {auth?.user.first_name}
+                {user.first_name}
               </Box>
-              <Text display={{ base: "none", md: "inline" }}>{auth?.user.last_name}</Text>
+              <Text display={{ base: "none", md: "inline" }}>{user.last_name}</Text>
             </MenuButton>
             <MenuList>
               <MenuItem>
@@ -66,7 +67,7 @@ const Main: React.FC = ({ auth, flash, errors }: IProps) => {
       <Flex flexGrow={{ md: 1 }} overflow={{ md: "hidden" }}>
         <MainMenu></MainMenu>
         <Box pl={16} pr={16} flex={{ md: "1 1 0%" }} overflowY={{ md: "auto" }} p={{ md: "48px" }} scroll-region>
-          <FlashMessages {...messageProps} />
+          <FlashMessages />
         </Box>
       </Flex>
     </Flex>

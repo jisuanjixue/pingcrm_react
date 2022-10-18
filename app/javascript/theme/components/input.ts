@@ -1,27 +1,27 @@
 const activeLabelStyles = {
-  transform: 'scale(0.85) translateY(-24px) translateX(-10px)',
+  transform: "scale(0.85) translateY(-24px) translateX(-10px)",
 };
 
 const labelStyle = {
   top: 0,
   left: 0,
   zIndex: 2,
-  position: 'absolute',
-  pointerEvents: 'none',
+  position: "absolute",
+  pointerEvents: "none",
   mx: 3,
   px: 1,
   my: 3,
-  transformOrigin: 'left top',
+  transformOrigin: "left top",
 };
 
 const noinputStyles = {
-  'input:not(:placeholder-shown) + label, .chakra-select__wrapper + label': {
+  "input:not(:placeholder-shown) + label, .chakra-select__wrapper + label": {
     ...activeLabelStyles,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
-  'textarea:not(:placeholder-shown) + label, .chakra-select__wrapper + label': {
+  "textarea:not(:placeholder-shown) + label, .chakra-select__wrapper + label": {
     ...activeLabelStyles,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
 };
 
@@ -34,12 +34,12 @@ export const inputStyles = {
             _focusWithin: {
               label: {
                 ...activeLabelStyles,
-                backgroundColor: 'white',
+                backgroundColor: "white",
               },
             },
             ...noinputStyles,
             label: {
-              backgroundColor: 'gray.30',
+              backgroundColor: "gray.30",
               ...labelStyle,
             },
           },
@@ -48,12 +48,12 @@ export const inputStyles = {
           container: {
             _focusWithin: {
               label: {
-                backgroundColor: 'white',
+                backgroundColor: "white",
               },
             },
             ...noinputStyles,
             label: {
-              backgroundColor: 'white',
+              backgroundColor: "white",
               ...labelStyle,
               ...activeLabelStyles,
             },

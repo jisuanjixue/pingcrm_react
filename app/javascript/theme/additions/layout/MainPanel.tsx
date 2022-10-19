@@ -1,9 +1,11 @@
 const MainPanel = {
   baseStyle: {
-    float: "right",
+    display: { md: "flex" },
+    flexDirection: { md: "column" },
+    // float: "right",
     maxWidth: "100%",
     overflow: "auto",
-    position: "relative",
+    // position: "relative",
     maxHeight: "100%",
     transition: "all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)",
     transitionDuration: ".2s, .2s, .35s",
@@ -13,9 +15,6 @@ const MainPanel = {
   variants: {
     main: () => ({
       float: "right",
-    }),
-    rtl: () => ({
-      float: "left",
     }),
   },
   defaultProps: {

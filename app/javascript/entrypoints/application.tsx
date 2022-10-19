@@ -47,7 +47,7 @@ createInertiaApp({
 
   setup: ({ el, App, props }) => {
     render(
-      <ChakraProvider theme={theme} resetCSS={false}>
+      <ChakraProvider theme={theme} resetCSS={true}>
         <App {...props} />
       </ChakraProvider>,
       el

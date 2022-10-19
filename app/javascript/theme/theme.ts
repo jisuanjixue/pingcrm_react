@@ -20,9 +20,9 @@ import { PanelContainerComponent } from "./additions/layout/PanelContainer";
 export default extendTheme(
   {
     breakpoints: {
-      sm: "1024px",
-      md: "1280px",
-      lg: "1440px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
       xl: "1920px",
       "2xl": "1536px",
     },

@@ -9,25 +9,29 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["react", "prettier", "import", "react-hooks"],
   extends: [
-    'eslint:recommended',
+    "eslint:recommended",
     "plugin:json/recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     // 'prettier/@typescript-eslint',
     "eslint:recommended",
-    'prettier',
-    'plugin:prettier/recommended',
+    "prettier",
+    "plugin:prettier/recommended",
   ],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
     // Makes logger function available everywhere. Else eslint will complaint of undef-var.
     logger: true,
-    module: true
+    module: true,
+    defineProps: "readonly",
+    defineEmits: "readonly",
+    defineExpose: "readonly",
+    withDefaults: "readonly",
   },
   rules: {
-    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-explicit-any": ["off"],
     "react/display-name": "off",
     // not-auto-fixable: Prevent missing props validation in a React component definition.
@@ -76,14 +80,14 @@ module.exports = {
     "import/newline-after-import": ["error", { count: 1 }],
     // auto-fixable: Respect all Prettier rules and apply it.
     "prettier/prettier": "error",
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
   },
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
-    sourceType: 'module', // allow the use of imports statements
+    sourceType: "module", // allow the use of imports statements
     ecmaVersion: 2020, // allow the parsing of modern ecmascript
   },
 };

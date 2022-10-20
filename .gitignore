@@ -34,6 +34,10 @@
 # SimpleCoverage report
 /coverage/*
 
+# Docker volumes
+/docker-volumes
+!/docker-volumes/.keep
+
 /node_modules
 /yarn-error.log
 yarn-debug.log*

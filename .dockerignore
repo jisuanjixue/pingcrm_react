@@ -13,6 +13,7 @@
 Dockerfile
 Guardfile
 docker-compose.yml
+docker-volumes
 log/*
 node_modules
 public/assets/*

@@ -23,3 +23,12 @@ yarn-error.log
 screenshot.jpg
 lighthouse.png
 **/*.DS_Store
+README.md
+bin/bundle
+bin/cypress
+bin/dev
+bin/rspec
+bin/rubocop
+bin/setup
+bin/yarn
+

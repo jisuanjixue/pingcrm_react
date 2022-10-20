@@ -32,6 +32,11 @@ group :development, :test do
   # Automatic Ruby code style checking tool. (https://github.com/rubocop/rubocop)
   gem 'rubocop', require: false
 
+  # RSpec for Rails (https://github.com/rspec/rspec-rails)
+  gem 'rspec-rails'
+  # Code style checking for RSpec files (https://github.com/rubocop/rubocop-rspec)
+  gem 'rubocop-rspec', require: false
+
   # Automatic performance checking tool for Ruby code. (https://github.com/rubocop/rubocop-performance)
   gem 'rubocop-performance', require: false
 
@@ -54,6 +59,11 @@ group :development do
 
   # Brings Rails named routes to javascript (http://github.com/railsware/js-routes)
   gem 'js-routes', require: false
+    # Guard gem for RSpec (https://github.com/guard/guard-rspec)
+  gem 'guard-rspec', require: false
+
+  # prettier plugin for the Ruby programming language (https://github.com/prettier/plugin-ruby#readme)
+  gem 'prettier'
 end
 
 group :test do

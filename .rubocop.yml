@@ -1,32 +1,42 @@
+inherit_from:
+  - node_modules/@prettier/plugin-ruby/rubocop.yml
+
 require:
   - rubocop-performance
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.1
   Exclude:
+    - app/javascript/**/*
     - bin/**/*
     - coverage/**/*
     - db/schema.rb
     - log/**/*
     - node_modules/**/*
     - public/**/*
+    - spec/javascript/**/*
     - tmp/**/*
     - vendor/**/*
+    - docker-volumes/**/*
   EnabledByDefault: true
 
 ### Rails
 
-Rails/FilePath:
-  EnforcedStyle: arguments
-
 Rails/SkipsModelValidations:
   Enabled: false
 
-Rails/SchemaComment:
+Rails/SaveBang:
   Enabled: false
 
-Rails/I18nLocaleTexts:
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+Rails/ApplicationController:
+  Enabled: false
+
+Rails/SchemaComment:
   Enabled: false
 
 ### Bundler
@@ -37,42 +47,16 @@ Bundler/OrderedGems:
 Bundler/GemVersion:
   Enabled: false
 
-### Metrics
-
-Metrics/AbcSize:
-  Max: 35
-
-Metrics/BlockLength:
-  Max: 140
-
-Metrics/MethodLength:
-  Max: 30
-
 ### Style
 
 Style/BlockComments:
   Exclude:
-    - 'spec/spec_helper.rb'
+    - "spec/spec_helper.rb"
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/StringLiterals:
-  Enabled: false
-
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
 Style/Documentation:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/Lambda:
-  EnforcedStyle: literal
-
-Style/LambdaCall:
   Enabled: false
 
 Style/MethodCallWithArgsParentheses:
@@ -90,47 +74,25 @@ Style/InlineComment:
 Style/StringHashKeys:
   Enabled: false
 
-Style/MethodCalledOnDoEndBlock:
-  Enabled: false
-
 Style/DocumentationMethod:
   Enabled: false
 
-Style/DisableCopsWithinSourceCodeDirective:
+Style/IfUnlessModifier:
   Enabled: false
 
-### Layout
-
-Layout/DotPosition:
-  EnforcedStyle: trailing
-
-Layout/SingleLineBlockChain:
+Style/IpAddresses:
   Enabled: false
 
-Layout/EndAlignment:
-  EnforcedStyleAlignWith: variable
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
 
-Layout/SpaceInsideArrayLiteralBrackets:
-  Enabled: false
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: single_quotes
 
-Layout/HashAlignment:
-  Enabled: false
+### Metrics
 
-Layout/MultilineMethodArgumentLineBreaks:
-  Enabled: false
-
-Layout/MultilineArrayLineBreaks:
-  Enabled: false
-
-Layout/MultilineAssignmentLayout:
-  Enabled: false
-
-Layout/LineLength:
-  Max: 190
-  AllowedPatterns: ['\A#'] # Allow long comments
-
-Layout/RedundantLineBreak:
-  Enabled: false
+Metrics/BlockLength:
+  Max: 100
 
 # Lint
 
@@ -145,5 +107,16 @@ Lint/NumberConversion:
 Performance/ChainArrayAllocation:
   Enabled: false
 
-Performance/OpenStruct:
+# RSpec
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 20
+
+RSpec/AlignLeftLetBrace:
+  Enabled: false
+
+RSpec/AlignRightLetBrace:
   Enabled: false

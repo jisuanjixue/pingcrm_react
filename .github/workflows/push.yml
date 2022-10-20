@@ -61,6 +61,9 @@ jobs:
           bundle exec rake test
           bundle exec rake test:system
 
+      - name: Run Ruby Tests
+        run: bin/rspec
+
   deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'

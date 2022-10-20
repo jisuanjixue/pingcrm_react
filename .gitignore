@@ -31,6 +31,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# SimpleCoverage report
+/coverage/*
+
 /node_modules
 /yarn-error.log
 yarn-debug.log*

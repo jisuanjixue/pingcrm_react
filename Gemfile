@@ -75,6 +75,9 @@ group :test do
 
   # Easy download and use of browser drivers. (https://github.com/titusfortner/webdrivers)
   gem 'webdrivers'
+
+  # Code coverage for Ruby (https://github.com/simplecov-ruby/simplecov)
+  gem 'simplecov', require: false
 end
 
 # Timezone Data for TZInfo (https://tzinfo.github.io)

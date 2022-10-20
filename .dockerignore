@@ -1,6 +1,7 @@
 .byebug_history
 .env.example
 .git
+.rspec
 .gitignore
 .dockerignore
 .github
@@ -10,6 +11,7 @@
 .rubocop.yml
 .yarnclean
 Dockerfile
+Guardfile
 docker-compose.yml
 log/*
 node_modules

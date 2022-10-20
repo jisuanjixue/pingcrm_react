@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 import React from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 
 import { Inertia } from "@inertiajs/inertia";
 import Plausible from "plausible-tracker";
@@ -48,7 +48,8 @@ createInertiaApp({
   title: title => (title ? `${title} - Ping CRM` : "Ping CRM"),
 
   setup: ({ el, App, props }) => {
-    render(
+    const root = createRoot(el);
+    root.render(
       <ChakraProvider theme={theme} resetCSS={true}>
         <App {...props} />
       </ChakraProvider>,

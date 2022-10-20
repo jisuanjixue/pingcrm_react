@@ -8,16 +8,16 @@ const MainPanel = props => {
   return (
     <Box
       __css={styles}
-    // {...rest}
-    // w={{
-    //   md: "100%",
-    //   base: "100%",
-    //   xl: "100%",
-    // }}
+      {...rest}
+      w={{
+        md: "100%",
+        base: "100%",
+        xl: "100%",
+      }}
     >
       {children}
     </Box>
   );
 };
 
-export default MainPanel;
+export default page => <MainPanel>{page}</MainPanel>;

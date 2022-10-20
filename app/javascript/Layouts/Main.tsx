@@ -8,15 +8,16 @@ import Logo from "@/components/Logo";
 import MainMenu from "@/components/MainMenu";
 import FlashMessages from "@/components/FlashMessages";
 
-const Main: React.FC = () => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
   const {
     auth: { user },
   } = usePage().props as any;
   return (
-    <Flex direction={{ md: "column" }}>
-      <Flex direction={{ md: "column" }} h={{ md: "100vh" }}>
-        <Flex flexShrink={{ md: 0 }}>
-          <Flex align="center" justify={{ md: "center", base: "space-between" }} bgColor="rgb(25 30 56)" pr={24} pl={24} pt={16} pb={16} w={{ md: "224px" }} flexShrink={{ md: 0 }}>
+    <Flex direction={{ md: "column" }} display={{ md: "flex" }}>
+      <Flex direction={{ md: "column" }} h={{ md: "100vh" }} display={{ md: "flex" }}>
+        <Flex flexShrink={{ md: 0 }} display={{ md: "flex" }}>
+          <Flex align="center" justify={{ md: "center", base: "space-between" }} bgColor="rgb(25 30 56)" pr={24} pl={24} pt={16} pb={16} w={{ md: "224px" }} h={{ md: "24px" }} flexShrink={{ md: 0 }}>
             <InertiaLink className="mt-1" href={Routes.root()} aria-label="Home" role="navigation">
               <Logo />
             </InertiaLink>
@@ -67,6 +68,7 @@ const Main: React.FC = () => {
         </Flex>
         <Flex flexGrow={{ md: 1 }} overflow={{ md: "hidden" }}>
           <MainMenu></MainMenu>
+          {children}
           <Box pl={16} pr={16} flex={{ md: "1 1 0%" }} overflowY={{ md: "auto" }} p={{ md: "48px" }} scroll-region>
             <FlashMessages />
           </Box>

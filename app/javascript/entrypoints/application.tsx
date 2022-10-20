@@ -11,6 +11,7 @@ import Plausible from "plausible-tracker";
 import axios from "axios";
 import theme from "../theme/theme";
 import { ChakraProvider } from "@chakra-ui/react";
+import MainPanel from "../Layouts/MainPanel";
 
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
@@ -40,6 +41,7 @@ createInertiaApp({
   resolve: name => {
     const page = pages[`../Pages/${name}.tsx`];
     if (!page) throw new Error(`Unknown page ${name}. Is it located under Pages with a .tsx extension?`);
+    page.layout = page.layout || MainPanel;
     return page;
   },
 

@@ -47,6 +47,11 @@ module Pingcrm
     # https://guides.rubyonrails.org/configuring.html#rails-general-configuration
     # https://github.com/rails/rails/blob/6-0-stable/actionpack/lib/action_dispatch/middleware/public_exceptions.rb
     #
+
+    config.x.cypress =
+    (Rails.env.development? || Rails.env.test?) &&
+      ActiveModel::Type::Boolean.new.cast(ENV.fetch('CYPRESS', false))
+
     config.exceptions_app = ->(env) do
       Class.new(ActionController::Base) do # rubocop:disable Rails/ApplicationController
         def show

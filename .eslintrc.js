@@ -7,7 +7,7 @@ module.exports = {
     commonjs: true,
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["react", "prettier", "import", "react-hooks"],
+  plugins: ["react", "prettier", "import", "react-hooks", "cypress"],
   extends: [
     "eslint:recommended",
     "plugin:json/recommended",
@@ -18,6 +18,7 @@ module.exports = {
     "eslint:recommended",
     "prettier",
     "plugin:prettier/recommended",
+    "plugin:cypress/recommended",
   ],
   globals: {
     Atomics: "readonly",

@@ -23,6 +23,7 @@ tmp/*
 !/tmp/pids/
 !/tmp/pids/.keep
 yarn-error.log
+cypress.config.ts
 screenshot.jpg
 lighthouse.png
 **/*.DS_Store

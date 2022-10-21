@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+
+  if Rails.configuration.x.cypress
+    namespace :cypress do
+      delete 'cleanup', to: 'cleanup#destroy'
+    end
+  end
+
   devise_for :users, skip: [ :sessions, :passwords, :registrations ]
   as :user do
     get 'login', to: 'users/sessions#new', as: :new_user_session

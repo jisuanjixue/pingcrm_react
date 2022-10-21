@@ -1,0 +1,1 @@
+{"version":3,"file":"PanelContainer.js","sourceRoot":"","sources":["../../../../../../app/javascript/theme/additions/layout/PanelContainer.tsx"],"names":[],"mappings":"AAAA,MAAM,cAAc,GAAG;IACrB,SAAS,EAAE;QACT,CAAC,EAAE,WAAW;QACd,SAAS,EAAE,qBAAqB;KACjC;CACF,CAAC;AAEF,MAAM,CAAC,MAAM,uBAAuB,GAAG;IACrC,UAAU,EAAE;QACV,cAAc;KACf;CACF,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"CardBody.js","sourceRoot":"","sources":["../../../../../../app/javascript/theme/additions/card/CardBody.tsx"],"names":[],"mappings":"AAAA,MAAM,QAAQ,GAAG;IACf,SAAS,EAAE;QACT,OAAO,EAAE,MAAM;QACf,KAAK,EAAE,MAAM;KACd;CACF,CAAC;AAEF,MAAM,CAAC,MAAM,iBAAiB,GAAG;IAC/B,UAAU,EAAE;QACV,QAAQ;KACT;CACF,CAAC"}

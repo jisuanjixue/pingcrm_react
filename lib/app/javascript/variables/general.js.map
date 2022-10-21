@@ -1,0 +1,1 @@
+{"version":3,"file":"general.js","sourceRoot":"","sources":["../../../../app/javascript/variables/general.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAsC,MAAM,2BAA2B,CAAC;AAC1F,OAAO,KAAK,MAAM,MAAM,iBAAiB,CAAC;AAE1C,MAAM,cAAc,GAAG;IACrB;QACE,QAAQ,EAAE,SAAS;QACnB,GAAG,EAAE,MAAM,CAAC,IAAI,EAAE;QAClB,QAAQ,EAAE,WAAW;QACrB,OAAO,EAAE,EAAE;KACZ;CAmBF,CAAC;AAEF,eAAe,cAAc,CAAC"}

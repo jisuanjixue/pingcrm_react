@@ -100,6 +100,10 @@ GEM
     diff-lcs (1.5.0)
     digest (3.1.0)
     docile (1.4.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     dry-cli (0.7.0)
     erubi (1.10.0)
     factory_bot (6.2.1)
@@ -373,6 +377,7 @@ DEPENDENCIES
   capybara
   debug (~> 1.6, >= 1.6.2)
   devise
+  dotenv-rails
   factory_bot_rails
   faker
   guard-rspec

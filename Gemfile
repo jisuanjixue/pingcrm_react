@@ -45,6 +45,9 @@ group :development, :test do
 
   # factory_bot_rails provides integration between factory_bot and rails 5.0 or newer (https://github.com/thoughtbot/factory_bot_rails)
   gem 'factory_bot_rails'
+    # Autoload dotenv in Rails. (https://github.com/bkeepers/dotenv)
+  gem 'dotenv-rails'
+
 end
 
 group :development do

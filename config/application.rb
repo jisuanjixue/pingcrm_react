@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -48,21 +48,26 @@ module Pingcrm
     # https://github.com/rails/rails/blob/6-0-stable/actionpack/lib/action_dispatch/middleware/public_exceptions.rb
     #
 
-    config.x.cypress =
-    (Rails.env.development? || Rails.env.test?) &&
-      ActiveModel::Type::Boolean.new.cast(ENV.fetch('CYPRESS', false))
+    # config.x.cypress =
+    # (Rails.env.development? || Rails.env.test?) &&
+    #   ActiveModel::Type::Boolean.new.cast(ENV.fetch('CYPRESS', false))
 
     config.exceptions_app = ->(env) do
-      Class.new(ActionController::Base) do # rubocop:disable Rails/ApplicationController
-        def show
-          # Get the status code from the path, which is /500 or /404 etc.
-          status = request.path_info.delete_prefix('/').to_i
+      Class
+        .new(ActionController::Base) do # rubocop:disable Rails/ApplicationController
+          def show
+            # Get the status code from the path, which is /500 or /404 etc.
+            status = request.path_info.delete_prefix("/").to_i
 
-          render inertia: 'Error',
-                 props: { status: }, # Make the status code available to the React component
-                 status:             # Return the same status code in the request header
+            render inertia: "Error",
+                   props: {
+                     status:,
+                   }, # Make the status code available to the React component
+                   status: # Return the same status code in the request header
+          end
         end
-      end.action(:show).call(env)
+        .action(:show)
+        .call(env)
     end
   end
 end

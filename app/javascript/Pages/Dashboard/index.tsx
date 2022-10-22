@@ -10,10 +10,10 @@ const Dashboard = ({ git }: IProps) => {
     <>
       <Main>
         <Head title="Dashboard" />
-        <Text mb={8} fontSize={30} lineHeight={36} fontWeight={700}>
+        <Text mb="8" fontSize="3xl" lineHeight="4xl" fontWeight={700}>
           Dashboard
         </Text>
-        <Text mb={32} lineHeight={1.5}>
+        <Text mb="8" lineHeight="2xl">
           Hey there! Welcome to Ping CRM, a demo app designed to help illustrate how
           <Link
             fontWeight={700}
@@ -30,7 +30,7 @@ const Dashboard = ({ git }: IProps) => {
           <Link
             fontWeight={700}
             textDecorationColor="underline"
-            color="rgb(47 54 95 / 1"
+            color="rgb(47 54 95)"
             _hover={{
               color: "rgb(234 88 12 / 1)",
             }}
@@ -39,7 +39,7 @@ const Dashboard = ({ git }: IProps) => {
           </Link>
         </Text>
         {git?.commit_url && (
-          <Text mb={40} lineHeight={1.5}>
+          <Text mb="10" lineHeight="2xl">
             Version:{" "}
             <Link href={git?.commit_url} textDecorationColor="underline">
               {git?.commit_sha}

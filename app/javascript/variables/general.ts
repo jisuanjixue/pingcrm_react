@@ -8,24 +8,24 @@ const DashboardMenus = [
     linkName: "Dashboard",
     urlName: "",
   },
-  // {
-  //   iconName: OfficeIcon,
-  //   url: Routes?.organizations(),
-  //   linkName: "Organizations",
-  //   urlName: "organizations",
-  // },
-  // {
-  //   iconName: UsersIcon,
-  //   url: Routes.contacts(),
-  //   linkName: "Contacts",
-  //   urlName: "contacts",
-  // },
-  // {
-  //   iconName: PrinterIcon,
-  //   url: Routes.reports(),
-  //   linkName: "Reports",
-  //   urlName: "reports",
-  // },
+  {
+    iconName: OfficeIcon,
+    url: Routes?.organizations(),
+    linkName: "Organizations",
+    urlName: "organizations",
+  },
+  {
+    iconName: UsersIcon,
+    url: Routes.contacts(),
+    linkName: "Contacts",
+    urlName: "contacts",
+  },
+  {
+    iconName: PrinterIcon,
+    url: Routes.reports(),
+    linkName: "Reports",
+    urlName: "reports",
+  },
 ];
 
 export default DashboardMenus;

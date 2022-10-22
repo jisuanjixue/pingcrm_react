@@ -7,26 +7,24 @@ import {
   Text,
   Box,
   Avatar,
-  Button,
-  CloseButton,
-  HStack,
   IconButton,
   Input,
-  chakra,
   InputGroup,
   InputLeftElement,
-  VisuallyHidden,
-  VStack,
-  useColorModeValue,
   useDisclosure,
+  Drawer,
+  Icon,
+  DrawerOverlay,
+  DrawerContent,
+  Link,
 } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { BellIcon, ChevronDownIcon, HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import React from "react";
-import { InertiaLink, Link, usePage } from "@inertiajs/inertia-react";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
 import * as Routes from "../utils/routes.js";
+import DashboardMenus from "../variables/general";
 
 import Logo from "@/components/Logo";
-import MainMenu from "@/components/MainMenu";
 import FlashMessages from "@/components/FlashMessages";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -34,164 +32,209 @@ const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
   const {
     auth: { user },
   } = usePage().props as any;
-  const bg = useColorModeValue("white", "gray.800");
-  const mobileNav = useDisclosure();
+  const sidebar = useDisclosure();
+
+  const isUrl = (...urls) => {
+    const currentUrl = window.location.href;
+    if (urls[0] === "") {
+      return currentUrl === "";
+    }
+
+    return urls.filter(url => currentUrl.startsWith(url)).length;
+  };
+
+  const NavItem = props => {
+    const { item, children, ...rest } = props;
+    return (
+      <Flex
+        align="center"
+        px="4"
+        mx="2"
+        rounded="md"
+        py="3"
+        cursor="pointer"
+        color="whiteAlpha.700"
+        _hover={{
+          bg: "blackAlpha.300",
+          color: "whiteAlpha.900",
+        }}
+        role="group"
+        fontWeight="semibold"
+        transition=".15s ease"
+        {...rest}
+      >
+        <Link display="flex" role="group" alignItems="center" pt={12} pb={12} href={item?.url} aria-label={item?.linkName}>
+          {item.icon && (
+            <Icon
+              mr="2"
+              boxSize="4"
+              _groupHover={{
+                color: "gray.300",
+              }}
+              as={item.icon}
+            />
+          )}
+          <Box color={isUrl("") ? "#fff" : "#rgb(178 183 255)"} _groupHover={{ color: isUrl("") ? "" : "#fff" }}>
+            {item?.linkName}
+          </Box>
+          {children}
+        </Link>
+      </Flex>
+    );
+  };
+
+  const SidebarContent = props => (
+    <Box
+      as="nav"
+      pos="fixed"
+      top="0"
+      left="0"
+      zIndex="sticky"
+      h="full"
+      pb="10"
+      overflowX="hidden"
+      overflowY="auto"
+      bg="rgb(47 54 95)"
+      borderColor="blackAlpha.300"
+      borderRightWidth="1px"
+      w="60"
+      flexShrink={0}
+      {...props}
+    >
+      <Flex px="4" py="5" align="center">
+        <InertiaLink className="mt-1" href={Routes.root()} aria-label="Home" role="navigation">
+          <Logo />
+        </InertiaLink>
+      </Flex>
+      <Flex direction="column" as="nav" fontSize="sm" color="gray.600" aria-label="Main Navigation">
+        {DashboardMenus.map((m, i) => (
+          <NavItem key={i} item={m} />
+        ))}
+      </Flex>
+    </Box>
+  );
+
   return (
     <Flex direction={{ md: "column" }} display={{ md: "flex" }}>
       <Flex direction={{ md: "column" }} h={{ md: "100vh" }} display={{ md: "flex" }}>
         <Flex flexShrink={{ md: 0 }} display={{ md: "flex" }}>
-          <chakra.header
-            bg={bg}
-            w="full"
-            px={{
-              base: 2,
-              sm: 4,
+          <Box
+            as="section"
+            bg="gray.50"
+            _dark={{
+              bg: "gray.700",
             }}
-            py={4}
-            shadow="md"
+            w="auto"
+            display="flex"
+            minWidth="300vh"
+            minH="100vh"
           >
-            <Flex alignItems="center" justifyContent="space-between" mx="auto">
-              <HStack display="flex" spacing={3} alignItems="center">
-                <Box
+            <SidebarContent
+              display={{
+                base: "none",
+                md: "unset",
+              }}
+            />
+            <Drawer isOpen={sidebar.isOpen} onClose={sidebar.onClose} placement="left">
+              <DrawerOverlay />
+              <DrawerContent>
+                <SidebarContent w="full" borderRight="none" />
+              </DrawerContent>
+            </Drawer>
+            <Box
+              ml={{
+                base: 0,
+                md: 60,
+              }}
+              transition=".3s ease"
+            >
+              <Flex
+                as="header"
+                align="center"
+                justify="space-between"
+                w="full"
+                px="4"
+                bg="white"
+                _dark={{
+                  bg: "gray.800",
+                }}
+                borderBottomWidth="1px"
+                borderColor="blackAlpha.300"
+                h="14"
+              >
+                <IconButton
+                  aria-label="Menu"
                   display={{
                     base: "inline-flex",
                     md: "none",
                   }}
-                >
-                  <IconButton
-                    display={{
-                      base: "flex",
-                      md: "none",
-                    }}
-                    aria-label="Open menu"
-                    fontSize="20px"
-                    color="gray.800"
-                    _dark={{
-                      color: "inherit",
-                    }}
-                    variant="ghost"
-                    // icon={<AiOutlineMenu />}
-                    onClick={mobileNav.onOpen}
-                  />
-                  <VStack pos="absolute" top={0} left={0} right={0} display={mobileNav.isOpen ? "flex" : "none"} flexDirection="column" p={2} pb={4} m={2} bg={bg} spacing={3} rounded="sm" shadow="sm">
-                    <CloseButton aria-label="Close menu" justifySelf="self-start" onClick={mobileNav.onClose} />
-                    <Button w="full" variant="ghost">
-                      Dashboard
-                    </Button>
-                    {/* <Button w="full" variant="solid" colorScheme="brand" leftIcon={<AiOutlineInbox />}>
-                      Inbox
-                    </Button>
-                    <Button w="full" variant="ghost" leftIcon={<BsFillCameraVideoFill />}>
-                      Videos
-                    </Button> */}
-                  </VStack>
-                </Box>
-                {/* <chakra.a href="/" title="Choc Home Page" display="flex" alignItems="center">
-                  <Logo />
-                  <VisuallyHidden>Choc</VisuallyHidden>
-                </chakra.a> */}
-
-                <HStack
-                  spacing={3}
+                  onClick={sidebar.onOpen}
+                  icon={<HamburgerIcon />}
+                  size="sm"
+                />
+                <Box
+                  w="30"
                   display={{
                     base: "none",
-                    md: "inline-flex",
+                    md: "flex",
                   }}
                 >
-                  {/* <Button variant="ghost" leftIcon={<AiFillHome />} size="sm">
-                    Dashboard
-                  </Button>
-                  <Button variant="solid" colorScheme="brand" leftIcon={<AiOutlineInbox />} size="sm">
-                    Inbox
-                  </Button>
-                  <Button variant="ghost" leftIcon={<BsFillCameraVideoFill />} size="sm">
-                    Videos
-                  </Button> */}
-                </HStack>
-              </HStack>
-              <HStack spacing={3} display={mobileNav.isOpen ? "none" : "flex"} alignItems="center">
-                <InputGroup>
-                  <InputLeftElement pointerEvents="none">{/* <AiOutlineSearch /> */}</InputLeftElement>
-                  <Input type="tel" placeholder="Search..." />
+                  {user.account.name}
+                </Box>
+                <InputGroup
+                  w="66"
+                  display={{
+                    base: "none",
+                    md: "flex",
+                  }}
+                >
+                  <InputLeftElement color="gray.500">
+                    <SearchIcon />
+                  </InputLeftElement>
+                  <Input placeholder="Search for articles..." />
                 </InputGroup>
 
-                {/* <chakra.a
-                  p={3}
-                  color="gray.800"
-                  _dark={{
-                    color: "inherit",
-                  }}
-                  rounded="sm"
-                  _hover={{
-                    color: "gray.800",
-                    _dark: {
-                      color: "gray.600",
-                    },
-                  }}
-                >
-                  <AiFillBell />
-                  <VisuallyHidden>Notifications</VisuallyHidden>
-                </chakra.a> */}
-
-                <Avatar size="sm" name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
-              </HStack>
-            </Flex>
-          </chakra.header>
-          {/* <Flex align="center" justify={{ md: "center", base: "space-between" }} bgColor="rgb(25 30 56)" pr={24} pl={24} pt={16} pb={16} w={{ md: "224px" }} h={{ md: "24px" }} flexShrink={{ md: 0 }}>
-            <InertiaLink className="mt-1" href={Routes.root()} aria-label="Home" role="navigation">
-              <Logo />
-            </InertiaLink>
-            <Flex
-              // w="100%"
-              // align="center"
-              // justify="space-between"
-              borderBottomWidth={1}
-              bgColor="rgb(255 255 255)"
-              p={16}
-              fontSize={14}
-              lineHeight={20}
-              pt={{ md: "0px" }}
-              pb={{ md: "0px" }}
-              pl={{ md: "48px" }}
-              pr={{ md: "48px" }}
-              display={{ md: "none" }}
-            >
-              <Box mt={4} mr={16}>
-                {user.account.name}
-              </Box>
-              <Menu>
-                <MenuButton as={Box} rightIcon={<ChevronDownIcon />}>
-                  <Box mr={4} whiteSpace="nowrap" color="rgb(30 42 59)" _focus={{ color: "rgb(86 97 179)" }} _groupHover={{ color: "rgb(86 97 179)" }}>
-                    {user.first_name}
+                <Flex align="center">
+                  <Icon color="gray.500" as={BellIcon} cursor="pointer" />
+                  <Avatar ml="4" size="sm" name="anubra266" src="https://avatars.githubusercontent.com/u/30869823?v=4" cursor="pointer" />
+                  <Menu>
+                    <MenuButton as={Box} rightIcon={<ChevronDownIcon />}>
+                      <Box display={{ base: "none", md: "inline" }} mr={4} whiteSpace="nowrap" color="rgb(30 42 59)" _focus={{ color: "rgb(86 97 179)" }} _groupHover={{ color: "rgb(86 97 179)" }}>
+                        <Text>
+                          {user.first_name} {user.last_name}
+                        </Text>
+                      </Box>
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem>
+                        <Link role="navigation" href={Routes.edit_user("1")}>
+                          My Profile
+                        </Link>
+                      </MenuItem>
+                      <MenuItem>
+                        <Link role="navigation" href={Routes.users()}>
+                          Manage Users
+                        </Link>
+                      </MenuItem>
+                      <MenuItem>
+                        <InertiaLink href={Routes.destroy_user_session()} method="delete" as="button">
+                          Logout
+                        </InertiaLink>
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
+                </Flex>
+              </Flex>
+              <Box as="main" p="4">
+                {/* Add content here, remove div below  */}
+                <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96">
+                  <Box pl={16} pr={16} flex={{ md: "1 1 0%" }} overflowY={{ md: "auto" }} p={{ md: "48px" }} scroll-region>
+                    <FlashMessages />
                   </Box>
-                  <Text display={{ base: "none", md: "inline" }}>{user.last_name}</Text>
-                </MenuButton>
-                <MenuList>
-                  <MenuItem>
-                    <Link role="navigation" href={Routes.edit_user("1")}>
-                      My Profile
-                    </Link>
-                  </MenuItem>
-                  <MenuItem>
-                    <Link role="navigation" href={Routes.users()}>
-                      Manage Users
-                    </Link>
-                  </MenuItem>
-                  <MenuItem>
-                    <Link href={Routes.destroy_user_session()} method="delete" as="button">
-                      Logout
-                    </Link>
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            </Flex>
-          </Flex> */}
-        </Flex>
-        <Flex flexGrow={{ md: 1 }} overflow={{ md: "hidden" }}>
-          <MainMenu></MainMenu>
-          {children}
-          <Box pl={16} pr={16} flex={{ md: "1 1 0%" }} overflowY={{ md: "auto" }} p={{ md: "48px" }} scroll-region>
-            <FlashMessages />
+                  {children}
+                </Box>
+              </Box>
+            </Box>
           </Box>
         </Flex>
       </Flex>

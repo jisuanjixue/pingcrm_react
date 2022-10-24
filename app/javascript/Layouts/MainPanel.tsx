@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, useStyleConfig } from "@chakra-ui/react";
+import Main from "./Main";
 
 const MainPanel = props => {
   const { variant, children, ...rest } = props as any;
@@ -15,7 +16,7 @@ const MainPanel = props => {
         xl: "100%",
       }}
     >
-      {children}
+      <Main>{children}</Main>
     </Box>
   );
 };

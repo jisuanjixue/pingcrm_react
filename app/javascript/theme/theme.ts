@@ -11,6 +11,7 @@ import { CardHeaderComponent } from "./additions/card/CardHeader";
 import { MainPanelComponent } from "./additions/layout/MainPanel";
 import { PanelContentComponent } from "./additions/layout/PanelContent";
 import { PanelContainerComponent } from "./additions/layout/PanelContainer";
+import { baseTheme } from "@saas-ui/react";
 
 // const config: ThemeConfig = {
 //   initialColorMode: "light",
@@ -84,6 +85,7 @@ export default extendTheme(
       // widest: "0.1em",
     },
   },
+  baseTheme,
   globalStyles,
   buttonStyles, // Button styles
   inputStyles, // input styles

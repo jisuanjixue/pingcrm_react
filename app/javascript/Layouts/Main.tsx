@@ -4,7 +4,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  Text,
   Box,
   Avatar,
   IconButton,
@@ -62,17 +61,8 @@ const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
         transition=".15s ease"
         {...rest}
       >
-        <Link display="flex" role="group" alignItems="center" pt={12} pb={12} href={item?.url} aria-label={item?.linkName}>
-          {item.icon && (
-            <Icon
-              mr="2"
-              boxSize="4"
-              _groupHover={{
-                color: "gray.300",
-              }}
-              as={item.icon}
-            />
-          )}
+        <Link display="flex" role="group" alignItems="center" pt={4} pb={4} href={item?.url} aria-label={item?.linkName}>
+          {item.iconName && <Icon mr="2" boxSize="4" h="2" w="2" fill={isUrl(item.urlName) ? "#fff" : "#7886d7"} _groupHover={{ color: isUrl(item.urlName) ? "" : "#fff" }} as={item.iconName} />}
           <Box color={isUrl("") ? "#fff" : "#rgb(178 183 255)"} _groupHover={{ color: isUrl("") ? "" : "#fff" }}>
             {item?.linkName}
           </Box>
@@ -223,9 +213,7 @@ const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
             <Box pl={16} pr={16} flex={{ md: "1 1 0%" }} alignItems="center" justifyContent="center" overflowY={{ md: "auto" }} p={{ md: "48px" }} scroll-region>
               <FlashMessages />
             </Box>
-            <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96">
-              {children}
-            </Box>
+            {children}
           </Box>
         </Box>
       </Box>

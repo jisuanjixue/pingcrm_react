@@ -14,6 +14,7 @@ type IProps = {
 };
 
 const Index = ({ users, filters, can }: IProps) => {
+  console.log("🚀 ~ file: Index.tsx ~ line 17 ~ Index ~ users", users, filters, can)
   const { data, get, setData, processing, errors, reset } = useForm(filters);
 
   const query = () => {
@@ -26,7 +27,7 @@ const Index = ({ users, filters, can }: IProps) => {
     });
   };
 
-  const header = ["Name", "Email", "Role"];
+  const header = ["Name", "Email", "Role", "action"];
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -47,12 +48,12 @@ const Index = ({ users, filters, can }: IProps) => {
   return (
     <>
       <Head title="Users" />
-      <Text mb={32} fontSize={30} lineHeight={36} fontWeight={700}>
+      <Text mb="8" fontSize="3xl" lineHeight="3xl" fontWeight={700}>
         Users
       </Text>
-      <Flex mb={24} alignItems="center" justifyContent="space-between">
+      <Flex mb="6" alignItems="center" justifyContent="space-between">
         <form onSubmit={handleSubmit} onReset={handleReset}>
-          <HStack spacing={8}>
+          <HStack spacing="2">
             <FormControl>
               <FormLabel htmlFor="role">role</FormLabel>
               <Select placeholder="Select role" onChange={e => handleChange(e, "role")} value={data.role}>
@@ -85,12 +86,12 @@ const Index = ({ users, filters, can }: IProps) => {
           </HStack>
         </form>
         {can.create_user && (
-          <Link href={Routes.new_user()} as="button" type="button" colorScheme="teal" variant="solid" size="md" data>
+          <Link href={Routes.new_user()} as="button" type="button">
             Create User
           </Link>
         )}
       </Flex>
-      <Box overflowY="auto" borderRadius={4} bgColor="#ffffff" boxShadow="md">
+      <Box overflowY="auto" borderRadius="1" bgColor="#ffffff" boxShadow="md">
         <Table
           w="full"
           bg="white"
@@ -177,12 +178,12 @@ const Index = ({ users, filters, can }: IProps) => {
                           {x}
                         </Td>
                         <Td fontSize="md" fontWeight="hairline">
-                          <Box display="flex" alignItems="center" pr={24} pl={24} pb={16} pt={16} _focus={{ color: "rgb(101 116 205)" }}>
+                          <Box display="flex" alignItems="center" pr="6" pl="6" pb="4" pt="4" _focus={{ color: "rgb(101 116 205)" }}>
                             <Link href={Routes.edit_user(item.id)} aria-label="Edit">
-                              {i === 0 && item.photo && <Avatar name="Photo" mt={-8} mb={-8} size="sm" src={item.photo} />}
-                              {item[x]}
-                              {x === "owner" && item[x] ? "Owner" : "User"}
-                              {i === 0 && item.deleted_at && <DeleteIcon w={12} h={12} fill="#64748b" flexShrink={0} ml={8} />}
+                              {i === 0 && item.photo && <Avatar name="Photo" mt="-2" mb="-2" size="sm" src={item.photo} />}
+                              {!item.can && item[x]}
+                              {/* {x === "owner" && item[x] ? "Owner" : "User"} */}
+                              {i === 0 && item.deleted_at && <DeleteIcon w="3" h="3" fill="#64748b" flexShrink="0" ml="2" />}
                             </Link>
                           </Box>
                         </Td>

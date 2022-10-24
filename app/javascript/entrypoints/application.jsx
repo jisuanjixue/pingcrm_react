@@ -11,7 +11,8 @@ import { Inertia } from "@inertiajs/inertia";
 import Plausible from "plausible-tracker";
 import axios from "axios";
 import theme from "../theme/theme";
-import { ChakraProvider } from "@chakra-ui/react";
+// import { ChakraProvider } from "@chakra-ui/react";
+import { SaasProvider } from "@saas-ui/react";
 import MainPanel from "../Layouts/MainPanel";
 
 import { createInertiaApp } from "@inertiajs/inertia-react";
@@ -53,10 +54,13 @@ createInertiaApp({
   setup: ({ el, App, props }) => {
     const root = createRoot(el);
     root.render(
-      <ChakraProvider theme={theme} resetCSS={true}>
+      <SaasProvider theme={theme}>
         <App {...props} />
-      </ChakraProvider>,
+      </SaasProvider>,
       el
     );
   },
 });
+
+// "eslint-plugin-cypress": "^2.12.1"
+//"cypress": "^10.10.0"

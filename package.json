@@ -22,8 +22,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "timeago.js": "^4.0.2",
-    "uuid": "^8.3.2"
+    "snakecase-keys": "^5.4.2",
+    "timeago.js": "^4.0.2"
   },
   "version": "0.1.0",
   "devDependencies": {

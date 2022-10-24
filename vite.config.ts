@@ -12,6 +12,9 @@ export default defineConfig({
   // esbuild: {
   //   jsxInject: `import React from 'react'`,
   // },
+  resolve: {
+    dedupe: ["axios"],
+  },
   optimizeDeps: {
     include: ["@inertiajs/inertia"],
   },

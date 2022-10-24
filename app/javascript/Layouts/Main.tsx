@@ -25,8 +25,6 @@ import * as Routes from "../utils/routes.js";
 import DashboardMenus from "../variables/general";
 
 import Logo from "@/components/Logo";
-import FlashMessages from "@/components/FlashMessages";
-
 // eslint-disable-next-line @typescript-eslint/ban-types
 const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
   const {
@@ -228,9 +226,6 @@ const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
               <Box as="main" p="4">
                 {/* Add content here, remove div below  */}
                 <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96">
-                  <Box pl={16} pr={16} flex={{ md: "1 1 0%" }} overflowY={{ md: "auto" }} p={{ md: "48px" }} scroll-region>
-                    <FlashMessages />
-                  </Box>
                   {children}
                 </Box>
               </Box>

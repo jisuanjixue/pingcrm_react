@@ -5,6 +5,7 @@
 
 import React from "react";
 import { createRoot } from "react-dom/client";
+import snakecaseKeys from "snakecase-keys";
 
 import { Inertia } from "@inertiajs/inertia";
 import Plausible from "plausible-tracker";
@@ -34,6 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const csrfToken = document.querySelector("meta[name=csrf-token]")?.content;
   axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
 });
+
+axios.defaults.transformRequest = [data => snakecaseKeys(data, { deep: true }), ...axios.defaults.transformRequest];
 
 InertiaProgress.init();
 

@@ -2,8 +2,8 @@
   "type": "rdbg",
   "name": "Attach with rdbg",
   "request": "attach",
-  "rdbgPath": "/Users/wangxiaobo/.rvm/gems/ruby-3.1.2/gems/debug-1.6.2/exe/rdbg",
-  "debugPort": "/var/folders/km/kgcq8rbd4q9fpsfvj4gzmzr00000gn/T/ruby-debug-sock-501/ruby-debug-wangxiaobo-10698",
+  "rdbgPath": "/Users/xiaobo/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/debug-1.6.2/exe/rdbg",
+  "debugPort": "/var/folders/2c/k7hl88c57ds08jsyfwqq3l_c0000gn/T/ruby-debug-sock-501/ruby-debug-xiaobo-57085",
   "localfs": true,
-  "autoAttach": "0.5267854687809185"
+  "autoAttach": "0.41206245861474344"
 }

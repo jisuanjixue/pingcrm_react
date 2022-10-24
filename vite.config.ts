@@ -5,8 +5,6 @@ import react from "@vitejs/plugin-react";
 import { brotliCompressSync } from "zlib";
 import gzipPlugin from "rollup-plugin-gzip";
 import tsconfigPaths from "vite-tsconfig-paths";
-// import babel from "vite-plugin-babel";
-// import { viteCommonjs } from "@originjs/vite-plugin-commonjs";
 
 export default defineConfig({
   // esbuild: {
@@ -24,7 +22,9 @@ export default defineConfig({
     RubyPlugin(),
     // babel(),
     FullReload(["config/routes.rb", "app/views/**/*", "app/serializers/**/*.rb"]),
-    react(),
+    react({
+      include: "**/*.tsx",
+    }),
     // Create gzip copies of relevant assets
     gzipPlugin(),
     // viteCommonjs(),
@@ -34,4 +34,12 @@ export default defineConfig({
       fileName: ".br",
     }),
   ],
+  server: {
+    hmr: {
+      protocol: "ws",
+      host: "localhost",
+      usePolling: true,
+      // clientPort: 443,
+    },
+  },
 });

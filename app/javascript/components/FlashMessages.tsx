@@ -33,7 +33,7 @@ const FlashMessages = () => {
             </AlertTitle>
             <AlertDescription></AlertDescription>
           </Box>
-          <CloseButton alignSelf="flex-start" position="relative" right={-1} top={-1} onClick={onClose} />
+          <CloseButton alignSelf="flex-end" position="relative" right={-1} top={-1} onClick={onClose} />
         </Alert>
       )}
     </>

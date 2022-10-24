@@ -13,7 +13,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       return require("./spec/cypress/plugins/index.js")(on, config);
     },
-    baseUrl: "https://pingcrm-react.test",
+    baseUrl: "https://pingcrm.test",
     specPattern: "spec/cypress/integration/**/*.{js,jsx,ts,tsx}",
     supportFile: "spec/cypress/support/index.js",
   },

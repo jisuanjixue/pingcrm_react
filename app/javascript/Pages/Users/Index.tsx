@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import { Box, Button, Flex, FormControl, FormLabel, HStack, Avatar, Input, Select, Table, Tbody, Td, Th, Thead, Tr, Text, FormErrorMessage, FormHelperText } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
+import { DataTable } from '@saas-ui/react'
 import pickBy from "lodash/pickBy";
 import * as Routes from "../../utils/routes";
 
@@ -17,6 +18,8 @@ const Index = ({ users, filters, can }: IProps) => {
   console.log("🚀 ~ file: Index.tsx ~ line 17 ~ Index ~ users", users, filters, can)
   const { data, get, setData, processing, errors, reset } = useForm(filters);
 
+  const tableRef = useRef(null) as any
+
   const query = () => {
     const query = pickBy(data);
     get(Routes.users(Object.keys(query).length ? query : { remember: "forget" }), {
@@ -27,7 +30,23 @@ const Index = ({ users, filters, can }: IProps) => {
     });
   };
 
-  const header = ["Name", "Email", "Role", "action"];
+  const header = [
+    {
+      accessor: 'id',
+      Header: 'Id',
+    },
+    {
+      accessor: 'name',
+      Header: 'Name',
+    },
+    {
+      accessor: 'email',
+      Header: 'Email',
+    },
+    {
+      accessor: 'role',
+      Header: 'Role',
+    }];
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -35,6 +54,7 @@ const Index = ({ users, filters, can }: IProps) => {
   };
 
   const handleReset = e => {
+    console.log("2222")
     e.preventDefault();
     reset();
     query();
@@ -53,9 +73,9 @@ const Index = ({ users, filters, can }: IProps) => {
       </Text>
       <Flex mb="6" alignItems="center" justifyContent="space-between">
         <form onSubmit={handleSubmit} onReset={handleReset}>
-          <HStack spacing="2">
+          <HStack spacing="3">
             <FormControl>
-              <FormLabel htmlFor="role">role</FormLabel>
+              <FormLabel htmlFor="role">role:</FormLabel>
               <Select placeholder="Select role" onChange={e => handleChange(e, "role")} value={data.role}>
                 <option value="null" />
                 <option value="user">User</option>
@@ -64,7 +84,7 @@ const Index = ({ users, filters, can }: IProps) => {
               {errors.role && <FormHelperText>{errors.role}</FormHelperText>}
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="trashed">trash</FormLabel>
+              <FormLabel htmlFor="trashed">trash:</FormLabel>
               <Select placeholder="Select Trashed" onChange={e => handleChange(e, "trashed")} value={data.trashed}>
                 <option value="null" />
                 <option value="with">With Trashed</option>
@@ -73,14 +93,14 @@ const Index = ({ users, filters, can }: IProps) => {
               {errors.trashed && <FormHelperText>{errors.trashed}</FormHelperText>}
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="search">search</FormLabel>
+              <FormLabel htmlFor="search">search:</FormLabel>
               <Input type="search" variant="filled" onChange={e => handleChange(e, "search")} value={data.search} />
               {errors.search && <FormHelperText>{errors.search}</FormHelperText>}
             </FormControl>
-            <Button type="submit" colorScheme="purple" width="full" disabled={processing}>
+            <Button type="submit" colorScheme="facebook" width="full" disabled={processing}>
               inquire
             </Button>
-            <Button type="reset" colorScheme="purple" width="full">
+            <Button type="reset" colorScheme="gray" width="full">
               reset
             </Button>
           </HStack>
@@ -91,8 +111,27 @@ const Index = ({ users, filters, can }: IProps) => {
           </Link>
         )}
       </Flex>
+      <Button
+        onClick={() =>
+          tableRef.current.toggleAllRowsSelected(
+            !tableRef.current.isAllRowsSelected
+          )
+        }
+      >
+        Select all rows
+      </Button>
       <Box overflowY="auto" borderRadius="1" bgColor="#ffffff" boxShadow="md">
-        <Table
+        <DataTable
+          ref={tableRef}
+          columns={header}
+          data={users}
+          autoResetHiddenColumns={true}
+          isSortable
+          isSelectable
+          onSelectedRowsChange={(selected) => console.log(selected)}
+          onSortChange={(column) => console.log(column)}
+        />
+        {/* <Table
           w="full"
           bg="white"
           _dark={{
@@ -182,7 +221,7 @@ const Index = ({ users, filters, can }: IProps) => {
                             <Link href={Routes.edit_user(item.id)} aria-label="Edit">
                               {i === 0 && item.photo && <Avatar name="Photo" mt="-2" mb="-2" size="sm" src={item.photo} />}
                               {!item.can && item[x]}
-                              {/* {x === "owner" && item[x] ? "Owner" : "User"} */}
+                              {x === "owner" && item[x] ? "Owner" : "User"}
                               {i === 0 && item.deleted_at && <DeleteIcon w="3" h="3" fill="#64748b" flexShrink="0" ml="2" />}
                             </Link>
                           </Box>
@@ -194,7 +233,7 @@ const Index = ({ users, filters, can }: IProps) => {
               );
             })}
           </Tbody>
-        </Table>
+        </Table> */}
       </Box>
     </>
   );

@@ -14,9 +14,14 @@ type IProps = {
   can: Can;
 };
 
-const Index = ({ users, filters, can }: IProps) => {
-  console.log("🚀 ~ file: Index.tsx ~ line 17 ~ Index ~ users", users, filters, can)
-  const { data, get, setData, processing, errors, reset } = useForm(filters);
+const Index = ({ users, can }: IProps) => {
+  const defaultFilterData: Filters = {
+    search: '',
+    trashed: '',
+    role: ''
+  }
+  const { data, get, setData, processing, errors, reset } = useForm(defaultFilterData);
+
 
   const tableRef = useRef(null) as any
 
@@ -54,9 +59,7 @@ const Index = ({ users, filters, can }: IProps) => {
   };
 
   const handleReset = e => {
-    console.log("2222")
     e.preventDefault();
-    reset();
     query();
   };
 
@@ -100,7 +103,7 @@ const Index = ({ users, filters, can }: IProps) => {
             <Button type="submit" colorScheme="facebook" width="full" disabled={processing}>
               inquire
             </Button>
-            <Button type="reset" colorScheme="gray" width="full">
+            <Button type="reset" colorScheme="gray" width="full" onClick={() => { reset() }}>
               reset
             </Button>
           </HStack>

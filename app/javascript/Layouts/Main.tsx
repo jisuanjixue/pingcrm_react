@@ -164,7 +164,7 @@ const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
                 md: "flex",
               }}
             >
-              {user.account.name}
+              {user?.account?.name}
             </Box>
             <InputGroup
               w="66"
@@ -185,7 +185,7 @@ const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
               <Menu>
                 <MenuButton as={Box} rightIcon={<ChevronDownIcon />}>
                   <Box display={{ base: "none", md: "inline" }} mr={2} whiteSpace="nowrap" color="rgb(30 42 59)" _focus={{ color: "rgb(86 97 179)" }} _groupHover={{ color: "rgb(86 97 179)" }}>
-                    {user.first_name} {user.last_name}
+                    {user?.first_name} {user?.last_name}
                   </Box>
                 </MenuButton>
                 <MenuList>

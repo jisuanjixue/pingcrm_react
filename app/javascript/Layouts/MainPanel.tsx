@@ -1,8 +1,12 @@
 import React from "react";
 import { Box, useStyleConfig } from "@chakra-ui/react";
 import Main from "./Main";
+import { usePage } from "@inertiajs/inertia-react";
 
 const MainPanel = props => {
+  const {
+    auth: { user },
+  } = usePage().props as any;
   const { variant, children, ...rest } = props as any;
   const styles = useStyleConfig("MainPanel", { variant });
   // Pass the computed styles into the `__css` prop
@@ -16,7 +20,7 @@ const MainPanel = props => {
         xl: "100%",
       }}
     >
-      <Main>{children}</Main>
+      {user ? <Main>{children}</Main> : children}
     </Box>
   );
 };

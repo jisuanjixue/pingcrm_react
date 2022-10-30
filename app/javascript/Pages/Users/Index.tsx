@@ -51,7 +51,12 @@ const Index = ({ users, can }: IProps) => {
     {
       accessor: 'role',
       Header: 'Role',
-    }];
+    },
+    {
+      accessor: 'action',
+      Header: 'Action',
+    },
+  ];
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -60,6 +65,7 @@ const Index = ({ users, can }: IProps) => {
 
   const handleReset = e => {
     e.preventDefault();
+    // reset() is not here, in button onClick function
     query();
   };
 
@@ -127,10 +133,14 @@ const Index = ({ users, can }: IProps) => {
         <DataTable
           ref={tableRef}
           columns={header}
-          data={users}
+          data={users.map(v => ({ ...v, role: v.owner ? "Owner" : "User" }))}
           autoResetHiddenColumns={true}
           isSortable
           isSelectable
+          onClick={() => console.log("1111")}
+          // onRowClick={(row, e) => console.log(row, e)}
+          // getSubRows={(originalRow, relativeIndex) => console.log(originalRow, relativeIndex)}
+          // getRowId={(originalRow, relativeIndex) => console.log(originalRow, relativeIndex)}
           onSelectedRowsChange={(selected) => console.log(selected)}
           onSortChange={(column) => console.log(column)}
         />

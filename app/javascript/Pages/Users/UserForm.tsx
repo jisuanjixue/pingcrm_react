@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Flex, FormControl, FormLabel, Input, FormErrorMessage, Stack, Box, Button, Avatar, Icon } from "@chakra-ui/react";
+import { Flex, FormControl, FormLabel, Input, FormErrorMessage, Stack, Box, Button, Avatar } from "@chakra-ui/react";
 import { useForm } from "@inertiajs/inertia-react";
 import PasswordField from "@/components/passwordInput/PasswordField";
 import FileUpload from "@/components/fileUpload/index";
@@ -12,9 +12,9 @@ type IProps = {
 
 const UserForm = ({ userForm }: IProps) => {
   const formRef = useRef(null)
-  const { data, post, setData, processing, errors, reset } = useForm({ ...userForm });
+  const { data, post, setData, processing, errors, reset, progress } = useForm('CreateUser', { ...userForm });
   const handValue = (e, name) => {
-    const value = e.target.value;
+    const value = name === "photo" ? e?.target?.files?.[0] : e.target.value;
     setData(name, value);
   };
 
@@ -25,11 +25,12 @@ const UserForm = ({ userForm }: IProps) => {
   }
 
   const fileProps = {
-    setData,
+    handValue,
     label: "Photo",
     errors,
     photo: data.photo,
     type: "file",
+    progress
   };
 
   const saveHandler = () => {
@@ -118,49 +119,31 @@ const UserForm = ({ userForm }: IProps) => {
                 onChange={(value) => handValue(value, "role")}
                 renderValue={(value?: string[]) => data.owner ? value?.[0] : ""}
               />
-              <FormControl>
-                <FormLabel
-                  fontSize="sm"
-                  fontWeight="md"
-                  color="gray.700"
-                  _dark={{
-                    color: "gray.50",
-                  }}
-                >
-                  Photo
-                </FormLabel>
-                <Flex alignItems="center" mt={1}>
-                  <Avatar
-                    boxSize={12}
-                    bg="gray.100"
-                    _dark={{
-                      bg: "gray.800",
-                    }}
-                    src='https://bit.ly/broken-link'
-                  />
-                  <Button
-                    type="button"
-                    ml={5}
-                    variant="outline"
-                    size="sm"
-                    fontWeight="medium"
-                    _focus={{
-                      shadow: "none",
-                    }}
-                  >
-                    Change
-                  </Button>
-                </Flex>
-              </FormControl>
+              <FileUpload {...fileProps}></FileUpload>
             </FormLayout>
           </FormLayout>
         </Form>
       </CardBody>
       <CardFooter>
-        <Button variant="solid" colorScheme="gray">
-          Continue
-        </Button>
-        <Button>Dismiss</Button>
+        <Stack direction='row' spacing={4} align='center'>
+          <Button
+            colorScheme='teal'
+            variant='outline'
+            spinnerPlacement='start'
+            onClick={() => { reset() }}
+          >
+            reset
+          </Button>
+          <Button
+            isLoading={processing}
+            loadingText='Loading'
+            colorScheme='teal'
+            variant='solid'
+            spinnerPlacement='end'
+          >
+            Create User
+          </Button>
+        </Stack>
       </CardFooter>
     </Card>
 

@@ -1,8 +1,8 @@
-import { FormControl, Input, FormLabel, Box, Button, Text, useControllableState, FormErrorMessage } from "@chakra-ui/react";
+import { FormControl, Input, FormLabel, Box, Button, Text, Progress, FormErrorMessage, Flex, Avatar } from "@chakra-ui/react";
 import React, { useRef } from "react";
 
 type IProps = {
-  setData: (name, file) => void;
+  handValue: (file, name) => void;
   label: string;
   errors: [];
   photo: {
@@ -10,18 +10,13 @@ type IProps = {
     size: number;
   };
   type: string;
+  progress: any
 };
 
-const FileUpload = ({ setData, label, photo, errors }: IProps) => {
-  // const [files, setFiles] = useControllableState({defaultValue: []})
-  const refFile = useRef();
-
-  const browse = () => {
-    refFile?.file.click();
-  };
+const FileUpload = ({ handValue, label, photo, errors, type, progress }: IProps) => {
 
   const handRemove = () => {
-    setData("photo", null);
+    handValue(null, "photo");
   };
 
   const filesize = size => {
@@ -32,28 +27,53 @@ const FileUpload = ({ setData, label, photo, errors }: IProps) => {
 
   return (
     <>
-      {label && <FormLabel>{label}</FormLabel>}
       <FormControl>
-        <Input type="file" accept="image/*" display="none" ref={refFile} onChange={e => setData("photo", e?.target?.files?.[0])} />
+        {label &&
+          <>
+            <FormLabel
+              fontSize="sm"
+              fontWeight="md"
+              color="gray.700"
+              _dark={{
+                color: "gray.50",
+              }}
+            >
+              {label}
+            </FormLabel>
+            <Flex alignItems="center" mt="1">
+              <Avatar
+                boxSize="12"
+                bg="gray.100"
+                _dark={{
+                  bg: "gray.800",
+                }}
+                src='https://bit.ly/broken-link'
+              />
+              {!photo ?
+                (<Input type={type} accept="image/*" value={photo} onChange={e => handValue(e, "photo")} />) :
+                (
+                  <Box display="flex" alignItems="center" justifyContent="space-between" pr="2" pl="2">
+                    <Box>{photo?.name}</Box>
+                    <Text fontSize="" color="">
+                      {filesize(photo?.size)}
+                    </Text>
+                    <Button onClick={() => handRemove()} colorScheme="teal" variant="solid">
+                      Remove
+                    </Button>
+                  </Box>
+                )
+              }
+            </Flex>
+          </>
+        }
+
+        {progress && (
+          <Progress colorScheme='green' size='md' value={progress.percentage}>
+            {progress.percentage}%
+          </Progress>
+        )}
       </FormControl>
-      {photo ? (
-        <Box pr={8} pl={8}>
-          <Button onClick={() => browse()} colorScheme="teal" variant="solid">
-            Browse
-          </Button>
-        </Box>
-      ) : (
-        <Box display="flex" alignItems="center" justifyContent="space-between" pr={8} pl={8}>
-          <Box>{photo?.name}</Box>
-          <Text fontSize="" color="">
-            {filesize(photo?.size)}
-          </Text>
-          <Button onClick={() => handRemove()} colorScheme="teal" variant="solid">
-            Remove
-          </Button>
-        </Box>
-      )}
-      {errors.length > 0 && <FormErrorMessage>{errors[0]}</FormErrorMessage>}
+      {errors.length > 0 && <FormErrorMessage>{errors}</FormErrorMessage>}
     </>
   );
 };

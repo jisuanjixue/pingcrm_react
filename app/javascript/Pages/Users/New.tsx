@@ -21,21 +21,21 @@ const newIndex = ({ user }: IProps) => {
         </BreadcrumbItem>
       </Breadcrumb>
       <Flex
-        bg="#edf3f8"
         _dark={{
           bg: "#3e3e3e",
         }}
-        p={50}
+        mt="5"
+        // p={50}
         w="full"
         alignItems="center"
-        justifyContent="center"
+        justifyContent="start"
       >
         <UserForm userForm={user} />
-        <Flex justify="end">
+        {/* <Flex justify="end">
           <Button isLoading loadingText="Loading" colorScheme="teal" variant="outline" spinnerPlacement="start" type="submit">
             Create User
           </Button>
-        </Flex>
+        </Flex> */}
       </Flex>
     </>
   );

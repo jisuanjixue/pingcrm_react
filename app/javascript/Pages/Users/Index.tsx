@@ -1,8 +1,19 @@
 import React, { useRef } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
-import { Box, Button, Flex, FormControl, FormLabel, HStack, Avatar, Input, Select, Table, Tbody, Td, Th, Thead, Tr, Text, FormErrorMessage, FormHelperText } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
-import { DataTable } from '@saas-ui/react'
+import { Box, Button, Flex, HStack, Avatar, Text, FormHelperText, AvatarBadge, ButtonGroup, IconButton, Stack } from "@chakra-ui/react";
+import { AddIcon, DeleteIcon, EditIcon, TimeIcon } from "@chakra-ui/icons";
+import {
+  DataTable,
+  Form,
+  FormLayout,
+  PersonaContainer,
+  PersonaDetails,
+  PersonaLabel,
+  PersonaSecondaryLabel,
+  PersonaTertiaryLabel,
+  SearchInput,
+  Select
+} from '@saas-ui/react'
 import pickBy from "lodash/pickBy";
 import * as Routes from "../../utils/routes";
 
@@ -58,8 +69,7 @@ const Index = ({ users, can }: IProps) => {
     },
   ];
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = () => {
     query();
   };
 
@@ -69,10 +79,10 @@ const Index = ({ users, can }: IProps) => {
     query();
   };
 
-  const handleChange = (e, name) => {
-    const value = e.target.value;
+  const handleChange = (value, name) => {
     setData(name, value);
   };
+
 
   return (
     <>
@@ -81,172 +91,104 @@ const Index = ({ users, can }: IProps) => {
         Users
       </Text>
       <Flex mb="6" alignItems="center" justifyContent="space-between">
-        <form onSubmit={handleSubmit} onReset={handleReset}>
-          <HStack spacing="3">
-            <FormControl>
-              <FormLabel htmlFor="role">role:</FormLabel>
-              <Select placeholder="Select role" onChange={e => handleChange(e, "role")} value={data.role}>
-                <option value="null" />
-                <option value="user">User</option>
-                <option value="owner">Owner</option>
-              </Select>
-              {errors.role && <FormHelperText>{errors.role}</FormHelperText>}
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="trashed">trash:</FormLabel>
-              <Select placeholder="Select Trashed" onChange={e => handleChange(e, "trashed")} value={data.trashed}>
-                <option value="null" />
-                <option value="with">With Trashed</option>
-                <option value="only">Only Trashed</option>
-              </Select>
-              {errors.trashed && <FormHelperText>{errors.trashed}</FormHelperText>}
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="search">search:</FormLabel>
-              <Input type="search" variant="filled" onChange={e => handleChange(e, "search")} value={data.search} />
-              {errors.search && <FormHelperText>{errors.search}</FormHelperText>}
-            </FormControl>
+        <Form onSubmit={handleSubmit} onReset={handleReset}>
+          <FormLayout columns={[1, null, 6]}>
+            <Select
+              name="role"
+              placeholder={data.role ? data.role : "Select a Role"}
+              options={[
+                { label: 'User', value: 'user' },
+                { label: 'Owner', value: 'owner' },
+              ]}
+              size="md"
+              onChange={(value) => handleChange(value, "role")}
+              renderValue={(value?: string[]) => data.role ? value?.[0] : ""}
+            />
+            {errors.role && <FormHelperText>{errors.role}</FormHelperText>}
+            <Select
+              name="trashed"
+              placeholder="Select Trashed"
+              options={[
+                { label: 'With Trashed', value: 'with' },
+                { label: 'Only Trashed', value: 'only' },
+              ]}
+              onChange={(value) => handleChange(value, "trashed")}
+              renderValue={(value?: string[]) => data.trashed ? value?.[0] : ""}
+              size="md"
+            />
+            {errors.trashed && <FormHelperText>{errors.trashed}</FormHelperText>}
+            <SearchInput
+              placeholder="Search"
+              value={data.search}
+              onChange={(e) => handleChange(e.target.value, "search")}
+              onReset={() => handleChange('', "search")}
+            />
             <Button type="submit" colorScheme="facebook" width="full" disabled={processing}>
               inquire
             </Button>
             <Button type="reset" colorScheme="gray" width="full" onClick={() => { reset() }}>
               reset
             </Button>
-          </HStack>
-        </form>
-        {can.create_user && (
-          <Link href={Routes.new_user()} as="button" type="button">
-            Create User
-          </Link>
-        )}
+          </FormLayout>
+        </Form>
       </Flex>
-      <Button
-        onClick={() =>
-          tableRef.current.toggleAllRowsSelected(
-            !tableRef.current.isAllRowsSelected
-          )
-        }
-      >
-        Select all rows
-      </Button>
+      <HStack mb="2" spacing="900">
+        <Button
+          onClick={() =>
+            tableRef.current.toggleAllRowsSelected(
+              !tableRef.current.isAllRowsSelected
+            )
+          }
+        >
+          Select all rows
+        </Button>
+        {can.create_user && (
+          <Button leftIcon={<AddIcon />} colorScheme='teal' variant='solid'>
+            <Link href={Routes.new_user()}>
+              Create User
+            </Link>
+          </Button>
+        )}
+      </HStack>
       <Box overflowY="auto" borderRadius="1" bgColor="#ffffff" boxShadow="md">
         <DataTable
           ref={tableRef}
           columns={header}
-          data={users.map(v => ({ ...v, role: v.owner ? "Owner" : "User" }))}
+          data={users.map(v => ({
+            ...v,
+            name: <PersonaContainer size="lg">
+              <Avatar name={v.name} src={v?.photo}>
+                <AvatarBadge boxSize="1em" bg="presence.away">
+                  <TimeIcon />
+                </AvatarBadge>
+              </Avatar>
+              <PersonaDetails>
+                <PersonaLabel>{v.name}</PersonaLabel>
+                {v.deleted_at && <PersonaSecondaryLabel>
+                  <IconButton
+                    colorScheme="red"
+                    variant="outline"
+                    icon={<DeleteIcon />}
+                    aria-label="Delete"
+                  /> delete</PersonaSecondaryLabel>}
+                <PersonaTertiaryLabel>can edit: {v.can?.edit_user ? "yes" : "no"}</PersonaTertiaryLabel>
+              </PersonaDetails>
+            </PersonaContainer>,
+            role: v.owner ? "Owner" : "User",
+            action: <ButtonGroup variant="solid" size="sm" spacing={3}>
+              <IconButton
+                colorScheme="green"
+                icon={<EditIcon />}
+                aria-label="Edit"
+              />
+            </ButtonGroup>
+          }))}
           autoResetHiddenColumns={true}
           isSortable
           isSelectable
-          onClick={() => console.log("1111")}
-          // onRowClick={(row, e) => console.log(row, e)}
-          // getSubRows={(originalRow, relativeIndex) => console.log(originalRow, relativeIndex)}
-          // getRowId={(originalRow, relativeIndex) => console.log(originalRow, relativeIndex)}
           onSelectedRowsChange={(selected) => console.log(selected)}
           onSortChange={(column) => console.log(column)}
         />
-        {/* <Table
-          w="full"
-          bg="white"
-          _dark={{
-            bg: "gray.800",
-          }}
-          display={{
-            base: "block",
-            md: "table",
-          }}
-          sx={{
-            "@media print": {
-              display: "table",
-            },
-          }}
-          whiteSpace="nowrap"
-        >
-          <Thead
-            display={{
-              base: "none",
-              md: "table-header-group",
-            }}
-            sx={{
-              "@media print": {
-                display: "table-header-group",
-              },
-            }}
-          >
-            <Tr textAlign="left" fontWeight={700}>
-              {header.map(x => (
-                <Th key={x}>{x}</Th>
-              ))}
-            </Tr>
-          </Thead>
-          <Tbody
-            display={{
-              base: "block",
-              lg: "table-row-group",
-            }}
-            sx={{
-              "@media print": {
-                display: "table-row-group",
-              },
-            }}
-          >
-            {users?.map((item, index) => {
-              return (
-                <Tr
-                  key={index}
-                  display={{
-                    base: "grid",
-                    md: "table-row",
-                  }}
-                  sx={{
-                    "@media print": {
-                      display: "table-row",
-                    },
-                    gridTemplateColumns: "minmax(0px, 35%) minmax(0px, 65%)",
-                    gridGap: "10px",
-                  }}
-                  _focusWithin={{ backgroundColor: "(rgb(241 245 249 )" }}
-                  _hover={{ backgroundColor: "(rgb(241 245 249 )" }}
-                >
-                  {Object.keys(item).map((x, i) => {
-                    return (
-                      <React.Fragment key={`${index}${x}`}>
-                        <Td
-                          display={{
-                            base: "table-cell",
-                            md: "none",
-                          }}
-                          sx={{
-                            "@media print": {
-                              display: "none",
-                            },
-                            textTransform: "uppercase",
-                            color: "#fff",
-                            fontSize: "xs",
-                            fontWeight: "bold",
-                            letterSpacing: "wider",
-                            fontFamily: "heading",
-                          }}
-                        >
-                          {x}
-                        </Td>
-                        <Td fontSize="md" fontWeight="hairline">
-                          <Box display="flex" alignItems="center" pr="6" pl="6" pb="4" pt="4" _focus={{ color: "rgb(101 116 205)" }}>
-                            <Link href={Routes.edit_user(item.id)} aria-label="Edit">
-                              {i === 0 && item.photo && <Avatar name="Photo" mt="-2" mb="-2" size="sm" src={item.photo} />}
-                              {!item.can && item[x]}
-                              {x === "owner" && item[x] ? "Owner" : "User"}
-                              {i === 0 && item.deleted_at && <DeleteIcon w="3" h="3" fill="#64748b" flexShrink="0" ml="2" />}
-                            </Link>
-                          </Box>
-                        </Td>
-                      </React.Fragment>
-                    );
-                  })}
-                </Tr>
-              );
-            })}
-          </Tbody>
-        </Table> */}
       </Box>
     </>
   );

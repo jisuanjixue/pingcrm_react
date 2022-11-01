@@ -9,6 +9,10 @@ type IProps = {
 };
 
 const newIndex = ({ user }: IProps) => {
+  const userForm = {
+    ...user,
+    photo: null
+  }
   return (
     <>
       <Head title="Create User"></Head>
@@ -25,17 +29,11 @@ const newIndex = ({ user }: IProps) => {
           bg: "#3e3e3e",
         }}
         mt="5"
-        // p={50}
         w="full"
         alignItems="center"
         justifyContent="start"
       >
-        <UserForm userForm={user} />
-        {/* <Flex justify="end">
-          <Button isLoading loadingText="Loading" colorScheme="teal" variant="outline" spinnerPlacement="start" type="submit">
-            Create User
-          </Button>
-        </Flex> */}
+        <UserForm {...userForm} />
       </Flex>
     </>
   );

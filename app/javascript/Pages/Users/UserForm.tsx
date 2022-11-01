@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { FormControl, FormLabel, Input, FormErrorMessage, Stack, Button } from "@chakra-ui/react";
 import { useForm } from "@inertiajs/inertia-react";
 import PasswordField from "@/components/passwordInput/PasswordField";
-import FileUpload from "@/components/fileUpload/index";
+// import FileUpload from "@/components/fileUpload/index";
 import { Card, CardBody, CardFooter, CardHeader, CardTitle, FormLayout, Select } from "@saas-ui/react";
 import * as Routes from "../../utils/routes";
 
@@ -23,7 +23,7 @@ const UserForm = (userForm: any) => {
     handValue,
     label: "Photo",
     errors,
-    photo: data.photo,
+    // photo: data.photo,
     type: "file",
     progress
   };
@@ -117,7 +117,7 @@ const UserForm = (userForm: any) => {
                 onChange={(value) => handValue(value, "owner")}
                 renderValue={(value?: string[]) => data.owner ? value?.[0] : ""}
               />
-              <FileUpload {...fileProps}></FileUpload>
+              {/* <FileUpload {...fileProps}></FileUpload> */}
             </FormLayout>
           </FormLayout>
         </form>

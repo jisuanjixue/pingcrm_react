@@ -29,7 +29,7 @@ type IProps = {
 
 const Index = ({ users, can }: IProps) => {
   const modals = useModals()
-
+  console.log(Routes)
   const defaultFilterData: Filters = {
     search: '',
     trashed: '',
@@ -184,8 +184,10 @@ const Index = ({ users, can }: IProps) => {
                 colorScheme="green"
                 icon={<EditIcon />}
                 aria-label="Edit"
-                onClick={() => Routes.edit_user(v.id)}
-              />
+                onClick={() => Inertia.get(Routes.edit_user(), v.id)}
+              >
+                <Link href={Routes.edit_user("1")} />
+              </IconButton>
               <IconButton
                 colorScheme="red"
                 icon={<DeleteIcon />}

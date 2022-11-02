@@ -12,12 +12,14 @@ import {
   PersonaSecondaryLabel,
   PersonaTertiaryLabel,
   SearchInput,
-  Select
+  Select,
+  useModals
 } from '@saas-ui/react'
 import pickBy from "lodash/pickBy";
 import * as Routes from "../../utils/routes";
 
 import { UserInfo, Filters, Can } from "@/data-types/user";
+import { Inertia } from "@inertiajs/inertia";
 
 type IProps = {
   users: UserInfo[];
@@ -26,6 +28,8 @@ type IProps = {
 };
 
 const Index = ({ users, can }: IProps) => {
+  const modals = useModals()
+
   const defaultFilterData: Filters = {
     search: '',
     trashed: '',
@@ -180,6 +184,25 @@ const Index = ({ users, can }: IProps) => {
                 colorScheme="green"
                 icon={<EditIcon />}
                 aria-label="Edit"
+                onClick={() => Routes.edit_user(v.id)}
+              />
+              <IconButton
+                colorScheme="red"
+                icon={<DeleteIcon />}
+                aria-label="Delete"
+                onClick={() =>
+                  modals.confirm({
+                    title: 'Delete user',
+                    body: 'Are you sure you want to delete this user?',
+                    confirmProps: {
+                      colorScheme: 'red',
+                      label: 'Delete',
+                    },
+                    onConfirm: () => {
+                      Inertia.delete(Routes.user(v.id))
+                    }, // action
+                  })
+                }
               />
             </ButtonGroup>
           }))}

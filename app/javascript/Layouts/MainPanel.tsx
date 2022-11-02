@@ -2,6 +2,7 @@ import React from "react";
 import { Box, useStyleConfig } from "@chakra-ui/react";
 import Main from "./Main";
 import { usePage } from "@inertiajs/inertia-react";
+import { ModalsProvider } from '@saas-ui/react'
 
 const MainPanel = props => {
   const {
@@ -20,7 +21,9 @@ const MainPanel = props => {
         xl: "100%",
       }}
     >
-      {user ? <Main>{children}</Main> : children}
+      <ModalsProvider>
+        {user ? <Main>{children}</Main> : children}
+      </ModalsProvider>
     </Box>
   );
 };

@@ -184,9 +184,8 @@ const Index = ({ users, can }: IProps) => {
                 colorScheme="green"
                 icon={<EditIcon />}
                 aria-label="Edit"
-                onClick={() => Inertia.get(Routes.edit_user(), v.id)}
+                onClick={() => Inertia.get(Routes.edit_user(v.id))}
               >
-                <Link href={Routes.edit_user("1")} />
               </IconButton>
               <IconButton
                 colorScheme="red"

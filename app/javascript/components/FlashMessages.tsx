@@ -6,15 +6,16 @@ const FlashMessages = () => {
   const { isOpen: isVisible, onClose } = useDisclosure({ defaultIsOpen: true });
   const status = ["error", "success", "warning", "info"];
   const { flash, errors } = usePage().props as any;
+  console.log("🚀 ~ file: FlashMessages.tsx ~ line 9 ~ FlashMessages ~ flash", flash, errors)
   return (
     <>
-      {isVisible && (
+      {(isVisible && (flash.success || errors || flash.alert)) && (
         <Alert
           status={(() => {
             if (flash.success) return status[1];
             if (flash.alert) return status[2];
             if (errors) return status[0];
-            return status[3] || undefined;
+            return status[3];
           })()}
           variant="left-accent"
         >

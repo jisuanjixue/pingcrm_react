@@ -8,7 +8,7 @@ import * as Routes from "../../utils/routes";
 
 
 const UserForm = (userForm: any) => {
-  const { data, setData, post, processing, errors, reset, progress } = useForm({ ...userForm });
+  const { data, setData, post, put, processing, errors, reset, progress } = useForm({ ...userForm });
   const handValue = useCallback((e, name) => {
     const value = (() => {
       if (name === "photo") return e?.target?.files?.[0]
@@ -23,16 +23,23 @@ const UserForm = (userForm: any) => {
     handValue,
     label: "Photo",
     errors,
-    // photo: data.photo,
+    photo: data.photo,
     type: "file",
     progress
   };
 
 
   const handleSubmit = useCallback(() => {
-    post(Routes.users(), {
-      preserveScroll: true,
-    })
+    if (data.id) {
+      console.log("111")
+      put(Routes.user(data.id), {
+        onSuccess: () => reset('password', 'photo'),
+      })
+    } else {
+      post(Routes.users(), {
+        preserveScroll: true,
+      })
+    }
   }, [data])
 
   return (
@@ -140,7 +147,7 @@ const UserForm = (userForm: any) => {
             spinnerPlacement='end'
             onClick={() => handleSubmit()}
           >
-            Create User
+            {data.id ? "Edit User" : "Create User"}
           </Button>
         </Stack>
       </CardFooter>

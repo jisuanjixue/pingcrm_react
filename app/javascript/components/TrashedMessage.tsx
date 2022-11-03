@@ -1,19 +1,23 @@
-import { Flex, Button } from "@chakra-ui/react";
 import React from "react";
+import { Flex, Button, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
 type IProps = {
   restore: () => void;
+  children: any
 };
 
-const TrashedMessage = ({ restore }: IProps) => {
+const TrashedMessage = ({ restore, children }: IProps) => {
   const handRestore = () => restore();
 
   return (
     <>
-      <Flex align="center" justify="space-between" borderRadius={4} borderWidth={1} borderColor="rgb(234 179 8)" bgColor="rgb(253 224 71)" p={16}>
+      <Flex align="center" justify="space-between" borderRadius="1" borderWidth="0.25" borderColor="rgb(234 179 8)" bgColor="rgb(253 224 71)" p="4">
         <Flex align="center">
-          <DeleteIcon mr={8} w={16} h={16} flexShrink={0} fill="#713f12" />
+          <DeleteIcon mr="2" w="4" h="4" flexShrink="0" fill="#713f12" />
+          <Text color="rgb(113 63 18)">
+            {children}
+          </Text>
           <Button color="rgb(113 63 18)" _hover={{ textDecorationLine: "underline" }} onClick={() => handRestore()}>
             Restore
           </Button>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Head } from "@inertiajs/inertia-react";
 import * as Routes from "../../utils/routes.js";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Flex } from "@chakra-ui/react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/react";
 import UserForm from "./UserForm";
 
 type IProps = {

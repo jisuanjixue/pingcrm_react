@@ -190,7 +190,7 @@ const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
                 </MenuButton>
                 <MenuList>
                   <MenuItem>
-                    <Link role="navigation" href={Routes.edit_user("1")}>
+                    <Link role="navigation" href={Routes.edit_user(user.id)}>
                       My Profile
                     </Link>
                   </MenuItem>

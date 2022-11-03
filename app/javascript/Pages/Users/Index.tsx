@@ -29,7 +29,6 @@ type IProps = {
 
 const Index = ({ users, can }: IProps) => {
   const modals = useModals()
-  console.log(Routes)
   const defaultFilterData: Filters = {
     search: '',
     trashed: '',

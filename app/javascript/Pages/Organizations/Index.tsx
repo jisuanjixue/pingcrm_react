@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import { Box, Button, Flex, HStack, Avatar, Text, FormHelperText, AvatarBadge, ButtonGroup, IconButton, Stack, useDisclosure } from "@chakra-ui/react";
 import { AddIcon, DeleteIcon, EditIcon, TimeIcon } from "@chakra-ui/icons";
@@ -39,8 +39,9 @@ const Index = ({ organizations, filters }: IProps) => {
 
   const { data, get, setData, processing, errors, reset } = useForm(defaultFilterData);
   const addForm = useForm('CreateUser', {});
-  const formData = {
 
+  const organizationForm = {
+    editForm: addForm,
   }
 
 
@@ -58,7 +59,14 @@ const Index = ({ organizations, filters }: IProps) => {
     query();
   };
 
+  const handleSaveSubmit = useCallback(() => {
+    addForm?.post(Routes.organizations(), {
+      preserveScroll: true,
+    })
+  }, [addForm?.data])
+
   const onSaveSubmit = () => {
+    handleSaveSubmit()
     disclosure.onClose()
   }
 
@@ -147,7 +155,7 @@ const Index = ({ organizations, filters }: IProps) => {
             onSubmit={onSaveSubmit}
             initialFocusRef={initialRef}
           >
-            <OrganizationForm {...formData}></OrganizationForm>
+            <OrganizationForm {...organizationForm}></OrganizationForm>
           </FormDialog>
         </HStack>
         <Box overflowY="auto" borderRadius="1" bgColor="#ffffff" boxShadow="md">

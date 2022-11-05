@@ -14,7 +14,6 @@ const EditIndex = ({ organization }: IProps) => {
   const editForm = useForm(`EditUser:${organization.id}`, organization);
 
   const organizationForm = {
-    organization,
     editForm,
   }
 

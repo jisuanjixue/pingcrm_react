@@ -1,12 +1,10 @@
-import React, { useCallback } from "react";
-import { FormControl, FormLabel, Input, FormErrorMessage, Stack, Button } from "@chakra-ui/react";
-import { useForm } from "@inertiajs/inertia-react";
-import PasswordField from "@/components/passwordInput/PasswordField";
-// import FileUpload from "@/components/fileUpload/index";
+import React, { useCallback, useMemo } from "react";
+import { FormControl, FormLabel, Input, FormErrorMessage } from "@chakra-ui/react";
 import { FormLayout, Select } from "@saas-ui/react";
-import * as Routes from "../../utils/routes";
 
-const OrganizationForm = ({ organization, editForm }: any) => {
+const OrganizationForm = ({ editForm }: any) => {
+
+  const organization = useMemo(() => editForm.data, [editForm.data])
 
   const handValue = useCallback((e, name) => {
     const value = (() => {
@@ -30,14 +28,14 @@ const OrganizationForm = ({ organization, editForm }: any) => {
               type="text"
               placeholder=" "
               size="lg"
-              value={data?.first_name}
-              name="first_name"
-              onChange={e => handValue(e, "first_name")}
+              value={organization?.name}
+              name="name"
+              onChange={e => handValue(e, "name")}
             />
-            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="login">
-              First name
+            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="organization">
+              Name
             </FormLabel>
-            {errors.first_name && <FormErrorMessage>{errors.first_name}</FormErrorMessage>}
+            {editForm?.errors.name && <FormErrorMessage>{editForm?.errors.name}</FormErrorMessage>}
           </FormControl>
           <FormControl variant="floating">
             <Input
@@ -49,14 +47,14 @@ const OrganizationForm = ({ organization, editForm }: any) => {
               type="text"
               placeholder=" "
               size="lg"
-              value={data?.last_name}
-              name="last_name"
-              onChange={e => handValue(e, "last_name")}
+              value={organization?.email}
+              name="email"
+              onChange={e => handValue(e, "email")}
             />
-            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="login">
-              Last name
+            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="organization">
+              Email
             </FormLabel>
-            {errors.last_name && <FormErrorMessage>{errors.last_name}</FormErrorMessage>}
+            {editForm?.errors.email && <FormErrorMessage>{editForm?.errors.email}</FormErrorMessage>}
           </FormControl>
         </FormLayout>
         <FormLayout columns={2}>
@@ -67,32 +65,109 @@ const OrganizationForm = ({ organization, editForm }: any) => {
               fontSize="sm"
               mb="36px"
               variant="filled"
-              type="email"
+              type="phone"
               placeholder=" "
               size="lg"
-              value={data?.email}
-              name="email"
-              onChange={e => handValue(e, "email")}
+              value={organization?.phone}
+              name="phone"
+              onChange={e => handValue(e, "phone")}
             />
-            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="login">
-              Email
+            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="organization">
+              Phone
             </FormLabel>
-            {errors.email && <FormErrorMessage>{errors.email}</FormErrorMessage>}
+            {editForm?.errors.phone && <FormErrorMessage>{editForm?.errors.email}</FormErrorMessage>}
           </FormControl>
-          <PasswordField password={data?.password} handValue={e => handValue(e, "password")} ref={undefined} isConfirm={false} />
+          <FormControl variant="floating">
+            <Input
+              autoFocus={true}
+              borderRadius="15px"
+              fontSize="sm"
+              mb="36px"
+              variant="filled"
+              type="text"
+              placeholder=" "
+              size="lg"
+              value={organization?.address}
+              name="address"
+              onChange={e => handValue(e, "address")}
+            />
+            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="organization">
+              Address
+            </FormLabel>
+            {editForm?.errors.address && <FormErrorMessage>{editForm?.errors.address}</FormErrorMessage>}
+          </FormControl>
+        </FormLayout>
+        <FormLayout columns={2}>
+          <FormControl variant="floating">
+            <Input
+              autoFocus={true}
+              borderRadius="15px"
+              fontSize="sm"
+              mb="36px"
+              variant="filled"
+              type="text"
+              placeholder=" "
+              size="lg"
+              value={organization?.city}
+              name="city"
+              onChange={e => handValue(e, "city")}
+            />
+            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="organization">
+              City
+            </FormLabel>
+            {editForm?.errors.city && <FormErrorMessage>{editForm?.errors.city}</FormErrorMessage>}
+          </FormControl>
+          <FormControl variant="floating">
+            <Input
+              autoFocus={true}
+              borderRadius="15px"
+              fontSize="sm"
+              mb="36px"
+              variant="filled"
+              type="text"
+              placeholder=" "
+              size="lg"
+              value={organization?.region}
+              name="region"
+              onChange={e => handValue(e, "region")}
+            />
+            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="organization">
+              Region
+            </FormLabel>
+            {editForm?.errors.region && <FormErrorMessage>{editForm?.errors.region}</FormErrorMessage>}
+          </FormControl>
         </FormLayout>
         <FormLayout columns={2}>
           <Select
-            name="owner"
-            placeholder={data.owner ? data.owner : "Select"}
+            name="country"
+            placeholder={organization.country ? organization.country : "Select"}
             options={[
               { label: 'Canada', value: 'CA' },
               { label: 'United States', value: 'US' },
             ]}
             size="md"
-            onChange={(value) => handValue(value, "owner")}
-            renderValue={(value?: string[]) => data.owner ? value?.[0] : ""}
+            onChange={(value) => handValue(value, "country")}
+            renderValue={(value?: string[]) => organization.owner ? value?.[0] : ""}
           />
+          <FormControl variant="floating">
+            <Input
+              autoFocus={true}
+              borderRadius="15px"
+              fontSize="sm"
+              mb="36px"
+              variant="filled"
+              type="text"
+              placeholder=" "
+              size="lg"
+              value={organization?.postal_code}
+              name="postal_code"
+              onChange={e => handValue(e, "postal_code")}
+            />
+            <FormLabel ms="4px" fontSize="sm" fontWeight="normal" htmlFor="organization">
+              Postal Code
+            </FormLabel>
+            {editForm?.errors.postal_code && <FormErrorMessage>{editForm?.errors.postal_code}</FormErrorMessage>}
+          </FormControl>
         </FormLayout>
       </FormLayout>
     </form>

@@ -7,37 +7,41 @@ import {
   Form,
   FormDialog,
   FormLayout,
-  PersonaContainer,
-  PersonaDetails,
-  PersonaLabel,
-  PersonaSecondaryLabel,
-  PersonaTertiaryLabel,
   SearchInput,
   Select,
   useModals
 } from '@saas-ui/react'
 import pickBy from "lodash/pickBy";
 import * as Routes from "../../utils/routes";
-import Form from "./Form"
+import OrganizationForm from "./Form"
 
 import { Organizations, Filters } from "@/data-types/organizations";
+import { Inertia } from "@inertiajs/inertia";
 
 type IProps = {
-  organizations: Organizations[];
+  organizations: {
+    data: Organizations["data"][];
+    meta: Organizations["meta"]
+  };
   filters: Filters;
 };
 
 const Index = ({ organizations, filters }: IProps) => {
+  const modals = useModals()
+
   const disclosure = useDisclosure()
   const initialRef = useRef(null)
   const tableRef = useRef(null) as any
   const defaultFilterData: Filters = {
     search: '',
     trashed: '',
-  }
+  };
+
   const { data, get, setData, processing, errors, reset } = useForm(defaultFilterData);
-  const addForm = useForm('CreateUser', organization);
-  const editForm = useForm(`EditUser:${user.id}`, organization);
+  const addForm = useForm('CreateUser', {});
+  const formData = {
+
+  }
 
 
   const query = () => {
@@ -78,16 +82,12 @@ const Index = ({ organizations, filters }: IProps) => {
       Header: 'Name',
     },
     {
-      accessor: 'email',
-      Header: 'Email',
+      accessor: 'city',
+      Header: 'City',
     },
     {
-      accessor: 'role',
-      Header: 'Role',
-    },
-    {
-      accessor: 'action',
-      Header: 'Action',
+      accessor: 'phone',
+      Header: 'Phone',
     },
   ];
 
@@ -147,59 +147,21 @@ const Index = ({ organizations, filters }: IProps) => {
             onSubmit={onSaveSubmit}
             initialFocusRef={initialRef}
           >
-            <FormLayout>
-              {/* <Field
-                name="category"
-                label="Category"
-                type="select"
-                options={[
-                  {
-                    value: 'general',
-                    label: 'General',
-                  },
-                ]}
-                ref={initialRef}
-              />
-              <Field
-                name="title"
-                label="Title"
-                rules={{ required: 'Title is required' }}
-              />
-              <Field name="description" type="textarea" label="Description" /> */}
-            </FormLayout>
+            <OrganizationForm {...formData}></OrganizationForm>
           </FormDialog>
         </HStack>
         <Box overflowY="auto" borderRadius="1" bgColor="#ffffff" boxShadow="md">
           <DataTable
             ref={tableRef}
             columns={header}
-            data={users.map(v => ({
+            data={(organizations.data || []).map(v => ({
               ...v,
-              name: <PersonaContainer size="lg">
-                <Avatar name={v.name} src={v?.photo}>
-                  <AvatarBadge boxSize="1em" bg="presence.away">
-                    <TimeIcon />
-                  </AvatarBadge>
-                </Avatar>
-                <PersonaDetails>
-                  <PersonaLabel>{v.name}</PersonaLabel>
-                  {v.deleted_at && <PersonaSecondaryLabel>
-                    <IconButton
-                      colorScheme="red"
-                      variant="outline"
-                      icon={<DeleteIcon />}
-                      aria-label="Delete"
-                    /> delete</PersonaSecondaryLabel>}
-                  <PersonaTertiaryLabel>can edit: {v.can?.edit_user ? "yes" : "no"}</PersonaTertiaryLabel>
-                </PersonaDetails>
-              </PersonaContainer>,
-              role: v.owner ? "Owner" : "User",
               action: <ButtonGroup variant="solid" size="sm" spacing={3}>
                 <IconButton
                   colorScheme="green"
                   icon={<EditIcon />}
                   aria-label="Edit"
-                  onClick={() => Inertia.get(Routes.edit_user(v.id))}
+                  onClick={() => Inertia.get(Routes.edit_organization(v.id))}
                 >
                 </IconButton>
                 <IconButton
@@ -215,7 +177,7 @@ const Index = ({ organizations, filters }: IProps) => {
                         label: 'Delete',
                       },
                       onConfirm: () => {
-                        Inertia.delete(Routes.user(v.id))
+                        Inertia.delete(Routes.organization(v.id))
                       }, // action
                     })
                   }

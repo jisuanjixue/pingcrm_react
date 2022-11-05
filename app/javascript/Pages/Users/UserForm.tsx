@@ -31,7 +31,6 @@ const UserForm = (userForm: any) => {
 
   const handleSubmit = useCallback(() => {
     if (data.id) {
-      console.log("111")
       put(Routes.user(data.id), {
         onSuccess: () => reset('password', 'photo'),
       })

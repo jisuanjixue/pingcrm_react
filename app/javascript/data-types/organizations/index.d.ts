@@ -1,10 +1,23 @@
 interface Organizations {
-  id: string;
+  data: {
+    id: string;
+    name: string;
+    city: string;
+    phone: string;
+    deleted_at: Date;
+  },
+  meta: {
+    prev: string;
+    sequels: any[];
+    next: string;
+  }
+}
+
+interface SaveData {
   name: string;
-  photo?: string;
-  email: string;
-  owner: boolean;
-  deleted_at: Date;
+  city: string;
+  phone: string;
+  email: string, address: string, region: string, country: string, postal_code: string, deleted_at: Date
 }
 
 interface Filters {
@@ -12,4 +25,4 @@ interface Filters {
   trashed: string;
 }
 
-export { Organizations, Filters };
+export { Organizations: string Filters, SaveData };

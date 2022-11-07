@@ -10,7 +10,7 @@ import { Card, CardBody, CardFooter, CardHeader, CardTitle } from "@saas-ui/reac
 type IProps = {
   organization: any;
 };
-const EditIndex = ({ organization }: IProps) => {
+const EditIndex = ({ organization, contacts }: IProps) => {
   const editForm = useForm(`EditUser:${organization.id}`, organization);
 
   const organizationForm = {

@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
-import { Box, Button, Flex, HStack, Avatar, Text, FormHelperText, AvatarBadge, ButtonGroup, IconButton, Stack, useDisclosure } from "@chakra-ui/react";
-import { AddIcon, DeleteIcon, EditIcon, TimeIcon } from "@chakra-ui/icons";
+import { Box, Button, Flex, HStack, Avatar, Text, FormHelperText, ButtonGroup, IconButton, Stack, useDisclosure } from "@chakra-ui/react";
+import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   DataTable,
   Form,
@@ -61,6 +61,9 @@ const Index = ({ organizations, filters }: IProps) => {
 
   const handleSaveSubmit = useCallback(() => {
     addForm?.post(Routes.organizations(), {
+      onSuccess: () => {
+        addForm?.reset()
+      },
       preserveScroll: true,
     })
   }, [addForm?.data])

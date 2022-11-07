@@ -1,16 +1,21 @@
 import React, { useCallback } from "react";
 import { Head, useForm } from "@inertiajs/inertia-react";
-import { Flex, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack, Button } from "@chakra-ui/react";
+import { Flex, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Stack, Button, Box, ButtonGroup, IconButton } from "@chakra-ui/react";
 import OrganizationForm from "./Form";
 import * as Routes from "../../utils/routes";
 
 import TrashedMessage from "@/components/TrashedMessage";
-import { Card, CardBody, CardFooter, CardHeader, CardTitle } from "@saas-ui/react";
+import { Card, CardBody, CardFooter, CardHeader, CardTitle, DataTable, useModals } from "@saas-ui/react";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { Inertia } from "@inertiajs/inertia";
 
 type IProps = {
   organization: any;
+  contacts: []
 };
 const EditIndex = ({ organization, contacts }: IProps) => {
+  const modals = useModals()
+
   const editForm = useForm(`EditUser:${organization.id}`, organization);
 
   const organizationForm = {
@@ -22,6 +27,25 @@ const EditIndex = ({ organization, contacts }: IProps) => {
       editForm?.put(Routes.user(organization.id))
     }
   }, [editForm?.data])
+
+  const header = [
+    {
+      accessor: 'id',
+      Header: 'Id',
+    },
+    {
+      accessor: 'name',
+      Header: 'Name',
+    },
+    {
+      accessor: 'city',
+      Header: 'City',
+    },
+    {
+      accessor: 'phone',
+      Header: 'Phone',
+    },
+  ]
 
 
   const restore = () => { };
@@ -75,6 +99,43 @@ const EditIndex = ({ organization, contacts }: IProps) => {
             </Stack>
           </CardFooter>
         </Card>
+        <Box overflowY="auto" borderRadius="1" bgColor="#ffffff" boxShadow="md">
+          <DataTable
+            columns={header}
+            data={(contacts || []).map(v => ({
+              ...v,
+              action: <ButtonGroup variant="solid" size="sm" spacing={3}>
+                <IconButton
+                  colorScheme="green"
+                  icon={<EditIcon />}
+                  aria-label="Edit"
+                  onClick={() => Inertia.get(Routes.edit_contact(v.id))}
+                >
+                </IconButton>
+                <IconButton
+                  colorScheme="red"
+                  icon={<DeleteIcon />}
+                  aria-label="Delete"
+                  onClick={() =>
+                    modals.confirm({
+                      title: 'Delete user',
+                      body: 'Are you sure you want to delete this user?',
+                      confirmProps: {
+                        colorScheme: 'red',
+                        label: 'Delete',
+                      },
+                      onConfirm: () => {
+                        Inertia.delete(Routes.organization(v.id))
+                      }, // action
+                    })
+                  }
+                />
+              </ButtonGroup>
+            }))}
+            autoResetHiddenColumns={true}
+            isSortable
+          />
+        </Box>
       </Flex>
       {organization.deleted_at && (
         <TrashedMessage restore={restore}>

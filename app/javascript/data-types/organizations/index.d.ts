@@ -9,7 +9,9 @@ interface Organizations {
   meta: {
     prev: string;
     sequels: any[];
+    page: string;
     next: string;
+    scaffold_url: string;
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useMemo, useRef } from "react";
+import React, { forwardRef, useCallback, useMemo, useRef, useState } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import { Box, Button, Flex, HStack, Avatar, Text, FormHelperText, ButtonGroup, IconButton, Stack, useDisclosure, useControllableState, useToast } from "@chakra-ui/react";
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
@@ -30,7 +30,7 @@ type IProps = {
 const Index = ({ organizations, filters }: IProps) => {
   const modals = useModals()
   const toast = useToast();
-  const [current, setCurrent] = useControllableState({ defaultValue: 1 })
+  const [currentPage, setCurrentPage] = useState(0)
   const disclosure = useDisclosure()
   const initialRef = useRef(null)
   const tableRef = useRef(null) as any
@@ -40,8 +40,6 @@ const Index = ({ organizations, filters }: IProps) => {
   };
 
   const pageSize = 10;
-  const offset = (current - 1) * pageSize;
-  const organizationsData = organizations?.data.slice(offset, offset + pageSize);
 
   const { data, get, setData, processing, errors, reset } = useForm(defaultFilterData);
   const addForm = useForm('CreateUser', {});
@@ -50,16 +48,29 @@ const Index = ({ organizations, filters }: IProps) => {
     editForm: addForm,
   }
 
-  const url = (pageNumber: string) => pageNumber ? organizations.meta.scaffold_url.replace(/__pagy_page__/, pageNumber) : null
+  const url = (pageNumber: string) => pageNumber ? organizations.meta.scaffold_url.replace(/__pagy_page__/, pageNumber) : ""
   // const active = (pageNumber: string) => organizations.meta.page == pageNumber
 
   const Prev = forwardRef((props, ref) => (
-    <Button ref={ref} {...props} onClick={() => Inertia.get(url(organizations?.meta?.prev))} >
+    <Button
+      ref={ref}
+      {...props}
+      onClick={() => Inertia.get(url(organizations?.meta?.prev), {
+        preserveState: true,
+        preserveScroll: true
+      })} >
       Prev
     </Button>
   ));
   const Next = forwardRef((props, ref) => (
-    <Button ref={ref} {...props} onClick={() => Inertia.get(url(organizations?.meta?.next))}>
+    <Button
+      ref={ref}
+      {...props}
+      onClick={() => Inertia.get(url(organizations?.meta?.next), {
+        preserveState: true,
+        preserveScroll: true
+      })}
+    >
       Next
     </Button>
   ));
@@ -106,6 +117,28 @@ const Index = ({ organizations, filters }: IProps) => {
     query();
   };
 
+  const onChange = useCallback((page) => {
+    Inertia.get(url(`${page}`), {
+      preserveState: true,
+      preserveScroll: true,
+    })
+    toast({
+      title: "Pagination.",
+      description: `You changed to page ${page}`,
+      variant: "solid",
+      duration: 9000,
+      isClosable: true,
+      position: "top-right"
+    });
+  }, [currentPage])
+
+  Inertia.on('success', (event) => {
+    const params = new URLSearchParams(event.detail.page.url);
+    const page = params.get("page")
+    setCurrentPage(page)
+    console.log(`Successfully made a visit to ${event.detail.page.url}`)
+  })
+
   const handleSaveSubmit = useCallback(() => {
     addForm?.post(Routes.organizations(), {
       onSuccess: () => {
@@ -148,6 +181,8 @@ const Index = ({ organizations, filters }: IProps) => {
       Header: 'Phone',
     },
   ];
+
+  console.log(currentPage)
 
 
   return (
@@ -204,7 +239,7 @@ const Index = ({ organizations, filters }: IProps) => {
         <DataTable
           ref={tableRef}
           columns={header}
-          data={(organizationsData || []).map(v => ({
+          data={(organizations?.data || []).map(v => ({
             ...v,
             action: <ButtonGroup variant="solid" size="sm" spacing={3}>
               <IconButton
@@ -252,20 +287,15 @@ const Index = ({ organizations, filters }: IProps) => {
         >
           <Pagination
             defaultCurrent={1}
-            current={current}
+            current={currentPage}
             onChange={(page: number) => {
-              setCurrent(page);
-              toast({
-                title: "Pagination.",
-                description: `You changed to page ${page}`,
-                variant: "solid",
-                duration: 9000,
-                isClosable: true,
-                position: "top-right"
-              });
-            }}
+              onChange(page)
+            }
+
+            }
             pageSize={pageSize}
-            total={organizations?.data.length}
+            total={100}
+            pageNeighbours={2}
             itemRender={itemRender}
             paginationProps={{
               display: "flex",
@@ -275,6 +305,8 @@ const Index = ({ organizations, filters }: IProps) => {
             }}
             colorScheme="red"
             focusRing="green"
+            showSizeChanger
+            showQuickJumper
           />
         </Flex>
       </Box>

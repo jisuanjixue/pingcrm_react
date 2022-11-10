@@ -30,7 +30,7 @@ type IProps = {
 const Index = ({ organizations, filters }: IProps) => {
   const modals = useModals()
   const toast = useToast();
-  const [currentPage, setCurrentPage] = useState(0)
+  // const [currentPage, setCurrentPage] = useState(0)
   const disclosure = useDisclosure()
   const initialRef = useRef(null)
   const tableRef = useRef(null) as any
@@ -140,15 +140,15 @@ const Index = ({ organizations, filters }: IProps) => {
       isClosable: true,
       position: "top-right"
     });
-  }, [currentPage])
+  }, [])
 
-  Inertia.on('success', (event) => {
-    const params = getQueryParams(event.detail.page.url)
-    console.log("🚀 ~ file: Index.tsx ~ line 147 ~ Inertia.on ~ params", params)
-    const page = params.page
-    setCurrentPage(page)
-    console.log(`Successfully made a visit to ${event.detail.page.url}`)
-  })
+  // Inertia.on('success', (event) => {
+  //   const params = getQueryParams(event.detail.page.url)
+  //   console.log("🚀 ~ file: Index.tsx ~ line 147 ~ Inertia.on ~ params", params)
+  //   const page = params.page
+  //   setCurrentPage(page)
+  //   console.log(`Successfully made a visit to ${event.detail.page.url}`)
+  // })
 
   const handleSaveSubmit = useCallback(() => {
     addForm?.post(Routes.organizations(), {
@@ -192,8 +192,8 @@ const Index = ({ organizations, filters }: IProps) => {
       Header: 'Phone',
     },
   ];
-
-  console.log(currentPage)
+  const currentPage = getQueryParams(window.location.search).page
+  console.log(window.location.search, currentPage)
 
 
   return (
@@ -306,7 +306,7 @@ const Index = ({ organizations, filters }: IProps) => {
             }
             pageSize={pageSize}
             total={100}
-            pageNeighbours={2}
+            pageNeighbours={1}
             itemRender={itemRender}
             paginationProps={{
               display: "flex",

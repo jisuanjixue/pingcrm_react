@@ -102,6 +102,16 @@ const Index = ({ organizations, filters }: IProps) => {
   //   },
   // ], [organizations.meta])
 
+  const getQueryParams = (url) => {
+    const paramArr = url.slice(url.indexOf("?") + 1).split("&");
+    const params = {};
+    paramArr.map((param) => {
+      const [key, val] = param.split("=");
+      params[key] = decodeURIComponent(val);
+    });
+    return params;
+  }
+
 
   const query = () => {
     const query = pickBy(data);
@@ -133,8 +143,9 @@ const Index = ({ organizations, filters }: IProps) => {
   }, [currentPage])
 
   Inertia.on('success', (event) => {
-    const params = new URLSearchParams(event.detail.page.url);
-    const page = params.get("page")
+    const params = getQueryParams(event.detail.page.url)
+    console.log("🚀 ~ file: Index.tsx ~ line 147 ~ Inertia.on ~ params", params)
+    const page = params.page
     setCurrentPage(page)
     console.log(`Successfully made a visit to ${event.detail.page.url}`)
   })

@@ -1,6 +1,6 @@
-import React, { forwardRef, useCallback, useMemo, useRef, useState } from "react";
+import React, { forwardRef, useCallback, useRef } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
-import { Box, Button, Flex, HStack, Avatar, Text, FormHelperText, ButtonGroup, IconButton, Stack, useDisclosure, useControllableState, useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, Text, FormHelperText, ButtonGroup, IconButton, Stack, useDisclosure, useToast } from "@chakra-ui/react";
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   DataTable,
@@ -39,8 +39,6 @@ const Index = ({ organizations, filters }: IProps) => {
     trashed: '',
   };
 
-  const pageSize = 10;
-
   const { data, get, setData, processing, errors, reset } = useForm(defaultFilterData);
   const addForm = useForm('CreateUser', {});
 
@@ -48,7 +46,7 @@ const Index = ({ organizations, filters }: IProps) => {
     editForm: addForm,
   }
 
-  const url = (pageNumber: string) => pageNumber ? organizations.meta.scaffold_url.replace(/__pagy_page__/, pageNumber) : ""
+  const url = (pageNumber: number) => pageNumber ? organizations.meta.scaffold_url.replace(/__pagy_page__/, `${pageNumber}`) : ""
   // const active = (pageNumber: string) => organizations.meta.page == pageNumber
 
   const Prev = forwardRef((props, ref) => (
@@ -83,35 +81,7 @@ const Index = ({ organizations, filters }: IProps) => {
       return Next;
     }
   };
-
-  // const links = useMemo(() => [
-  //   {
-  //     label: 'Previous',
-  //     url: url(organizations.meta.prev),
-  //   },
   //   ...organizations.meta.sequels['0'].map((page) => {
-  //     return {
-  //       label: page,
-  //       url: url(page),
-  //       active: active(page),
-  //     };
-  //   }),
-  //   {
-  //     label: 'Next',
-  //     url: url(organizations.meta.next),
-  //   },
-  // ], [organizations.meta])
-
-  const getQueryParams = (url) => {
-    const paramArr = url.slice(url.indexOf("?") + 1).split("&");
-    const params = {};
-    paramArr.map((param) => {
-      const [key, val] = param.split("=");
-      params[key] = decodeURIComponent(val);
-    });
-    return params;
-  }
-
 
   const query = () => {
     const query = pickBy(data);
@@ -128,7 +98,7 @@ const Index = ({ organizations, filters }: IProps) => {
   };
 
   const onChange = useCallback((page) => {
-    Inertia.get(url(`${page}`), {
+    Inertia.get(url(page), {
       preserveState: true,
       preserveScroll: true,
     })
@@ -141,14 +111,6 @@ const Index = ({ organizations, filters }: IProps) => {
       position: "top-right"
     });
   }, [])
-
-  // Inertia.on('success', (event) => {
-  //   const params = getQueryParams(event.detail.page.url)
-  //   console.log("🚀 ~ file: Index.tsx ~ line 147 ~ Inertia.on ~ params", params)
-  //   const page = params.page
-  //   setCurrentPage(page)
-  //   console.log(`Successfully made a visit to ${event.detail.page.url}`)
-  // })
 
   const handleSaveSubmit = useCallback(() => {
     addForm?.post(Routes.organizations(), {
@@ -192,8 +154,8 @@ const Index = ({ organizations, filters }: IProps) => {
       Header: 'Phone',
     },
   ];
-  const currentPage = getQueryParams(window.location.search).page
-  console.log(window.location.search, currentPage)
+  // const currentPage = getQueryParams(window.location.search).page
+  // console.log(window.location.search, organizations?.meta)
 
 
   return (
@@ -298,14 +260,13 @@ const Index = ({ organizations, filters }: IProps) => {
         >
           <Pagination
             defaultCurrent={1}
-            current={currentPage}
+            current={organizations.meta.page}
             onChange={(page: number) => {
               onChange(page)
             }
-
             }
-            pageSize={pageSize}
-            total={100}
+            pageSize={organizations.meta.items}
+            total={organizations.meta.count}
             pageNeighbours={1}
             itemRender={itemRender}
             paginationProps={{
@@ -318,6 +279,7 @@ const Index = ({ organizations, filters }: IProps) => {
             focusRing="green"
             showSizeChanger
             showQuickJumper
+            showTotal={(total) => `${total} Items`}
           />
         </Flex>
       </Box>

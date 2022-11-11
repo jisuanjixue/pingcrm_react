@@ -7,10 +7,12 @@ interface Organizations {
     deleted_at: Date;
   },
   meta: {
-    prev: string;
+    prev: number;
     sequels: any[];
-    page: string;
-    next: string;
+    page: number;
+    next: number;
+    count: number;
+    items: number;
     scaffold_url: string;
   }
 }
@@ -27,4 +29,4 @@ interface Filters {
   trashed: string;
 }
 
-export { Organizations: string Filters, SaveData };
+export { Organizations, Filters, SaveData };

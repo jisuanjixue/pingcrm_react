@@ -78,11 +78,11 @@ Pagy::DEFAULT[:items] = 10
 # Metadata extra: Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
 # See https://ddnexus.github.io/pagy/extras/metadata
 # you must require the frontend_helpers internal extra (BEFORE the metadata extra) ONLY if you need also the :sequels
-require 'pagy/extras/frontend_helpers'
-require 'pagy/extras/metadata'
+require "pagy/extras/frontend_helpers"
+require "pagy/extras/metadata"
 # For performance reason, you should explicitly set ONLY the metadata you use in the frontend
 # Pagy::DEFAULT[:metadata] = %i[scaffold_url count page prev next last]   # example
-Pagy::DEFAULT[:metadata] = [:scaffold_url, :count, :page, :prev, :next, :last, :sequels]
+Pagy::DEFAULT[:metadata] = %i[scaffold_url count page prev next last sequels pages items]
 
 # Searchkick extra: Paginate `Searchkick::Results` objects
 # See https://ddnexus.github.io/pagy/extras/searchkick

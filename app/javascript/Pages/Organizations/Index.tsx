@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback, useRef } from "react";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
-import { Box, Button, Flex, HStack, Text, FormHelperText, ButtonGroup, IconButton, Stack, useDisclosure, useToast } from "@chakra-ui/react";
+import { Head, useForm } from "@inertiajs/inertia-react";
+import { Box, Button, Flex, HStack, Text, FormHelperText, ButtonGroup, IconButton, useDisclosure, useToast } from "@chakra-ui/react";
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   DataTable,
@@ -30,7 +30,6 @@ type IProps = {
 const Index = ({ organizations, filters }: IProps) => {
   const modals = useModals()
   const toast = useToast();
-  // const [currentPage, setCurrentPage] = useState(0)
   const disclosure = useDisclosure()
   const initialRef = useRef(null)
   const tableRef = useRef(null) as any
@@ -47,7 +46,9 @@ const Index = ({ organizations, filters }: IProps) => {
   }
 
   const url = (pageNumber: number) => pageNumber ? organizations.meta.scaffold_url.replace(/__pagy_page__/, `${pageNumber}`) : ""
-  // const active = (pageNumber: string) => organizations.meta.page == pageNumber
+  const changPageSizeUrl = (pageSize: number) => pageSize ? organizations.meta.scaffold_url.replace(/page=__pagy_page__&items=10/, `page=1&items=${pageSize}`) : ""
+
+  console.log(organizations.meta.scaffold_url)
 
   const Prev = forwardRef((props, ref) => (
     <Button
@@ -81,7 +82,6 @@ const Index = ({ organizations, filters }: IProps) => {
       return Next;
     }
   };
-  //   ...organizations.meta.sequels['0'].map((page) => {
 
   const query = () => {
     const query = pickBy(data);
@@ -97,7 +97,7 @@ const Index = ({ organizations, filters }: IProps) => {
     query();
   };
 
-  const onChange = useCallback((page) => {
+  const changePage = useCallback((page) => {
     Inertia.get(url(page), {
       preserveState: true,
       preserveScroll: true,
@@ -110,7 +110,22 @@ const Index = ({ organizations, filters }: IProps) => {
       isClosable: true,
       position: "top-right"
     });
-  }, [])
+  }, [organizations.meta.page])
+
+  const changePageSize = useCallback((pageSize) => {
+    Inertia.get(changPageSizeUrl(pageSize), {
+      preserveState: true,
+      preserveScroll: true,
+    })
+    toast({
+      title: "Pagination.",
+      description: `You changed to pageSize ${pageSize}`,
+      variant: "solid",
+      duration: 9000,
+      isClosable: true,
+      position: "top-right"
+    });
+  }, [organizations.meta.items])
 
   const handleSaveSubmit = useCallback(() => {
     addForm?.post(Routes.organizations(), {
@@ -245,8 +260,8 @@ const Index = ({ organizations, filters }: IProps) => {
           autoResetHiddenColumns={true}
           isSortable
           isSelectable
-          onSelectedRowsChange={(selected) => console.log(selected)}
-          onSortChange={(column) => console.log(column)}
+        // onSelectedRowsChange={(selected) => console.log(selected)}
+        // onSortChange={(column) => console.log(column)}
         />
         <Flex
           w="full"
@@ -261,10 +276,8 @@ const Index = ({ organizations, filters }: IProps) => {
           <Pagination
             defaultCurrent={1}
             current={organizations.meta.page}
-            onChange={(page: number) => {
-              onChange(page)
-            }
-            }
+            onChange={(page: number) => changePage(page)}
+            onShowSizeChange={(_, size) => changePageSize(size)}
             pageSize={organizations.meta.items}
             total={organizations.meta.count}
             pageNeighbours={1}

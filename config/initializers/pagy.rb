@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # Pagy initializer file (5.3.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
@@ -15,6 +14,7 @@
 # Pagy::DEFAULT[:items]  = 20                                 # default
 # Pagy::DEFAULT[:outset] = 0                                  # default
 Pagy::DEFAULT[:items] = 10
+Pagy::DEFAULT[:page] = 1
 
 # Other Variables
 # See https://ddnexus.github.io/pagy/api/pagy#other-variables
@@ -140,11 +140,12 @@ Pagy::DEFAULT[:metadata] = %i[scaffold_url count page prev next last sequels pag
 
 # Items extra: Allow the client to request a custom number of items per page with an optional selector UI
 # See https://ddnexus.github.io/pagy/extras/items
-# require 'pagy/extras/items'
+require "pagy/extras/items"
 # set to false only if you want to make :items_extra an opt-in variable
 # Pagy::DEFAULT[:items_extra] = false    # default true
 # Pagy::DEFAULT[:items_param] = :items   # default
 # Pagy::DEFAULT[:max_items]   = 100      # default
+Pagy::DEFAULT[:max_items] = 200
 
 # Overflow extra: Allow for easy handling of overflowing pages
 # See https://ddnexus.github.io/pagy/extras/overflow

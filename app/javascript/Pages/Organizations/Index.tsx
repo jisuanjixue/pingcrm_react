@@ -48,7 +48,6 @@ const Index = ({ organizations, filters }: IProps) => {
   const url = (pageNumber: number) => pageNumber ? organizations.meta.scaffold_url.replace(/__pagy_page__/, `${pageNumber}`) : ""
   const changPageSizeUrl = (pageSize: number) => pageSize ? organizations.meta.scaffold_url.replace(/page=__pagy_page__&items=10/, `page=1&items=${pageSize}`) : ""
 
-  console.log(organizations.meta.scaffold_url)
 
   const Prev = forwardRef((props, ref) => (
     <Button
@@ -169,8 +168,6 @@ const Index = ({ organizations, filters }: IProps) => {
       Header: 'Phone',
     },
   ];
-  // const currentPage = getQueryParams(window.location.search).page
-  // console.log(window.location.search, organizations?.meta)
 
 
   return (
@@ -282,6 +279,7 @@ const Index = ({ organizations, filters }: IProps) => {
             total={organizations.meta.count}
             pageNeighbours={1}
             itemRender={itemRender}
+            // currentPage={organizations.meta.page}
             paginationProps={{
               display: "flex",
               pos: "absolute",

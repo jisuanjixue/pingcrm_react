@@ -11,7 +11,7 @@ import { Inertia } from "@inertiajs/inertia";
 
 type IProps = {
   organization: any;
-  contacts: []
+  contacts: any[]
 };
 const EditIndex = ({ organization, contacts }: IProps) => {
   const modals = useModals()

@@ -1,7 +1,8 @@
-interface Organizations {
+interface Contacts {
   data: {
     id: string;
     name: string;
+    organization: string;
     city: string;
     phone: string;
     deleted_at: Date;
@@ -21,12 +22,7 @@ interface SaveData {
   name: string;
   city: string;
   phone: string;
-  email: string,
-  address: string,
-  region: string,
-  country: string,
-  postal_code: string,
-  deleted_at: Date
+  email: string, address: string, region: string, country: string, postal_code: string, deleted_at: Date
 }
 
 interface Filters {
@@ -34,4 +30,4 @@ interface Filters {
   trashed: string;
 }
 
-export { Organizations, Filters, SaveData };
+export { Contacts, Filters, SaveData };

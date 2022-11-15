@@ -9,12 +9,14 @@ import {
   FormLayout,
   SearchInput,
   Select,
-  useModals
+  useModals,
+  EmptyState
 } from '@saas-ui/react'
 import pickBy from "lodash/pickBy";
 import * as Routes from "../../utils/routes";
 import OrganizationForm from "./Form"
 import Pagination from "@choc-ui/paginator";
+import { WarningIcon } from '@chakra-ui/icons';
 
 import { Organizations, Filters } from "@/data-types/organizations";
 import { Inertia } from "@inertiajs/inertia";
@@ -221,45 +223,59 @@ const Index = ({ organizations, filters }: IProps) => {
         </Button>
       </HStack>
       <Box overflowY="auto" borderRadius="1" bgColor="#ffffff" boxShadow="md">
-        <DataTable
+        {organizations?.data.length > 0 ? (<DataTable
           ref={tableRef}
           columns={header}
           data={(organizations?.data || []).map(v => ({
             ...v,
-            action: <ButtonGroup variant="solid" size="sm" spacing={3}>
-              <IconButton
-                colorScheme="green"
-                icon={<EditIcon />}
-                aria-label="Edit"
-                onClick={() => Inertia.get(Routes.edit_organization(v.id))}
-              >
-              </IconButton>
-              <IconButton
-                colorScheme="red"
-                icon={<DeleteIcon />}
-                aria-label="Delete"
-                onClick={() =>
-                  modals.confirm({
-                    title: 'Delete user',
-                    body: 'Are you sure you want to delete this user?',
-                    confirmProps: {
-                      colorScheme: 'red',
-                      label: 'Delete',
-                    },
-                    onConfirm: () => {
-                      Inertia.delete(Routes.organization(v.id))
-                    }, // action
-                  })
-                }
-              />
-            </ButtonGroup>
+            action:
+              <ButtonGroup variant="solid" size="sm" spacing={3}>
+                <IconButton
+                  colorScheme="green"
+                  icon={<EditIcon />}
+                  aria-label="Edit"
+                  onClick={() => Inertia.get(Routes.edit_organization(v.id))}
+                >
+                </IconButton>
+                <IconButton
+                  colorScheme="red"
+                  icon={<DeleteIcon />}
+                  aria-label="Delete"
+                  onClick={() =>
+                    modals.confirm({
+                      title: 'Delete user',
+                      body: 'Are you sure you want to delete this user?',
+                      confirmProps: {
+                        colorScheme: 'red',
+                        label: 'Delete',
+                      },
+                      onConfirm: () => {
+                        Inertia.delete(Routes.organization(v.id))
+                      }, // action
+                    })
+                  }
+                />
+              </ButtonGroup>
           }))}
           autoResetHiddenColumns={true}
           isSortable
           isSelectable
         // onSelectedRowsChange={(selected) => console.log(selected)}
         // onSortChange={(column) => console.log(column)}
-        />
+        />) : (
+          <EmptyState
+            colorScheme="primary"
+            icon={WarningIcon}
+            title="No organizations yet"
+            description="You haven't create any organizations yet."
+            actions={
+              <>
+                <Button colorScheme='teal' variant='solid' onClick={() => disclosure.onOpen()} >Create organizations</Button>
+                <Button variant="ghost">Back</Button>
+              </>
+            }
+          />
+        )}
         <Flex
           w="full"
           bg={"gray.400"}

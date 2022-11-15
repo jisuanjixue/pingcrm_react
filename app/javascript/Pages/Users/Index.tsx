@@ -4,6 +4,7 @@ import { Box, Button, Flex, HStack, Avatar, Text, FormHelperText, AvatarBadge, B
 import { AddIcon, DeleteIcon, EditIcon, TimeIcon } from "@chakra-ui/icons";
 import {
   DataTable,
+  EmptyState,
   Form,
   FormLayout,
   PersonaContainer,
@@ -17,6 +18,7 @@ import {
 } from '@saas-ui/react'
 import pickBy from "lodash/pickBy";
 import * as Routes from "../../utils/routes";
+import { WarningIcon } from '@chakra-ui/icons';
 
 import { UserInfo, Filters, Can } from "@/data-types/user";
 import { Inertia } from "@inertiajs/inertia";
@@ -154,7 +156,7 @@ const Index = ({ users, can }: IProps) => {
         )}
       </HStack>
       <Box overflowY="auto" borderRadius="1" bgColor="#ffffff" boxShadow="md">
-        <DataTable
+        {users?.length > 0 ? (<DataTable
           ref={tableRef}
           columns={header}
           data={users.map(v => ({
@@ -211,7 +213,25 @@ const Index = ({ users, can }: IProps) => {
           isSelectable
           onSelectedRowsChange={(selected) => console.log(selected)}
           onSortChange={(column) => console.log(column)}
-        />
+        />) : (
+          <EmptyState
+            colorScheme="primary"
+            icon={WarningIcon}
+            title="No organizations yet"
+            description="You haven't create any organizations yet."
+            actions={
+              <>
+                <Button leftIcon={<AddIcon />} colorScheme='teal' variant='solid'>
+                  <Link href={Routes.new_user()}>
+                    Create User
+                  </Link>
+                </Button>
+                <Button variant="ghost">Back</Button>
+              </>
+            }
+          />
+        )
+        }
       </Box>
     </>
   );

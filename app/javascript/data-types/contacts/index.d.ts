@@ -2,7 +2,9 @@ interface Contacts {
   data: {
     id: string;
     name: string;
-    organization: string;
+    organization: {
+      name: string
+    };
     city: string;
     phone: string;
     deleted_at: Date;
@@ -19,10 +21,16 @@ interface Contacts {
 }
 
 interface SaveData {
-  name: string;
+  organization_id: string;
+  first_name: string;
+  last_name: string;
   city: string;
   phone: string;
-  email: string, address: string, region: string, country: string, postal_code: string, deleted_at: Date
+  email: string;
+  address: string;
+  region: string;
+  country: string;
+  postal_code: string;
 }
 
 interface Filters {

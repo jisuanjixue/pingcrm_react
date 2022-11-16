@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import { Box, Button, Flex, HStack, Avatar, Text, FormHelperText, AvatarBadge, ButtonGroup, IconButton, Stack } from "@chakra-ui/react";
-import { AddIcon, DeleteIcon, EditIcon, TimeIcon } from "@chakra-ui/icons";
+import { AddIcon, DeleteIcon, EditIcon, TimeIcon, WarningIcon } from "@chakra-ui/icons";
 import {
   DataTable,
+  EmptyState,
   Form,
   FormLayout,
   SearchInput,
@@ -13,11 +14,14 @@ import {
 import pickBy from "lodash/pickBy";
 import * as Routes from "../../utils/routes";
 
-import { ContactInfo, Filters } from "@/data-types/contact";
+import { Contacts, Filters } from "@/data-types/contacts";
 import { Inertia } from "@inertiajs/inertia";
 
 type IProps = {
-  contacts: ContactInfo[];
+  contacts: {
+    data: Contacts["data"][];
+    meta: Contacts["meta"]
+  };
   filters: Filters;
 };
 
@@ -26,7 +30,6 @@ const Index = ({ contacts }: IProps) => {
   const defaultFilterData: Filters = {
     search: '',
     trashed: '',
-    role: ''
   }
   const { data, get, setData, processing, errors, reset } = useForm(defaultFilterData);
 
@@ -138,49 +141,76 @@ const Index = ({ contacts }: IProps) => {
         </Button>
       </HStack>
       <Box overflowY="auto" borderRadius="1" bgColor="#ffffff" boxShadow="md">
-        <DataTable
-          ref={tableRef}
-          columns={header}
-          data={contacts.map(v => ({
-            ...v,
-            name: <Box></Box>,
-            action: <ButtonGroup variant="solid" size="sm" spacing={3}>
-              <IconButton
-                colorScheme="green"
-                icon={<EditIcon />}
-                aria-label="Edit"
-                onClick={() => Inertia.get(Routes.edit_contact(v.id))}
-              >
-              </IconButton>
-              <IconButton
-                colorScheme="red"
-                icon={<DeleteIcon />}
-                aria-label="Delete"
-                onClick={() =>
-                  modals.confirm({
-                    title: 'Delete contact',
-                    body: 'Are you sure you want to delete this contact?',
-                    confirmProps: {
-                      colorScheme: 'red',
-                      label: 'Delete',
-                    },
-                    onConfirm: () => {
-                      Inertia.delete(Routes.contact(v.id))
-                    }, // action
-                  })
-                }
-              />
-            </ButtonGroup>
-          }))}
-          autoResetHiddenColumns={true}
-          isSortable
-          isSelectable
-          onSelectedRowsChange={(selected) => console.log(selected)}
-          onSortChange={(column) => console.log(column)}
-        />
+        {contacts?.data.length > 0 ? (
+          <DataTable
+            ref={tableRef}
+            columns={header}
+            data={contacts?.data.map(v => ({
+              ...v,
+              organization: v.organization.name,
+              name: <HStack spacing='24px'>
+                <Box w='40px' h='40px' bg='yellow.200'>
+                  {v.name}
+                </Box>
+                <Box w='40px' h='40px' bg='tomato'>
+                  <IconButton
+                    colorScheme="red"
+                    variant="outline"
+                    icon={<DeleteIcon />}
+                    aria-label="Delete"
+                  />
+                </Box>
+              </HStack>,
+              action: <ButtonGroup variant="solid" size="sm" spacing={3}>
+                <IconButton
+                  colorScheme="green"
+                  icon={<EditIcon />}
+                  aria-label="Edit"
+                  onClick={() => Inertia.get(Routes.edit_contact(v.id))}
+                >
+                </IconButton>
+                <IconButton
+                  colorScheme="red"
+                  icon={<DeleteIcon />}
+                  aria-label="Delete"
+                  onClick={() =>
+                    modals.confirm({
+                      title: 'Delete contact',
+                      body: 'Are you sure you want to delete this contact?',
+                      confirmProps: {
+                        colorScheme: 'red',
+                        label: 'Delete',
+                      },
+                      onConfirm: () => {
+                        Inertia.delete(Routes.contact(v.id))
+                      }, // action
+                    })
+                  }
+                />
+              </ButtonGroup>
+            }))}
+            autoResetHiddenColumns={true}
+            isSortable
+            isSelectable
+            onSelectedRowsChange={(selected) => console.log(selected)}
+            onSortChange={(column) => console.log(column)}
+          />
+        ) : (
+          <EmptyState
+            colorScheme="primary"
+            icon={WarningIcon}
+            title="No contacts yet"
+            description="You haven't create any contacts yet."
+            actions={
+              <>
+                <Button colorScheme='teal' variant='solid' onClick={() => Inertia.get(Routes.new_contact())} >Create contacts</Button>
+                <Button variant="ghost">Back</Button>
+              </>
+            }
+          />
+        )}
       </Box>
     </>
   );
 };
-
 export default Index;

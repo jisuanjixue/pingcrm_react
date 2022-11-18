@@ -29,7 +29,7 @@ type IProps = {
   filters: Filters;
 };
 
-const Index = ({ organizations, filters }: IProps) => {
+const Index: React.FC = ({ organizations, filters }: IProps) => {
   const modals = useModals()
   const toast = useToast();
   const disclosure = useDisclosure()

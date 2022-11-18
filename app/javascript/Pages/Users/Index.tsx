@@ -29,7 +29,7 @@ type IProps = {
   can: Can;
 };
 
-const Index = ({ users, can }: IProps) => {
+const Index: React.FC = ({ users, can }: IProps) => {
   const modals = useModals()
   const defaultFilterData: Filters = {
     search: '',

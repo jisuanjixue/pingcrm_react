@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include InertiaCsrf
   include InertiaFlash
   include InertiaJson
+  include InertiaErrors
 
   rescue_from ActiveRecord::RecordInvalid do |exception|
     raise exception unless request.inertia?
@@ -13,22 +14,5 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: root_path)
   end
 
-  inertia_share do
-    {
-      errors: session.delete(:errors)
-    }
-  end
-
-  inertia_share auth: -> {
-    {
-      user: current_user.as_json(
-        only: [ :id, :first_name, :last_name ],
-        include: {
-          account: {
-            only: [ :id, :name ]
-          }
-        }
-      )
-    }
-  }
+  inertia_share auth: -> { { user: current_user.as_json(only: %i[id first_name last_name], include: { account: { only: %i[id name] } }) } }
 end

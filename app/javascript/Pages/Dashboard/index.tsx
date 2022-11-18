@@ -4,7 +4,7 @@ import * as timeago from "timeago.js";
 import { Link, Text } from "@chakra-ui/react";
 import type { IProps } from "@/data-types/dashboard";
 
-const Dashboard = ({ git }: IProps) => {
+const Dashboard: React.FC = ({ git }: IProps) => {
   return (
     <>
       <Head title="Dashboard" />

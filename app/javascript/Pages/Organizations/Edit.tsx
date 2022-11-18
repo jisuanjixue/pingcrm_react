@@ -13,7 +13,7 @@ type IProps = {
   organization: any;
   contacts: any[]
 };
-const EditIndex = ({ organization, contacts }: IProps) => {
+const EditIndex: React.FC = ({ organization, contacts }: IProps) => {
   const modals = useModals()
 
   const editForm = useForm(`EditUser:${organization.id}`, organization);

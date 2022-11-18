@@ -1,12 +1,11 @@
 import React, { useCallback } from "react";
 import { FormControl, FormLabel, Input, FormErrorMessage, Stack, Button } from "@chakra-ui/react";
 import { useForm } from "@inertiajs/inertia-react";
-// import FileUpload from "@/components/fileUpload/index";
 import { Card, CardBody, CardFooter, CardHeader, CardTitle, FormLayout, Select } from "@saas-ui/react";
 import * as Routes from "../../utils/routes";
 
 
-const ContactForm = (contactForm: any) => {
+const ContactForm: React.FC = (contactForm: any) => {
   const { data, setData, post, put, processing, errors, reset, progress } = useForm({ ...contactForm.contact });
   const handValue = useCallback((e, name) => {
     const value = (() => {
@@ -16,17 +15,6 @@ const ContactForm = (contactForm: any) => {
     })();
     setData(name, value);
   }, [data])
-
-
-  const fileProps = {
-    handValue,
-    label: "Photo",
-    errors,
-    photo: data.photo,
-    type: "file",
-    progress
-  };
-
 
   const handleSubmit = useCallback(() => {
     if (data.id) {

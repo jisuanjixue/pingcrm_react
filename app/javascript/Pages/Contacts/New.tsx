@@ -10,7 +10,7 @@ type IProps = {
   organizations: Organizations["data"][];
 };
 
-const newIndex = ({ organizations }: IProps) => {
+const newIndex: React.FC = ({ organizations }: IProps) => {
   const contactForm = {
     organizations,
     contact: {},

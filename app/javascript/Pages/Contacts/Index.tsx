@@ -25,7 +25,7 @@ type IProps = {
   filters: Filters;
 };
 
-const Index = ({ contacts }: IProps) => {
+const Index: React.FC = ({ contacts }: IProps) => {
   const modals = useModals()
   const defaultFilterData: Filters = {
     search: '',

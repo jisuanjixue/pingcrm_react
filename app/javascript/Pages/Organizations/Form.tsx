@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { FormControl, FormLabel, Input, FormErrorMessage } from "@chakra-ui/react";
 import { FormLayout, Select } from "@saas-ui/react";
 
-const OrganizationForm = ({ editForm }: any) => {
+const OrganizationForm: React.FC = ({ editForm }: any) => {
 
   const organization = useMemo(() => editForm.data, [editForm.data])
 

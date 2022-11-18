@@ -8,7 +8,7 @@ type IProps = {
   user: any;
 };
 
-const newIndex = ({ user }: IProps) => {
+const newIndex: React.FC = ({ user }: IProps) => {
   const userForm = {
     ...user,
     photo: null

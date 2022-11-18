@@ -6,7 +6,7 @@ import * as Routes from "../../utils/routes.js";
 import PasswordField from "../../components/passwordInput/PasswordField";
 import { Head } from "@inertiajs/inertia-react";
 
-const Login = () => {
+const Login: React.FC = () => {
   const titleColor = useColorModeValue("teal.300", "teal.200");
   const textColor = useColorModeValue("gray.400", "white");
   const bgColor = useColorModeValue("white", "gray.700");

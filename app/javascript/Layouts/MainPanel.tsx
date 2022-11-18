@@ -4,7 +4,7 @@ import Main from "./Main";
 import { usePage } from "@inertiajs/inertia-react";
 import { ModalsProvider } from '@saas-ui/react'
 
-const MainPanel = props => {
+const MainPanel: React.FC = props => {
   const {
     auth: { user },
   } = usePage().props as any;

@@ -9,7 +9,7 @@ import TrashedMessage from "@/components/TrashedMessage";
 type IProps = {
   user: any;
 };
-const EditIndex = ({ user }: IProps) => {
+const EditIndex: React.FC = ({ user }: IProps) => {
   const userForm = {
     ...user
   }

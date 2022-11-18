@@ -11,7 +11,6 @@ import { Inertia } from "@inertiajs/inertia";
 import Plausible from "plausible-tracker";
 import axios from "axios";
 import theme from "../theme/theme";
-// import { ChakraProvider } from "@chakra-ui/react";
 import { SaasProvider } from "@saas-ui/react";
 import MainPanel from "../Layouts/MainPanel";
 

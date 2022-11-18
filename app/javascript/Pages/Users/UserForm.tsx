@@ -7,7 +7,7 @@ import { Card, CardBody, CardFooter, CardHeader, CardTitle, FormLayout, Select }
 import * as Routes from "../../utils/routes";
 
 
-const UserForm = (userForm: any) => {
+const UserForm: React.FC = (userForm: any) => {
   const { data, setData, post, put, processing, errors, reset, progress } = useForm({ ...userForm });
   const handValue = useCallback((e, name) => {
     const value = (() => {

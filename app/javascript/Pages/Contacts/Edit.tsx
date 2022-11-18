@@ -10,7 +10,7 @@ type IProps = {
   contact: any;
   organizations: any
 };
-const EditIndex = ({ contact, organizations }: IProps) => {
+const EditIndex: React.FC = ({ contact, organizations }: IProps) => {
   const userForm = {
     contact,
     organizations

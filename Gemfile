@@ -55,6 +55,7 @@ group :development do
   gem 'web-console'
 
   gem 'annotate', '~> 3.2.0'
+  gem 'bullet', '~> 7.0.3'
 
   # Profiles loading speed for rack applications. (https://miniprofiler.com)
   gem 'rack-mini-profiler'

@@ -77,6 +77,9 @@ GEM
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bullet (7.0.3)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     cancancan (3.4.0)
     capybara (3.37.1)
       addressable
@@ -344,6 +347,7 @@ GEM
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.2.0)
+    uniform_notifier (1.16.0)
     vite_rails (3.0.10)
       railties (>= 5.1, < 8)
       vite_ruby (~> 3.0)
@@ -377,6 +381,7 @@ PLATFORMS
 DEPENDENCIES
   annotate (~> 3.2.0)
   bootsnap
+  bullet (~> 7.0.3)
   cancancan
   capybara
   debug (~> 1.6, >= 1.6.2)

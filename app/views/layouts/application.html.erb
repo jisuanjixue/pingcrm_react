@@ -9,6 +9,8 @@
     name="description" />
   <meta content="PingCRM" name="application-name" />
   <meta content="#667eea" name="theme-color" />
+  <meta name="git-commit-version" content="<%= Rails.configuration.x.git.commit_version %>">
+  <meta name="git-commit-time" content="<%= Rails.configuration.x.git.commit_time %>">
 
   <%= tag :meta, name: 'plausible-url', content: ENV['PLAUSIBLE_URL'] %>
   <%= tag :meta, name: 'app-host', content: ENV['APP_HOST'] %>

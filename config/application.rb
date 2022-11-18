@@ -32,7 +32,11 @@ module Pingcrm
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    config.active_storage.variant_processor = :vips
+    # config.active_storage.variant_processor = :vips
+
+    config.x.git.commit_version = ENV.fetch("COMMIT_VERSION") { `git describe --always`.chomp }
+
+    config.x.git.commit_time = ENV.fetch("COMMIT_TIME") { `git show -s --format=%cI`.chomp }
 
     # To allow Inertia.js handle backend exceptions, we need to register an
     # exceptions_app to show the exceptions via the `Error` React component.
@@ -52,22 +56,6 @@ module Pingcrm
     # (Rails.env.development? || Rails.env.test?) &&
     #   ActiveModel::Type::Boolean.new.cast(ENV.fetch('CYPRESS', false))
 
-    config.exceptions_app = ->(env) do
-      Class
-        .new(ActionController::Base) do # rubocop:disable Rails/ApplicationController
-          def show
-            # Get the status code from the path, which is /500 or /404 etc.
-            status = request.path_info.delete_prefix("/").to_i
-
-            render inertia: "Error",
-                   props: {
-                     status:,
-                   }, # Make the status code available to the React component
-                   status: # Return the same status code in the request header
-          end
-        end
-        .action(:show)
-        .call(env)
-    end
+    config.exceptions_app = ->(env) { ExceptionsController.action(:show).call(env) }
   end
 end

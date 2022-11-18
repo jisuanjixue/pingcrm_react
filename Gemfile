@@ -54,6 +54,8 @@ group :development do
   # A debugging tool for your Ruby on Rails applications. (https://github.com/rails/web-console)
   gem 'web-console'
 
+  gem 'annotate', '~> 3.2.0'
+
   # Profiles loading speed for rack applications. (https://miniprofiler.com)
   gem 'rack-mini-profiler'
 

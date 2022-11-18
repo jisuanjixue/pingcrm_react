@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id              :bigint           not null, primary key
+#  account_id      :bigint           not null
+#  organization_id :bigint
+#  first_name      :string           not null
+#  last_name       :string           not null
+#  email           :string
+#  phone           :string
+#  address         :string
+#  city            :string
+#  region          :string
+#  country         :string
+#  postal_code     :string
+#  deleted_at      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 require 'faker'
 
 FactoryBot.define do

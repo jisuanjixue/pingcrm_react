@@ -149,10 +149,10 @@ const Index = ({ contacts }: IProps) => {
               ...v,
               organization: v.organization.name,
               name: <HStack spacing='24px'>
-                <Box w='40px' h='40px' bg='yellow.200'>
+                <Box w='40px' h='40px'>
                   {v.name}
                 </Box>
-                <Box w='40px' h='40px' bg='tomato'>
+                <Box w='40px' h='40px'>
                   <IconButton
                     colorScheme="red"
                     variant="outline"

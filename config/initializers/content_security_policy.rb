@@ -6,33 +6,66 @@
 
 Rails.application.configure do
   config.content_security_policy do |policy|
-    policy.font_src     :self
-    policy.img_src(*[   :self, :data].compact)
-    policy.object_src   :none
-    policy.form_action  :self
+    policy.font_src :self
+    policy.img_src(*%i[self data].compact)
+    policy.object_src :none
+    policy.form_action :self
     policy.manifest_src :self
     policy.default_src :none
 
     if Rails.env.development?
       policy.connect_src :self,
-                         # Allow @vite/client to hot reload changes
-                         "ws://#{ViteRuby.config.host_with_port}"
+                         # Allow ActionCable connection
+                         "wss://#{ENV.fetch("APP_HOST", nil)}",
+                         # Allow @vite/client to hot reload CSS changes
+                         "wss://#{ViteRuby.config.host}"
 
       policy.script_src :self,
-                        # Allow @vite/client to hot reload JavaScript changes
-                        "http://#{ViteRuby.config.host_with_port}",
                         # Allow Inertia.js to display error modal
-                        :unsafe_inline
+                        :unsafe_inline,
+                        # Allow @vite/client to hot reload JavaScript changes
+                        "https://#{ViteRuby.config.host}"
 
       policy.style_src :self,
                        # Allow @vite/client to hot reload CSS changes
                        :unsafe_inline
     else
-      policy.connect_src(*[:self, ENV.fetch('PLAUSIBLE_URL', nil)].compact)
-      policy.script_src(*[:self].compact)
-      policy.style_src :self,
-                       # Allow @inertiajs/progress to display progress bar
-                       "'sha256-kCeyw5rRT2DINADvWYmAhXLhQs4dKZrnn2sofIDmprs='"
+      policy.default_src :none
+      policy.font_src(
+        *[:self, :data, Rails.configuration.asset_host.presence].compact,
+      )
+      policy.img_src(
+        *[:self, :data, Rails.configuration.asset_host.presence].compact,
+      )
+      policy.object_src :none
+      policy.script_src(
+        *[:self, Rails.configuration.asset_host.presence].compact,
+      )
+      policy.style_src(
+        *[
+          :self,
+          Rails.configuration.asset_host.presence,
+          # Allow @inertiajs/progress to display progress bar
+          "'sha256-kCeyw5rRT2DINADvWYmAhXLhQs4dKZrnn2sofIDmprs='",
+        ].compact,
+      )
+      policy.frame_src(
+        *[:self, Rails.configuration.asset_host.presence].compact,
+      )
+      policy.connect_src(
+        *[
+          :self,
+          "wss://#{ENV.fetch('APP_HOST', nil)}",
+          (
+            if Rails.configuration.x.honeybadger.api_key
+              'https://api.honeybadger.io'
+            end
+          ),
+          Rails.configuration.x.plausible_url.presence,
+        ].compact,
+      )
+      policy.manifest_src :self
+      policy.frame_ancestors :none
     end
 
     policy.base_uri :self

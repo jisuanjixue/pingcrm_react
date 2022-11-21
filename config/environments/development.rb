@@ -1,13 +1,13 @@
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   config.after_initialize do
-    Bullet.enable        = true
-    Bullet.alert         = true
+    Bullet.enable = true
+    Bullet.alert = true
     Bullet.bullet_logger = true
-    Bullet.console       = true
-    Bullet.rails_logger  = true
-    Bullet.add_footer    = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
   end
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -28,14 +28,12 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
-    }
+    config.public_file_server.headers = { "Cache-Control" => "public, max-age=#{2.days.to_i}" }
   else
     config.action_controller.perform_caching = false
 
@@ -70,4 +68,21 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  config.force_ssl = ActiveModel::Type::Boolean.new.cast ENV.fetch("FORCE_SSL", true)
+
+  if config.force_ssl
+    config.ssl_options = {
+      # Ensure that http://localhost:3000 redirects to https://{APP_HOST},
+      # because there is no https://localhost:3000
+      redirect: {
+        host: ENV.fetch("APP_HOST", nil),
+        port: 80,
+      },
+      # Don't cache the HTTPS redirect to avoid conflicts with other apps
+      hsts: false,
+    }
+  end
+
+  Rails.application.config.hosts << ENV.fetch("APP_HOST", nil)
 end

@@ -36,10 +36,10 @@ export default defineConfig({
   ],
   server: {
     hmr: {
-      protocol: "ws",
-      host: "localhost",
+      host: "vite.pingcrm-react.test",
       usePolling: true,
-      // clientPort: 443,
+      clientPort: 443,
+      https: true,
     },
   },
 });

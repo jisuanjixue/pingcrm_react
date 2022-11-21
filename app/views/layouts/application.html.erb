@@ -13,7 +13,11 @@
   <meta name="git-commit-time" content="<%= Rails.configuration.x.git.commit_time %>">
 
   <%= tag :meta, name: 'plausible-url', content: ENV['PLAUSIBLE_URL'] %>
-  <%= tag :meta, name: 'app-host', content: ENV['APP_HOST'] %>
+  <meta name="app-host" content="<%= Rails.configuration.x.app_host %>">
+
+  <% if Rails.configuration.asset_host.present? %>
+  <meta name="asset-host" content="<%= request.protocol %><%= Rails.configuration.asset_host %>">
+  <% end %>
 
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>

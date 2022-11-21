@@ -76,6 +76,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
+    brotli (0.4.0)
     builder (3.2.4)
     bullet (7.0.3)
       activesupport (>= 3.0.0)
@@ -221,6 +222,14 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
+    rack-brotli (1.2.0)
+      brotli (>= 0.1.7)
+      rack (>= 1.4)
+    rack-canonical-host (1.1.0)
+      addressable (> 0, < 3)
+      rack (>= 1.0.0, < 3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-mini-profiler (3.0.0)
       rack (>= 1.2.0)
     rack-proxy (0.7.2)
@@ -400,6 +409,9 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   prettier
   puma (~> 5.0)
+  rack-brotli
+  rack-canonical-host
+  rack-cors
   rack-mini-profiler
   rails (~> 7.0.3)
   rspec-rails

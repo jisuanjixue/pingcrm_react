@@ -5,7 +5,9 @@
   },
   "development": {
     "autoBuild": true,
+    "https": true,
     "publicOutputDir": "vite-dev",
+    "host": "vite.pingcrm-react.test",
     "port": 3036
   },
   "test": {

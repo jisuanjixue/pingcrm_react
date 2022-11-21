@@ -24,6 +24,18 @@ gem 'image_processing', '~> 1.2'
 # Boot large ruby/rails apps faster (https://github.com/Shopify/bootsnap)
 gem 'bootsnap', require: false
 
+# Brings Rails named routes to javascript (http://github.com/railsware/js-routes)
+  gem 'js-routes'
+
+  # Middleware for enabling Cross-Origin Resource Sharing in Rack apps (https://github.com/cyu/rack-cors)
+gem 'rack-cors', require: 'rack/cors'
+
+# Rack middleware for defining a canonical host name. (https://github.com/tylerhunt/rack-canonical-host)
+gem 'rack-canonical-host'
+
+# Brotli compression for Rack responses (http://github.com/marcotc/rack-brotli/)
+gem 'rack-brotli'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # Debugging functionality for Ruby (https://github.com/ruby/debug)
@@ -63,8 +75,6 @@ group :development do
   # Rails application preloader (https://github.com/rails/spring)
   gem 'spring'
 
-  # Brings Rails named routes to javascript (http://github.com/railsware/js-routes)
-  gem 'js-routes', require: false
     # Guard gem for RSpec (https://github.com/guard/guard-rspec)
   gem 'guard-rspec', require: false
 

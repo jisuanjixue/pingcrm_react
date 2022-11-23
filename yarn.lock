@@ -4969,10 +4969,10 @@ vite-plugin-babel@^1.1.2:
   resolved "https://registry.yarnpkg.com/vite-plugin-babel/-/vite-plugin-babel-1.1.2.tgz#faf27bf69628e20d4f36f85b415789e6121d93e3"
   integrity sha512-NPqUSzxzdPo1UyZGvL1KOIYy5R1T9+Af6cZ9Qw/f7tepjp6FSmx4SbK6eZ9xttEnSsdYj3IJmXwlU8PYeZstWw==
 
-vite-plugin-full-reload@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/vite-plugin-full-reload/-/vite-plugin-full-reload-1.0.3.tgz"
-  integrity sha512-owIZz/tGXFyUzIDzbu4KBpxrpd08BO+tuWqZABCug5C2laNTwOS4mcDMsMKnXT7B7WR8oRd+BI6a2kVDtsan3w==
+vite-plugin-full-reload@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/vite-plugin-full-reload/-/vite-plugin-full-reload-1.0.4.tgz#3fecd446f9accd5af01eb0328f6d161dca7cfc45"
+  integrity sha512-9WejQII6zJ++m/YE173Zvl2jq4cqa404KNrVT+JDzDnqaGRq5UvOvA48fnsSWPIMXFV7S0dq5+sZqcSB+tKBgA==
   dependencies:
     picocolors "^1.0.0"
     picomatch "^2.3.1"

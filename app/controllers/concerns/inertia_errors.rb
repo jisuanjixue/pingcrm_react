@@ -4,7 +4,8 @@ module InertiaErrors
   extend ActiveSupport::Concern
 
   included do
-    rescue_form ActiveRecord::RecordNotFound do
+    rescue_from ActiveRecord::RecordNotFound do
       render inertia: 'Error/Show', props: { status: 404 }, status: :not_found
     end
+end
 end

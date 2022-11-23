@@ -1968,10 +1968,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@inertiajs/inertia-react@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/@inertiajs/inertia-react/-/inertia-react-0.8.0.tgz"
-  integrity sha512-b0qMCS5I8+91XfC7+k51Poh5IuCmOQ598SNlIFsaI6jya0Jt8qwEpW2aTZlLy3bm49RKiMWB3d3OgMmxo9iA5A==
+"@inertiajs/inertia-react@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@inertiajs/inertia-react/-/inertia-react-0.8.1.tgz#730e1f592086c8e97e21e3f4ed639cb952bcfd77"
+  integrity sha512-9Uu7t4EA9FrcREwWnOU/qW5i4hYFt+uFn5cqP6RGJo8lJS4u8t6Q9358oHuQUKbFEbaIjUu7aslCL3/Istctlg==
   dependencies:
     lodash.isequal "^4.5.0"
 

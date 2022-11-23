@@ -24,6 +24,8 @@ gem 'image_processing', '~> 1.2'
 # Boot large ruby/rails apps faster (https://github.com/Shopify/bootsnap)
 gem 'bootsnap', require: false
 
+gem 'honeybadger', "~> 5.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # Debugging functionality for Ruby (https://github.com/ruby/debug)
@@ -112,3 +114,8 @@ gem 'cancancan'
 
 # Automatically generate TypeScript interfaces from your JSON serializers.
 gem 'types_from_serializers'
+
+group :production do
+  # Error reports you can be happy about. (https://github.com/honeybadger-io/honeybadger-ruby)
+
+end

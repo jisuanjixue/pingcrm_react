@@ -38,6 +38,8 @@ module Pingcrm
 
     config.x.git.commit_time = ENV.fetch("COMMIT_TIME") { `git show -s --format=%cI`.chomp }
 
+    config.x.honeybadger.api_key = ENV['HONEYBADGER_API_KEY'].presence
+
     # To allow Inertia.js handle backend exceptions, we need to register an
     # exceptions_app to show the exceptions via the `Error` React component.
     # This app needs to be a middleware. To keep things simple we define an

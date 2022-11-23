@@ -12,6 +12,10 @@
   <meta name="git-commit-version" content="<%= Rails.configuration.x.git.commit_version %>">
   <meta name="git-commit-time" content="<%= Rails.configuration.x.git.commit_time %>">
 
+  <% if Rails.configuration.x.honeybadger.api_key %>
+  <meta name="honeybadger-api-key" content="<%= Rails.configuration.x.honeybadger.api_key %>">
+  <% end %>
+
   <%= tag :meta, name: 'plausible-url', content: ENV['PLAUSIBLE_URL'] %>
   <%= tag :meta, name: 'app-host', content: ENV['APP_HOST'] %>
 

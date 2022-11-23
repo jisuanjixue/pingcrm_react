@@ -11,6 +11,7 @@
     "@choc-ui/paginator": "^3.4.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@honeybadger-io/js": "^4.7.1",
     "@inertiajs/inertia": "^0.11.0",
     "@inertiajs/inertia-react": "^0.8.0",
     "@inertiajs/progress": "^0.2.7",

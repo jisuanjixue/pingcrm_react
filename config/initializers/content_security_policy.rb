@@ -28,7 +28,11 @@ Rails.application.configure do
                        # Allow @vite/client to hot reload CSS changes
                        :unsafe_inline
     else
-      policy.connect_src(*[:self, ENV.fetch('PLAUSIBLE_URL', nil)].compact)
+      policy.connect_src(*[:self, ENV.fetch('PLAUSIBLE_URL', nil), (
+        if Rails.configuration.x.honeybadger.api_key
+          'https://api.honeybadger.io'
+        end
+      )].compact)
       policy.script_src(*[:self].compact)
       policy.style_src :self,
                        # Allow @inertiajs/progress to display progress bar

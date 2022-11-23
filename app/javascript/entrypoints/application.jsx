@@ -16,6 +16,7 @@ import MainPanel from "../Layouts/MainPanel";
 
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
+import '../utils/setupHoneybadger.ts';
 
 const pages = import.meta.globEagerDefault("../Pages/**/*.tsx");
 
@@ -60,6 +61,3 @@ createInertiaApp({
     );
   },
 });
-
-// "eslint-plugin-cypress": "^2.12.1"
-//"cypress": "^10.10.0"

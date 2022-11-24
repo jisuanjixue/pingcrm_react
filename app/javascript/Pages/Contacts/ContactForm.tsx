@@ -4,29 +4,31 @@ import { useForm } from "@inertiajs/inertia-react";
 import { Card, CardBody, CardFooter, CardHeader, CardTitle, FormLayout, Select } from "@saas-ui/react";
 import * as Routes from "../../utils/routes";
 
-
 const ContactForm: React.FC = (contactForm: any) => {
   const { data, setData, post, put, processing, errors, reset, progress } = useForm({ ...contactForm.contact });
-  const handValue = useCallback((e, name) => {
-    const value = (() => {
-      if (name === "photo") return e?.target?.files?.[0]
-      else if (name === "owner") return e === "0" ? true : false
-      return e.target.value
-    })();
-    setData(name, value);
-  }, [data])
+  const handValue = useCallback(
+    (e, name) => {
+      const value = (() => {
+        if (name === "photo") return e?.target?.files?.[0];
+        else if (name === "owner") return e === "0" ? true : false;
+        return e.target.value;
+      })();
+      setData(name, value);
+    },
+    [data]
+  );
 
   const handleSubmit = useCallback(() => {
     if (data.id) {
       put(Routes.contact(data.id), {
-        onSuccess: () => reset('password', 'photo'),
-      })
+        onSuccess: () => reset("password", "photo"),
+      });
     } else {
       post(Routes.contacts(), {
         preserveScroll: true,
-      })
+      });
     }
-  }, [data])
+  }, [data]);
 
   return (
     <Card maxW="1000" w="full" variant="solid" isHoverable>
@@ -85,8 +87,8 @@ const ContactForm: React.FC = (contactForm: any) => {
                 placeholder={data.organization_id ? contactForm?.organizations.find(f => f.id === data.organization_id)?.name : "Select"}
                 options={contactForm?.organizations.map(v => ({ label: v.name, value: v.id }))}
                 size="md"
-                onChange={(value) => handValue(value, "organization_id")}
-                renderValue={(value?: string[]) => data.organization_id ? value?.[0] : ""}
+                onChange={value => handValue(value, "organization_id")}
+                renderValue={(value?: string[]) => (data.organization_id ? value?.[0] : "")}
               />
               <FormControl variant="floating">
                 <Input
@@ -152,28 +154,23 @@ const ContactForm: React.FC = (contactForm: any) => {
         </form>
       </CardBody>
       <CardFooter>
-        <Stack direction='row' spacing={4} align='center' justify="space-between">
+        <Stack direction="row" spacing={4} align="center" justify="space-between">
           <Button
-            colorScheme='teal'
-            variant='outline'
-            spinnerPlacement='start'
-            onClick={() => { reset() }}
+            colorScheme="teal"
+            variant="outline"
+            spinnerPlacement="start"
+            onClick={() => {
+              reset();
+            }}
           >
             reset
           </Button>
-          <Button
-            isLoading={processing}
-            loadingText='Loading'
-            colorScheme='teal'
-            variant='solid'
-            spinnerPlacement='end'
-            onClick={() => handleSubmit()}
-          >
+          <Button isLoading={processing} loadingText="Loading" colorScheme="teal" variant="solid" spinnerPlacement="end" onClick={() => handleSubmit()}>
             {data.id ? "Edit contact" : "Create contact"}
           </Button>
         </Stack>
       </CardFooter>
-    </Card >
+    </Card>
   );
 };
 

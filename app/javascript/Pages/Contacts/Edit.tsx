@@ -8,13 +8,13 @@ import TrashedMessage from "@/components/TrashedMessage";
 
 type IProps = {
   contact: any;
-  organizations: any
+  organizations: any;
 };
 const EditIndex: React.FC = ({ contact, organizations }: IProps) => {
   const userForm = {
     contact,
-    organizations
-  }
+    organizations,
+  };
   const restore = () => { };
   return (
     <>
@@ -24,7 +24,10 @@ const EditIndex: React.FC = ({ contact, organizations }: IProps) => {
           <BreadcrumbLink href={Routes.users()}>Contacts</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink isCurrentPage> {contact.first_name} {contact.last_name}</BreadcrumbLink>
+          <BreadcrumbLink isCurrentPage>
+            {" "}
+            {contact.first_name} {contact.last_name}
+          </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
       <Flex
@@ -38,11 +41,7 @@ const EditIndex: React.FC = ({ contact, organizations }: IProps) => {
       >
         <ContactForm {...userForm} />
       </Flex>
-      {contact.deleted_at && (
-        <TrashedMessage restore={restore}>
-          This contact has been deleted.
-        </TrashedMessage>
-      )}
+      {contact.deleted_at && <TrashedMessage restore={restore}>This contact has been deleted.</TrashedMessage>}
     </>
   );
 };

@@ -5,7 +5,6 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex } from "@chakra-ui/rea
 import ContactForm from "./ContactForm";
 import { Organizations } from "@/data-types/organizations";
 
-
 type IProps = {
   organizations: Organizations["data"][];
 };

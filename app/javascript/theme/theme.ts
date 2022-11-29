@@ -20,6 +20,11 @@ import { baseTheme } from "@saas-ui/react";
 // import { mode } from "@chakra-ui/theme-tools";
 export default extendTheme(
   {
+    global: () => ({
+      'html, body': {
+        height: '100%',
+      },
+    }),
     breakpoints: {
       // sm: "1024px",
       // md: "1280px",

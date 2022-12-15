@@ -19,7 +19,7 @@
     "@saas-ui/react": "^1.4.4",
     "autoprefixer": "^10.4.8",
     "axios": "^1.1.2",
-    "framer-motion": "^6.5.1",
+    "framer-motion": "^7.9.1",
     "lodash": "^4.17.21",
     "plausible-tracker": "^0.3.8",
     "react": "^18.2.0",

@@ -16,7 +16,7 @@ import MainPanel from "../Layouts/MainPanel";
 
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
-import '../utils/setupHoneybadger.ts';
+// import '../utils/setupHoneybadger.ts';
 
 const pages = import.meta.globEagerDefault("../Pages/**/*.tsx");
 

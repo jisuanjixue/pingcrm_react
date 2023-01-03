@@ -11,13 +11,9 @@ import { CardHeaderComponent } from "./additions/card/CardHeader";
 import { MainPanelComponent } from "./additions/layout/MainPanel";
 import { PanelContentComponent } from "./additions/layout/PanelContent";
 import { PanelContainerComponent } from "./additions/layout/PanelContainer";
-import { baseTheme } from "@saas-ui/react";
+import { theme as baseTheme } from '@saas-ui/react'
+import { theme as glassTheme } from '@saas-ui/theme-glass'
 
-// const config: ThemeConfig = {
-//   initialColorMode: "light",
-//   useSystemColorMode: false,
-// };
-// import { mode } from "@chakra-ui/theme-tools";
 export default extendTheme(
   {
     breakpoints: {
@@ -67,25 +63,12 @@ export default extendTheme(
       base: 1.5,
       tall: 1.625,
       taller: "2",
-      // "3": ".75rem",
-      // "4": "1rem",
-      // "5": "1.25rem",
-      // "6": "1.5rem",
-      // "7": "1.75rem",
-      // "8": "2rem",
-      // "9": "2.25rem",
-      // "10": "2.5rem",
     },
     letterSpacings: {
-      // tighter: "-0.05em",
-      // tight: "-0.025em",
-      // normal: "0",
-      // wide: "0.025em",
-      // wider: "0.05em",
-      // widest: "0.1em",
     },
   },
   baseTheme,
+  glassTheme,
   globalStyles,
   buttonStyles, // Button styles
   inputStyles, // input styles

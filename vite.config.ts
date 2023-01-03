@@ -10,6 +10,9 @@ export default defineConfig({
   // esbuild: {
   //   jsxInject: `import React from 'react'`,
   // },
+  define: {
+    'process.env': {}
+  },
   resolve: {
     dedupe: ["axios"],
   },

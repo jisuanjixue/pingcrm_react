@@ -2,7 +2,7 @@
 import React from "react";
 import { Flex, Link, List, ListItem, Text } from "@chakra-ui/react";
 
-export default function Footer() {
+const Footer: React.FC = () => {
   // const linkTeal = useColorModeValue("teal.400", "red.200");=
   return (
     <Flex
@@ -26,25 +26,25 @@ export default function Footer() {
         }}
         mb={{ base: "20px", xl: "0px" }}
       >
-        &copy; {1900 + new Date().getYear()}, <Text as="span">{document.documentElement.dir === "rtl" ? " " : "Made with ❤️ by "}</Text>
+        &copy; {1900 + new Date().getYear()}, <Text as="span">Made with ❤️ by</Text>
         <Link
           // color={linkTeal}
           color="teal.400"
-          href="https://www.creative-tim.com"
+          href="https://xiaobo.blog/"
           target="_blank"
         >
-          {document.documentElement.dir === "rtl" ? "" : "Creative Tim "}
+          "bobo"
         </Link>
         &
         <Link
           // color={linkTeal}
           color="teal.400"
-          href="https://www.simmmple.com"
+          href="https://github.com/jisuanjixue "
           target="_blank"
         >
-          {document.documentElement.dir === "rtl" ? "" : " Simmmple"}
+          github
         </Link>
-        {document.documentElement.dir === "rtl" ? "" : " for a better web"}
+        for a better web use
       </Text>
       <List display="flex">
         <ListItem
@@ -53,8 +53,8 @@ export default function Footer() {
             md: "44px",
           }}
         >
-          <Link color="gray.400" href="https://www.creative-tim.com">
-            {document.documentElement.dir === "rtl" ? "" : "Creative Tim"}
+          <Link color="gray.400" href="https://github.com/ledermann/pingcrm/">
+            ledermann
           </Link>
         </ListItem>
         <ListItem
@@ -63,8 +63,8 @@ export default function Footer() {
             md: "44px",
           }}
         >
-          <Link color="gray.400" href="https://www.simmmple.com">
-            {document.documentElement.dir === "rtl" ? "" : "Simmmple"}
+          <Link color="gray.400" href="https://inertiajs.com/">
+            Inertiajs
           </Link>
         </ListItem>
         <ListItem
@@ -73,16 +73,13 @@ export default function Footer() {
             md: "44px",
           }}
         >
-          <Link color="gray.400" href="#blog" href="https://creative-tim.com/blog">
-            {document.documentElement.dir === "rtl" ? "" : "Blog"}
-          </Link>
-        </ListItem>
-        <ListItem>
-          <Link color="gray.400" href="#license" href="https://www.creative-tim.com/license">
-            {document.documentElement.dir === "rtl" ? "" : "License"}
+          <Link color="gray.400" href="https://github.com/inertiajs/inertia-rails">
+            inertia with rails
           </Link>
         </ListItem>
       </List>
     </Flex>
   );
 }
+
+export default Footer;

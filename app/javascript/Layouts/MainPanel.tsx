@@ -2,9 +2,18 @@ import React from "react";
 import { Box, useStyleConfig } from "@chakra-ui/react";
 import Main from "./Main";
 import { usePage } from "@inertiajs/inertia-react";
-import { ModalsProvider } from "@saas-ui/react";
+import { ModalsProvider, HotkeysProvider, HotkeysListOptions } from "@saas-ui/react";
 
 const MainPanel: React.FC = props => {
+  const hotkeys: HotkeysListOptions = {
+    general: {
+      title: 'General',
+      hotkeys: {
+        help: { label: 'Help', command: '?' },
+        search: { label: 'Search', command: '⌘ K' },
+      },
+    }
+  }
   const {
     auth: { user },
   } = usePage().props as any;
@@ -21,8 +30,15 @@ const MainPanel: React.FC = props => {
         xl: "100%",
       }}
     >
-      <ModalsProvider>{user ? <Main>{children}</Main> : children}</ModalsProvider>
-    </Box>
+      <ModalsProvider>
+        {user ?
+          <HotkeysProvider hotkeys={hotkeys}>
+            <Main>
+              {children}
+            </Main>
+          </HotkeysProvider> : children}
+      </ModalsProvider>
+    </Box >
   );
 };
 

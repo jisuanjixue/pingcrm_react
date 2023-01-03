@@ -23,6 +23,7 @@ import { InertiaLink, usePage } from "@inertiajs/inertia-react";
 import * as Routes from "../utils/routes.js";
 import DashboardMenus from "../variables/general";
 import FlashMessages from "@/components/FlashMessages";
+import Footer from "@/components/Footer";
 
 import Logo from "@/components/Logo";
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -214,6 +215,7 @@ const Main: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
               <FlashMessages />
             </Box>
             {children}
+            <Footer></Footer>
           </Box>
         </Box>
       </Box>

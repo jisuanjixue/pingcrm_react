@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/inertia-react";
 import * as timeago from "timeago.js";
 import { Link, Text } from "@chakra-ui/react";
 import type { IProps } from "@/data-types/dashboard";
+import HotkeysListModal from "@/components/HotkeysListModal";
 
 const Dashboard: React.FC = ({ git }: IProps) => {
   return (
@@ -45,6 +46,7 @@ const Dashboard: React.FC = ({ git }: IProps) => {
           {timeago.format(git?.commit_time)}
         </Text>
       )}
+      <HotkeysListModal />
     </>
   );
 };

@@ -7,6 +7,7 @@ const HotkeysListModal: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const help = useHotkeysShortcut('?' /* general.help */, () => {
+    console.log("1111")
     onOpen()
   })
 

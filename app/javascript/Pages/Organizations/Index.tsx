@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback, useRef } from "react";
 import { Head, useForm } from "@inertiajs/inertia-react";
-import { Box, Button, Flex, HStack, Text, FormHelperText, ButtonGroup, IconButton, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, Text, FormHelperText, ButtonGroup, IconButton, useDisclosure, useToast, Kbd } from "@chakra-ui/react";
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   DataTable,
@@ -10,7 +10,8 @@ import {
   SearchInput,
   Select,
   useModals,
-  EmptyState
+  EmptyState,
+  useHotkeys
 } from '@saas-ui/react'
 import pickBy from "lodash/pickBy";
 import * as Routes from "../../utils/routes";
@@ -31,6 +32,7 @@ type IProps = {
 
 const Index: React.FC = ({ organizations, filters }: IProps) => {
   const modals = useModals()
+  const searchRef = useRef<any>(null)
   const toast = useToast();
   const disclosure = useDisclosure()
   const initialRef = useRef(null)
@@ -50,6 +52,10 @@ const Index: React.FC = ({ organizations, filters }: IProps) => {
   const url = (pageNumber: number) => pageNumber ? organizations.meta.scaffold_url.replace(/__pagy_page__/, `${pageNumber}`) : ""
   const changPageSizeUrl = (pageSize: number) => pageSize ? organizations.meta.scaffold_url.replace(/page=__pagy_page__&items=10/, `page=1&items=${pageSize}`) : ""
 
+
+  useHotkeys('⌘ K', () => {
+    searchRef?.current?.focus()
+  })
 
   const Prev = forwardRef((props, ref) => (
     <Button
@@ -194,9 +200,20 @@ const Index: React.FC = ({ organizations, filters }: IProps) => {
             />
             {errors.trashed && <FormHelperText>{errors.trashed}</FormHelperText>}
             <SearchInput
+              ref={searchRef}
               placeholder="Search"
               value={data.search}
               onChange={(e) => handleChange(e.target.value, "search")}
+              rightElement={
+                <Flex pos="absolute" right="4px">
+                  <Kbd bg="none" fontSize="lg">
+                    ⌘
+                  </Kbd>
+                  <Kbd bg="none" fontSize="lg">
+                    K
+                  </Kbd>
+                </Flex>
+              }
               onReset={() => handleChange('', "search")}
             />
             <Button type="submit" colorScheme="facebook" width="full" disabled={processing}>

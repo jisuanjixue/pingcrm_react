@@ -339,7 +339,7 @@ GEM
       railties (>= 5.1, < 8)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (2.4.1)
+    unicode-display_width (2.4.2)
     uniform_notifier (1.16.0)
     vite_rails (3.0.13)
       railties (>= 5.1, < 8)
@@ -369,6 +369,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-linux
 
 DEPENDENCIES
   annotate (~> 3.2.0)

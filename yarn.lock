@@ -2223,14 +2223,14 @@
   dependencies:
     "@chakra-ui/utils" "^2.0.12"
 
-"@saas-ui/auth@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.npmmirror.com/@saas-ui/auth/-/auth-1.6.3.tgz#cf91190f5af8a48a535a0c0f2eb2d89d911d2e30"
-  integrity sha512-2FfrbE+IoRydzCV/m7V/CyunsPXiE0RQYjKTJWdkaSYSjfRsnWsEBgKouWxqSc1zTF3U2f/AYQsVI1x3dlhAXA==
+"@saas-ui/auth@1.6.4":
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/@saas-ui/auth/-/auth-1.6.4.tgz#b4a9a504efd698c5f933ab3523fcb3ae311051b6"
+  integrity sha512-JlW+SVVB15BhhYkv1MOpSm4u9WhHVUEfmZV1FWXIR07+x3B7T0wtVfHa50gQSRq1RWK0evUTKQbeRlIqkWgyXw==
   dependencies:
     "@chakra-ui/utils" "^2.0.12"
     "@saas-ui/button" "1.3.0"
-    "@saas-ui/forms" "1.4.1"
+    "@saas-ui/forms" "1.4.2"
     "@saas-ui/hooks" "1.1.2"
     "@saas-ui/layout" "1.3.2"
 
@@ -2270,20 +2270,20 @@
     "@chakra-ui/react-utils" "^2.0.9"
     "@chakra-ui/utils" "^2.0.12"
 
-"@saas-ui/data-table@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.npmmirror.com/@saas-ui/data-table/-/data-table-1.3.2.tgz#8df2096a714659c54c7d706a7c50b743d0ac24b9"
-  integrity sha512-Pp02gai6/3TOEPd6oIGe/17RSfovXnJZXKfWYPf95EgfYSF049t5Veghd6P9uV7G5+kI2tRLzpC9GvYVdy4djQ==
+"@saas-ui/data-table@1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@saas-ui/data-table/-/data-table-1.3.3.tgz#d15eed236fa6b98df64397a5e7890a35ccb08f56"
+  integrity sha512-0GYgEdVyXrU7KkxgBgARYGq3ZcK0VaNZ/TBptZ1UsCL7ceg+f9nOXewwlnhW9MB9C2itJ9+vpryKj4IyA9tVrA==
   dependencies:
     "@chakra-ui/icons" "^2.0.12"
     "@chakra-ui/utils" "^2.0.12"
     "@saas-ui/layout" "1.3.2"
     react-table "^7.8.0"
 
-"@saas-ui/forms@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.npmmirror.com/@saas-ui/forms/-/forms-1.4.1.tgz#72dca4476df283e39ec074ce673f89bc25546751"
-  integrity sha512-pL1CsBZPYvOAEvy8m1yf869Mweo2OyMOSnteqqXz8pV6j7JZSR8Fd/f4+0q33eb/5ekRXBzTX2hTtB19+qDPSA==
+"@saas-ui/forms@1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@saas-ui/forms/-/forms-1.4.2.tgz#b0cad5f6b9a68c3b9cd2366ee473b7dcf97a7c46"
+  integrity sha512-/bsXeooa9mufYR1W+LCnv5gc4sekvis2rXppd9b/4LeMLvIuyyBirWaO7M3uz3GwYYSf8y2351cLDtSdCI4QlQ==
   dependencies:
     "@chakra-ui/icons" "^2.0.12"
     "@chakra-ui/react-utils" "^2.0.9"
@@ -2349,14 +2349,14 @@
     "@saas-ui/button" "1.3.0"
     "@saas-ui/provider" "1.1.8"
 
-"@saas-ui/modals@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.npmmirror.com/@saas-ui/modals/-/modals-1.4.2.tgz#90070d6e5fe6b60b50c672c3aff5c6805978fb8d"
-  integrity sha512-IT8+wWgagYStB7lw1X6I0Xb9aTYyuJYzxFhSbyIRilgwZDdhO4amwwdInQDxvlw7kNQOLORAYujgZQEhdtbYIA==
+"@saas-ui/modals@1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@saas-ui/modals/-/modals-1.4.3.tgz#a5dcbcba1b735f0d8a33ead87f71999521ee90db"
+  integrity sha512-uA+nDEudgeWEjXheFqk3hNtmiNzcLDP9eEzWmPXPgTE/7C1EmjQ23NbIUpLivKntIMtQ2e9PNgWvoaxG1ouc8A==
   dependencies:
     "@chakra-ui/utils" "^2.0.12"
     "@saas-ui/button" "1.3.0"
-    "@saas-ui/forms" "1.4.1"
+    "@saas-ui/forms" "1.4.2"
     "@saas-ui/menu" "1.3.2"
 
 "@saas-ui/nprogress@1.3.0":
@@ -2431,27 +2431,27 @@
   resolved "https://registry.npmmirror.com/@saas-ui/react-utils/-/react-utils-1.1.2.tgz#0cb97c02703021e4d9508a459b86c06be499f59d"
   integrity sha512-FXSVHWGRjL5flnAWCJc8Ro88mpnmWFH3Gr7RU8GRIZP6V9MIPzEn39oi7UHVcZcTvWXJUqr1i8aZ/S6PG0g7XQ==
 
-"@saas-ui/react@^1.4.4":
-  version "1.7.3"
-  resolved "https://registry.npmmirror.com/@saas-ui/react/-/react-1.7.3.tgz#e157035da48ae96b2933154569a1a61d3e7a94e0"
-  integrity sha512-jKjcthJm6ohh06DB0jxkvGjZevb/7+UofIDUvTjpMsaKO0kNSbGNniUqLNKEtK+fjxNFG8WzydGzWTg6tWiaOw==
+"@saas-ui/react@^1.7.4":
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/@saas-ui/react/-/react-1.7.4.tgz#a4a1ca326169f5fbc4b7f1a868252d53197a4bbf"
+  integrity sha512-sIKEa4uMEQZrXnsVb36Lh9EH73bRAPWsjrNyb+2VZysedHv1SQDJ9ABom/hUxMMFl5HHlVoXXFPZgCS+2kwu7Q==
   dependencies:
     "@chakra-ui/system" "^2.3.3"
     "@saas-ui/app-shell" "1.0.0"
-    "@saas-ui/auth" "1.6.3"
+    "@saas-ui/auth" "1.6.4"
     "@saas-ui/banner" "1.3.0"
     "@saas-ui/button" "1.3.0"
     "@saas-ui/card" "1.4.0"
     "@saas-ui/collapse" "1.3.0"
-    "@saas-ui/data-table" "1.3.2"
-    "@saas-ui/forms" "1.4.1"
+    "@saas-ui/data-table" "1.3.3"
+    "@saas-ui/forms" "1.4.2"
     "@saas-ui/hooks" "1.1.2"
     "@saas-ui/hotkeys" "1.3.0"
     "@saas-ui/input-right-button" "1.3.0"
     "@saas-ui/layout" "1.3.2"
     "@saas-ui/list" "1.3.0"
     "@saas-ui/menu" "1.3.2"
-    "@saas-ui/modals" "1.4.2"
+    "@saas-ui/modals" "1.4.3"
     "@saas-ui/nprogress" "1.3.0"
     "@saas-ui/number-input" "1.3.0"
     "@saas-ui/palette" "1.2.0"

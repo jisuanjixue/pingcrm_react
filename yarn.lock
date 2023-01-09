@@ -2499,10 +2499,10 @@
     "@saas-ui/collapse" "1.3.0"
     "@saas-ui/react-utils" "1.1.2"
 
-"@saas-ui/theme-glass@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.npmmirror.com/@saas-ui/theme-glass/-/theme-glass-0.1.1.tgz#5647191ff35b7c6ea877180cefc1440f95e5ce56"
-  integrity sha512-w4U9hU6qS0VbSIGwBmDXIzso75/MbPQVA5d7xteiibttG58QVNqYbx52c5kDjZ3j/8xSdU9FIx6OJJDD72yCoQ==
+"@saas-ui/theme-glass@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/theme-glass/-/theme-glass-0.2.0.tgz#c6e65647c9f2c54668b954aec82d3bc74ca43a3f"
+  integrity sha512-3KSkaNgdT1rEtK38cF7yhjmlFzEt8BVdcHnPKajvwnsM6ER3OORvkenbX86Ax1O6Ks9bolfjxCTOeh1URGFZVg==
   dependencies:
     "@chakra-ui/anatomy" "^2.1.0"
     "@chakra-ui/styled-system" "^2.3.5"

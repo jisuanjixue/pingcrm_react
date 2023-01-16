@@ -16,7 +16,7 @@
     "@inertiajs/inertia-react": "^0.8.0",
     "@inertiajs/progress": "^0.2.7",
     "@popperjs/core": "^2.11.5",
-    "@saas-ui/react": "^1.4.4",
+    "@saas-ui/react": "^1.8.0",
     "@saas-ui/theme-glass": "^0.1.1",
     "autoprefixer": "^10.4.8",
     "axios": "^1.1.2",

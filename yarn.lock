@@ -992,7 +992,7 @@
     "@chakra-ui/shared-utils" "2.0.4"
     "@chakra-ui/spinner" "2.0.12"
 
-"@chakra-ui/anatomy@2.1.1", "@chakra-ui/anatomy@^2.1.0":
+"@chakra-ui/anatomy@2.1.1", "@chakra-ui/anatomy@^2.1.0", "@chakra-ui/anatomy@^2.1.1":
   version "2.1.1"
   resolved "https://registry.npmmirror.com/@chakra-ui/anatomy/-/anatomy-2.1.1.tgz#819a1458ff727157e5500a69fc26bfea6e944495"
   integrity sha512-LUHAoqJAgxAqmyckG5bUpBrfEo1FleEyY+1A8hkWciy58gZ+h3GoY9oBpHcdo7XdHPpy3G+3hieK/7i9NLwxAw==
@@ -1615,7 +1615,7 @@
     "@chakra-ui/react-context" "2.0.6"
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/styled-system@2.5.1", "@chakra-ui/styled-system@^2.3.5":
+"@chakra-ui/styled-system@2.5.1", "@chakra-ui/styled-system@^2.3.5", "@chakra-ui/styled-system@^2.5.1":
   version "2.5.1"
   resolved "https://registry.npmmirror.com/@chakra-ui/styled-system/-/styled-system-2.5.1.tgz#d76f0898d5036353947bc83afb2e1c3cad3d374a"
   integrity sha512-HhaXR/r5eGlC7vkoOWQ31yZEj+Aq+kFee7ZZb0fBRGKQichn06S9Ugr8CsFyzb+jNexHdtBlIcTBm0ufJ8HsFA==
@@ -1683,7 +1683,7 @@
     "@chakra-ui/form-control" "2.0.14"
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/theme-tools@2.0.16", "@chakra-ui/theme-tools@^2.0.13":
+"@chakra-ui/theme-tools@2.0.16", "@chakra-ui/theme-tools@^2.0.13", "@chakra-ui/theme-tools@^2.0.16":
   version "2.0.16"
   resolved "https://registry.npmmirror.com/@chakra-ui/theme-tools/-/theme-tools-2.0.16.tgz#17caae14a61f93759f072b16c7346489eb8be643"
   integrity sha512-B/LD+2LNDeHYd/LVCHIJqckVZfhrycTUpNbhRVAiDRaS0AAcsPxKas7liTFkkMkM076YjiHlcla3KpVX+E9tzg==
@@ -2499,14 +2499,14 @@
     "@saas-ui/collapse" "1.3.0"
     "@saas-ui/react-utils" "1.1.2"
 
-"@saas-ui/theme-glass@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.npmmirror.com/@saas-ui/theme-glass/-/theme-glass-0.1.1.tgz#5647191ff35b7c6ea877180cefc1440f95e5ce56"
-  integrity sha512-w4U9hU6qS0VbSIGwBmDXIzso75/MbPQVA5d7xteiibttG58QVNqYbx52c5kDjZ3j/8xSdU9FIx6OJJDD72yCoQ==
+"@saas-ui/theme-glass@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/theme-glass/-/theme-glass-0.3.0.tgz#11bdf7d7e8aed9034c413ce4cded4099d91fc861"
+  integrity sha512-eS6dpf0cbBtUwPVvoRaidNGO3BW6Rnl1cEU5UUHrvDZiGrqIz0+LdpydC5KHf5QhnvmnlCX+8eo/uYzArBIXOQ==
   dependencies:
-    "@chakra-ui/anatomy" "^2.1.0"
-    "@chakra-ui/styled-system" "^2.3.5"
-    "@chakra-ui/theme-tools" "^2.0.13"
+    "@chakra-ui/anatomy" "^2.1.1"
+    "@chakra-ui/styled-system" "^2.5.1"
+    "@chakra-ui/theme-tools" "^2.0.16"
 
 "@saas-ui/theme@1.6.2":
   version "1.6.2"

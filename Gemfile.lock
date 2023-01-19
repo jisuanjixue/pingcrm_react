@@ -120,7 +120,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     formatador (1.1.0)
-    globalid (1.0.0)
+    globalid (1.0.1)
       activesupport (>= 5.0)
     guard (2.18.0)
       formatador (>= 0.2.4)
@@ -369,6 +369,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-linux
 
 DEPENDENCIES
   annotate (~> 3.2.0)

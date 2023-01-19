@@ -215,7 +215,7 @@ GEM
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.5)
+    rack (2.2.6.2)
     rack-mini-profiler (3.0.0)
       rack (>= 1.2.0)
     rack-proxy (0.7.4)
@@ -369,6 +369,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-linux
 
 DEPENDENCIES
   annotate (~> 3.2.0)

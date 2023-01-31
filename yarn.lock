@@ -992,7 +992,7 @@
     "@chakra-ui/shared-utils" "2.0.4"
     "@chakra-ui/spinner" "2.0.12"
 
-"@chakra-ui/anatomy@2.1.1", "@chakra-ui/anatomy@^2.1.0":
+"@chakra-ui/anatomy@2.1.1", "@chakra-ui/anatomy@^2.1.0", "@chakra-ui/anatomy@^2.1.1":
   version "2.1.1"
   resolved "https://registry.npmmirror.com/@chakra-ui/anatomy/-/anatomy-2.1.1.tgz#819a1458ff727157e5500a69fc26bfea6e944495"
   integrity sha512-LUHAoqJAgxAqmyckG5bUpBrfEo1FleEyY+1A8hkWciy58gZ+h3GoY9oBpHcdo7XdHPpy3G+3hieK/7i9NLwxAw==
@@ -1023,7 +1023,7 @@
   dependencies:
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/button@2.0.14", "@chakra-ui/button@^2.0.12":
+"@chakra-ui/button@2.0.14":
   version "2.0.14"
   resolved "https://registry.npmmirror.com/@chakra-ui/button/-/button-2.0.14.tgz#9ffc852504a2a6150140e15e46866fd55660ce7e"
   integrity sha512-XdP1sB67N2DujDXPWyyXMTjW7frcnbf3yN/3F/asQClZX7ppw8Y36a6uZ94+6Cv67BPc0CokN+m3oQZhINJ+vw==
@@ -1032,6 +1032,16 @@
     "@chakra-ui/react-use-merge-refs" "2.0.6"
     "@chakra-ui/shared-utils" "2.0.4"
     "@chakra-ui/spinner" "2.0.12"
+
+"@chakra-ui/button@^2.0.14":
+  version "2.0.16"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/button/-/button-2.0.16.tgz#ff315b57ee47c3511a6507fcfb6f00bb93e2ac7d"
+  integrity sha512-NjuTKa7gNhnGSUutKuTc8HoAOe9WWIigpciBG7yj3ok67kg8bXtSzPyQFZlgTY6XGdAckWTT+Do4tvhwa5LA+g==
+  dependencies:
+    "@chakra-ui/react-context" "2.0.7"
+    "@chakra-ui/react-use-merge-refs" "2.0.7"
+    "@chakra-ui/shared-utils" "2.0.5"
+    "@chakra-ui/spinner" "2.0.13"
 
 "@chakra-ui/card@2.1.4":
   version "2.1.4"
@@ -1065,12 +1075,19 @@
     "@chakra-ui/react-use-merge-refs" "2.0.6"
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/close-button@2.0.14", "@chakra-ui/close-button@^2.0.12":
+"@chakra-ui/close-button@2.0.14":
   version "2.0.14"
   resolved "https://registry.npmmirror.com/@chakra-ui/close-button/-/close-button-2.0.14.tgz#ec83da9f83bfd8fc2fb3de1a76e58752bf7f1f0b"
   integrity sha512-C/MR6EH+MUC49QCtKdoeAq/GYvs4CEvl0xjwri6qFYd8+UEkXPfl33Idw0c3kPbGe+aTrh4vMAYrRNwc4BveIg==
   dependencies:
     "@chakra-ui/icon" "3.0.14"
+
+"@chakra-ui/close-button@^2.0.15":
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/close-button/-/close-button-2.0.17.tgz#d43d3a2ea1f08250f8d0da7704baf0e1fbd91b4b"
+  integrity sha512-05YPXk456t1Xa3KpqTrvm+7smx+95dmaPiwjiBN3p7LHUQVHJd8ZXSDB0V+WKi419k3cVQeJUdU/azDO2f40sw==
+  dependencies:
+    "@chakra-ui/icon" "3.0.16"
 
 "@chakra-ui/color-mode@2.1.11":
   version "2.1.11"
@@ -1150,7 +1167,7 @@
     "@chakra-ui/react-use-merge-refs" "2.0.6"
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/hooks@2.1.4", "@chakra-ui/hooks@^2.1.2":
+"@chakra-ui/hooks@2.1.4", "@chakra-ui/hooks@^2.1.4":
   version "2.1.4"
   resolved "https://registry.npmmirror.com/@chakra-ui/hooks/-/hooks-2.1.4.tgz#b8fc1904fb5d1daa4d19d61ffb64c1f76a28b846"
   integrity sha512-FOsBBMK2zl7qdBrBgmkMNMkkbkKzM0RwYoK7oV+ldUG1f7pvjPBmzRFZ3wiIh5FlbffZvlLAH22D3a2xldWDZw==
@@ -1160,14 +1177,35 @@
     compute-scroll-into-view "1.0.14"
     copy-to-clipboard "3.3.1"
 
-"@chakra-ui/icon@3.0.14", "@chakra-ui/icon@^3.0.12":
+"@chakra-ui/icon@3.0.14":
   version "3.0.14"
   resolved "https://registry.npmmirror.com/@chakra-ui/icon/-/icon-3.0.14.tgz#aca6c998f2359ce937203f7463db299a6f8947ba"
   integrity sha512-ksNDXSByoLFNec/7UANtiy/lHt2NO3/Xe5KIde3zh70yY1QcRQjO8TjvXgYwqLbR0D6OzMGggrZnJKafeZhjRQ==
   dependencies:
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/icons@^2.0.12", "@chakra-ui/icons@^2.0.9":
+"@chakra-ui/icon@3.0.16":
+  version "3.0.16"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icon/-/icon-3.0.16.tgz#6413ec637c0c3acc204301485f05451b5bcd6ba4"
+  integrity sha512-RpA1X5Ptz8Mt39HSyEIW1wxAz2AXyf9H0JJ5HVx/dBdMZaGMDJ0HyyPBVci0m4RCoJuyG1HHG/DXJaVfUTVAeg==
+  dependencies:
+    "@chakra-ui/shared-utils" "2.0.5"
+
+"@chakra-ui/icon@^3.0.15":
+  version "3.0.15"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icon/-/icon-3.0.15.tgz#589adf65550b2ef07342a064376adcf64331606c"
+  integrity sha512-6RRppml4kW3hOMgMCtgeKc73nJhJEZXOvzDvmZKKW9WrLsDpWiI7WDQb5VIxUXqZlbrh88K5WVRY0YivIefCDA==
+  dependencies:
+    "@chakra-ui/shared-utils" "2.0.4"
+
+"@chakra-ui/icons@^2.0.16":
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.0.17.tgz#625a46d169707aad36d65c04a4626a422f92e5ae"
+  integrity sha512-HMJP0WrJgAmFR9+Xh/CBH0nVnGMsJ4ZC8MK6tMgxPKd9/muvn0I4hsicHqdPlLpmB0TlxlhkBAKaVMtOdz6F0w==
+  dependencies:
+    "@chakra-ui/icon" "3.0.16"
+
+"@chakra-ui/icons@^2.0.9":
   version "2.0.15"
   resolved "https://registry.npmmirror.com/@chakra-ui/icons/-/icons-2.0.15.tgz#9613eae03e08dd9622723540cd3bf582e38b1fde"
   integrity sha512-/Hsefej7DfRMg+Go+gf/UU4PHNMPmba41ogO1K3242aP9VSs/6/qXB3zrZHl21OX/rdrK408VqYEPInLmUwiHw==
@@ -1289,6 +1327,11 @@
   resolved "https://registry.npmmirror.com/@chakra-ui/object-utils/-/object-utils-2.0.6.tgz#6b6125dbb1d1f3a9e5d3faf008d6374a3c4d99f7"
   integrity sha512-fw1AjQ4wdL8hqPGiE6ulXyugwh1m70YluG1yWGZDPi909zJj1/uL0DClgiNJY/8zWJrbMwDjGdYziXudLxahgA==
 
+"@chakra-ui/object-utils@2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/object-utils/-/object-utils-2.0.7.tgz#0d17b7a528d712428e482709c9df9fcd92db9f2b"
+  integrity sha512-dw5KXK9Vlr5ndf9/iSiEuvpfhZQasYdDdGXDtSBL2rF6Llg2OQ5MRSoLhTt9oL1L9crv9uPCJRm5S9VJZ3i5Vw==
+
 "@chakra-ui/pin-input@2.0.17":
   version "2.0.17"
   resolved "https://registry.npmmirror.com/@chakra-ui/pin-input/-/pin-input-2.0.17.tgz#d1151c010e2b1600d0d5b17bfe79543b838c3a5d"
@@ -1375,6 +1418,11 @@
   resolved "https://registry.npmmirror.com/@chakra-ui/react-context/-/react-context-2.0.6.tgz#77d61e4a2654e83a8cc5c6d6f0140ceedab87963"
   integrity sha512-+Bk/lDBirj6KE3vbyyUVCqFGqAe+MOso+1NRHQ0m66/sXWFFnoL/lvuq4osdNp80DOVQ4EYYnHI0olSZZvuKEg==
 
+"@chakra-ui/react-context@2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-context/-/react-context-2.0.7.tgz#f79a2b072d04d4280ec8799dc03a8a1af521ca2e"
+  integrity sha512-i7EGmSU+h2GB30cwrKB4t1R5BMHyGoJM5L2Zz7b+ZUX4aAqyPcfe97wPiQB6Rgr1ImGXrUeov4CDVrRZ2FPgLQ==
+
 "@chakra-ui/react-env@2.0.12":
   version "2.0.12"
   resolved "https://registry.npmmirror.com/@chakra-ui/react-env/-/react-env-2.0.12.tgz#f5f9fef0bd6fa9983457cb06413cf209acad48e8"
@@ -1453,6 +1501,11 @@
   resolved "https://registry.npmmirror.com/@chakra-ui/react-use-merge-refs/-/react-use-merge-refs-2.0.6.tgz#be0279ee6070480d5b2699c732a7cfa9690c589b"
   integrity sha512-m4fQtm5cn3F39nLj5MhmKsAzdFaYMldR8a4VMtfC2Pnd+bqX8jx2q2yPCjpam9x/Wnh8ZRBMJ2KAjAiGnF3XXw==
 
+"@chakra-ui/react-use-merge-refs@2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-merge-refs/-/react-use-merge-refs-2.0.7.tgz#1a1fe800fb5501ec3da4088fbac78c03bbad13a7"
+  integrity sha512-zds4Uhsc+AMzdH8JDDkLVet9baUBgtOjPbhC5r3A0ZXjZvGhCztFAVE3aExYiVoMPoHLKbLcqvCWE6ioFKz1lw==
+
 "@chakra-ui/react-use-outside-click@2.0.6":
   version "2.0.6"
   resolved "https://registry.npmmirror.com/@chakra-ui/react-use-outside-click/-/react-use-outside-click-2.0.6.tgz#55f4d5dacc80c3c39fd7755fe7e142a841d99105"
@@ -1498,7 +1551,7 @@
   resolved "https://registry.npmmirror.com/@chakra-ui/react-use-update-effect/-/react-use-update-effect-2.0.6.tgz#8aacaab25fd181a52569336ca5ef797e8ae1026a"
   integrity sha512-P6+0hocnasjl8xOrFH9BklyCNNzCBu/XAl5y7kZ82uVnS99SaC6cppO9/qWRZI9cYYheWfJ4lyLGeLOcNmI8/Q==
 
-"@chakra-ui/react-utils@2.0.11", "@chakra-ui/react-utils@^2.0.9":
+"@chakra-ui/react-utils@2.0.11", "@chakra-ui/react-utils@^2.0.11":
   version "2.0.11"
   resolved "https://registry.npmmirror.com/@chakra-ui/react-utils/-/react-utils-2.0.11.tgz#5e99b21759eadc9276709268cca94c502afeda56"
   integrity sha512-LdE0Ay5Em2ew7fuux9MJAwaxoaU/QwVoH/t6uiUw/JCWpmiMGY6tw6t3eZTvZSRZNfyPWY0MmvOHR1UvIS9JIw==
@@ -1574,6 +1627,11 @@
   resolved "https://registry.npmmirror.com/@chakra-ui/shared-utils/-/shared-utils-2.0.4.tgz#8661f2b48dd93d04151b10a894a4290c9d9a080c"
   integrity sha512-JGWr+BBj3PXGZQ2gxbKSD1wYjESbYsZjkCeE2nevyVk4rN3amV1wQzCnBAhsuJktMaZD6KC/lteo9ou9QUDzpA==
 
+"@chakra-ui/shared-utils@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/shared-utils/-/shared-utils-2.0.5.tgz#cb2b49705e113853647f1822142619570feba081"
+  integrity sha512-4/Wur0FqDov7Y0nCXl7HbHzCg4aq86h+SXdoUeuCMD3dSj7dpsVnStLYhng1vxvlbUnLpdF4oz5Myt3i/a7N3Q==
+
 "@chakra-ui/skeleton@2.0.21":
   version "2.0.21"
   resolved "https://registry.npmmirror.com/@chakra-ui/skeleton/-/skeleton-2.0.21.tgz#697bb66b9e7362f9f252717babc50c916903cc7b"
@@ -1606,6 +1664,13 @@
   dependencies:
     "@chakra-ui/shared-utils" "2.0.4"
 
+"@chakra-ui/spinner@2.0.13":
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/spinner/-/spinner-2.0.13.tgz#64fe919c18305c653ced046e25d5883ee4c1e7d7"
+  integrity sha512-T1/aSkVpUIuiYyrjfn1+LsQEG7Onbi1UE9ccS/evgf61Dzy4GgTXQUnDuWFSgpV58owqirqOu6jn/9eCwDlzlg==
+  dependencies:
+    "@chakra-ui/shared-utils" "2.0.5"
+
 "@chakra-ui/stat@2.0.14":
   version "2.0.14"
   resolved "https://registry.npmmirror.com/@chakra-ui/stat/-/stat-2.0.14.tgz#b20b78d345fbadb679cab218b5c75b7b56d4706e"
@@ -1615,7 +1680,7 @@
     "@chakra-ui/react-context" "2.0.6"
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/styled-system@2.5.1", "@chakra-ui/styled-system@^2.3.5":
+"@chakra-ui/styled-system@2.5.1", "@chakra-ui/styled-system@^2.3.5", "@chakra-ui/styled-system@^2.5.1":
   version "2.5.1"
   resolved "https://registry.npmmirror.com/@chakra-ui/styled-system/-/styled-system-2.5.1.tgz#d76f0898d5036353947bc83afb2e1c3cad3d374a"
   integrity sha512-HhaXR/r5eGlC7vkoOWQ31yZEj+Aq+kFee7ZZb0fBRGKQichn06S9Ugr8CsFyzb+jNexHdtBlIcTBm0ufJ8HsFA==
@@ -1632,12 +1697,25 @@
     "@chakra-ui/checkbox" "2.2.7"
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/system@2.3.7", "@chakra-ui/system@^2.3.3":
+"@chakra-ui/system@2.3.7":
   version "2.3.7"
   resolved "https://registry.npmmirror.com/@chakra-ui/system/-/system-2.3.7.tgz#31e8aade0ff43288c7dfe63dfce6be72cc049779"
   integrity sha512-sUmLyo+zjv+Im56slRaQA5fw04y7JuVGKgGW8xcQan+jVtMI2gGBvnecOUeNNiEWglpW/pZ/AE9rgJX9dKkrkA==
   dependencies:
     "@chakra-ui/color-mode" "2.1.11"
+    "@chakra-ui/react-utils" "2.0.11"
+    "@chakra-ui/styled-system" "2.5.1"
+    "@chakra-ui/theme-utils" "2.0.8"
+    "@chakra-ui/utils" "2.0.14"
+    react-fast-compare "3.2.0"
+
+"@chakra-ui/system@^2.3.8":
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.3.8.tgz#7bf5b21e713ee0f62e5c65f337b702cc6beecbe1"
+  integrity sha512-ZCC54MahWIt5nCw9LQDFK4hZRefF6QTxVnPS9Sr3lRlYNzE15/YyzCq+Yb97/ApmQSUmIsnT3uxr1G+OwmuHAA==
+  dependencies:
+    "@chakra-ui/color-mode" "2.1.11"
+    "@chakra-ui/object-utils" "2.0.7"
     "@chakra-ui/react-utils" "2.0.11"
     "@chakra-ui/styled-system" "2.5.1"
     "@chakra-ui/theme-utils" "2.0.8"
@@ -1683,7 +1761,7 @@
     "@chakra-ui/form-control" "2.0.14"
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/theme-tools@2.0.16", "@chakra-ui/theme-tools@^2.0.13":
+"@chakra-ui/theme-tools@2.0.16", "@chakra-ui/theme-tools@^2.0.13", "@chakra-ui/theme-tools@^2.0.16":
   version "2.0.16"
   resolved "https://registry.npmmirror.com/@chakra-ui/theme-tools/-/theme-tools-2.0.16.tgz#17caae14a61f93759f072b16c7346489eb8be643"
   integrity sha512-B/LD+2LNDeHYd/LVCHIJqckVZfhrycTUpNbhRVAiDRaS0AAcsPxKas7liTFkkMkM076YjiHlcla3KpVX+E9tzg==
@@ -1738,14 +1816,21 @@
     "@chakra-ui/react-use-merge-refs" "2.0.6"
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/transition@2.0.13", "@chakra-ui/transition@^2.0.12":
+"@chakra-ui/transition@2.0.13":
   version "2.0.13"
   resolved "https://registry.npmmirror.com/@chakra-ui/transition/-/transition-2.0.13.tgz#54da88debdd528c2d41f04809e3b9448106e274f"
   integrity sha512-vpzK5HN91eDLkBEdaO6GTCJOYgJYHlmxCAym/tScBuWM2ALZ4mWu57qWgPptgGv+IpMfuvL1t+IVqPgyWwEQFw==
   dependencies:
     "@chakra-ui/shared-utils" "2.0.4"
 
-"@chakra-ui/utils@2.0.14", "@chakra-ui/utils@^2.0.12":
+"@chakra-ui/transition@^2.0.13":
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/transition/-/transition-2.0.15.tgz#c640df2ea82f5ad58c55a6e1a7c338f377cb96d8"
+  integrity sha512-o9LBK/llQfUDHF/Ty3cQ6nShpekKTqHUoJlUOzNKhoTsNpoRerr9v0jwojrX1YI02KtVjfhFU6PiqXlDfREoNw==
+  dependencies:
+    "@chakra-ui/shared-utils" "2.0.5"
+
+"@chakra-ui/utils@2.0.14", "@chakra-ui/utils@^2.0.14":
   version "2.0.14"
   resolved "https://registry.npmmirror.com/@chakra-ui/utils/-/utils-2.0.14.tgz#b6776c7a020ea46ed88a8048dfa2b512a1fe95f7"
   integrity sha512-vYxtAUPY09Ex2Ae2ZvQKA1d2+lMKq/wUaRiqpwmeLfutEQuPQZc3qzQcAIMRQx3wLgXr9BUFDtHgBoOz0XKtZw==
@@ -2216,288 +2301,288 @@
   dependencies:
     prettier ">=2.3.0"
 
-"@saas-ui/app-shell@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/app-shell/-/app-shell-1.0.0.tgz#8d0746c73943312b79661a65487434060614f2a9"
-  integrity sha512-MCBN+MdXri0urDI2jSnAOlrm/RiYo0Qzr1qpm1WFhk/LdjzXoyY/X7mvNAF8V+osu6K0z4yD2uFZIr1elonQ2w==
+"@saas-ui/app-shell@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/app-shell/-/app-shell-1.1.0.tgz#66815cd4153b23e795c632f2416aa87dcafb4cb8"
+  integrity sha512-GMt8Af/s9YVjKTGKq4dfNGhrGjQcA4rjoYGpacnjWxXn6IFlpB7v3dwZl/i7C9pNeNyXyxZRMk6dv8pdbJxogg==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/utils" "^2.0.14"
 
-"@saas-ui/auth@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.npmmirror.com/@saas-ui/auth/-/auth-1.6.3.tgz#cf91190f5af8a48a535a0c0f2eb2d89d911d2e30"
-  integrity sha512-2FfrbE+IoRydzCV/m7V/CyunsPXiE0RQYjKTJWdkaSYSjfRsnWsEBgKouWxqSc1zTF3U2f/AYQsVI1x3dlhAXA==
+"@saas-ui/auth@1.7.2":
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/@saas-ui/auth/-/auth-1.7.2.tgz#b9a0f221481b5f11569624f9dcb832d8bd701d84"
+  integrity sha512-oqctv/9903mIV+Q+gjkGqRZWXMuuGaeikc0oHHaeRf0vM33p0VoVC/L5Aj0QOlZGYUibTozUKIk82zoDJRHVKQ==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/button" "1.3.0"
-    "@saas-ui/forms" "1.4.1"
-    "@saas-ui/hooks" "1.1.2"
-    "@saas-ui/layout" "1.3.2"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/button" "1.4.0"
+    "@saas-ui/forms" "1.5.2"
+    "@saas-ui/hooks" "1.2.0"
+    "@saas-ui/layout" "1.4.0"
 
-"@saas-ui/banner@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/banner/-/banner-1.3.0.tgz#08973f21c7c709e6394eb9fa78c44dfaa0bf8069"
-  integrity sha512-HDRKzgPPy9kKYWoEd/dxIrDsEUZhhK6GiWv+s+pa2WJpx0cGy27vwzd+NkbNNGr29itx64sn9TKSCMQzAewVhw==
-  dependencies:
-    "@chakra-ui/close-button" "^2.0.12"
-    "@chakra-ui/hooks" "^2.1.2"
-    "@chakra-ui/icons" "^2.0.12"
-    "@chakra-ui/transition" "^2.0.12"
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/button" "1.3.0"
-
-"@saas-ui/button@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/button/-/button-1.3.0.tgz#c2b3236288a46a8fcd14c8fb7c9d6c858b88997c"
-  integrity sha512-3HZihN6VlxwEgXF2POUpEPgJLhqeibdnipBhYRGzH1/jlAXjtRLAyJQrub4b1joOHrwCRlIPEK4KtdLO5RftDw==
-  dependencies:
-    "@chakra-ui/button" "^2.0.12"
-    "@chakra-ui/utils" "^2.0.12"
-
-"@saas-ui/card@1.4.0":
+"@saas-ui/banner@1.4.0":
   version "1.4.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/card/-/card-1.4.0.tgz#09a8932bd31fc9893e9a421becc3b2c50f12752b"
-  integrity sha512-1S7CmY7y5TzbcgYRMlHKdSPOZWxKsZlUXtDM3wvBuc0KSlZKTtuPYc+JFwwNYwRFzt6DwTyNcblk/V//GSZxmQ==
+  resolved "https://registry.yarnpkg.com/@saas-ui/banner/-/banner-1.4.0.tgz#89e068614926de7b00d90302bcdf75831ac4de9e"
+  integrity sha512-Kw8+AocrPKAJ7VgKhYLJ0om1g3RnULRjEHjTzIXrLGnFS1qqRgW+5YfwvNM8/yKr8IkSBrsyfoIZBs2A/qsGoA==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/button" "1.3.0"
+    "@chakra-ui/close-button" "^2.0.15"
+    "@chakra-ui/hooks" "^2.1.4"
+    "@chakra-ui/icons" "^2.0.16"
+    "@chakra-ui/transition" "^2.0.13"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/button" "1.4.0"
 
-"@saas-ui/collapse@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/collapse/-/collapse-1.3.0.tgz#c18fc95923c1402b0e33e4080fd7c48bdc649760"
-  integrity sha512-JGxbFZEq3U+TsPnEg2KXErnAg5nSEByM/1jXL/CHW6cKnGYkR04ydFStvnYJTyqkqM4vO0QOH/r7+eXdo6XlfQ==
+"@saas-ui/button@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/button/-/button-1.4.0.tgz#b002e84ad2bcf34fdfbbce6b2daffebbd43d5e8e"
+  integrity sha512-s20RXIdHLSGK1sbWGatNTmLeWtQKkJSr7jsLu1tKieW85FPRLkPx0wA85Wv8gA0aF9mlIZNfa1j9Jpmw9K7SYA==
   dependencies:
-    "@chakra-ui/react-utils" "^2.0.9"
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/button" "^2.0.14"
+    "@chakra-ui/utils" "^2.0.14"
 
-"@saas-ui/data-table@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.npmmirror.com/@saas-ui/data-table/-/data-table-1.3.2.tgz#8df2096a714659c54c7d706a7c50b743d0ac24b9"
-  integrity sha512-Pp02gai6/3TOEPd6oIGe/17RSfovXnJZXKfWYPf95EgfYSF049t5Veghd6P9uV7G5+kI2tRLzpC9GvYVdy4djQ==
+"@saas-ui/card@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/card/-/card-1.5.0.tgz#25f86dea0de6646f80f3d460deb456826e42dbb3"
+  integrity sha512-bWNr0Wzdg+fMDxCEFtYvYdmggjPIvSqqDNRjhaBfyctDatf/30jTNfwQIhZ7IGc89v9c9oKI4URhKViUwGZGhA==
   dependencies:
-    "@chakra-ui/icons" "^2.0.12"
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/layout" "1.3.2"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/button" "1.4.0"
+
+"@saas-ui/collapse@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/collapse/-/collapse-1.4.0.tgz#a2a6c95967d3f79c2626895518a5775b771ddd09"
+  integrity sha512-A3Vt3BHNikVLBh/J86j8xIBDDN9L+HgxgBpiGM+qW4iw8/WDvC7mGhGxtRrQioTeSh5wlOoIgF31arSS0xvZhA==
+  dependencies:
+    "@chakra-ui/react-utils" "^2.0.11"
+    "@chakra-ui/utils" "^2.0.14"
+
+"@saas-ui/data-table@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/data-table/-/data-table-1.4.0.tgz#4676e1cb8300e75e3e1dbabcf7e674fbac94be35"
+  integrity sha512-1QC8w0K6kPQxouixlcw/wWlXFNkgpfrUA/hAshwD2V31oCE+Is04QuDaBZsoFYQRg0eQZPutI9Jc5C6eYAssRA==
+  dependencies:
+    "@chakra-ui/icons" "^2.0.16"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/layout" "1.4.0"
     react-table "^7.8.0"
 
-"@saas-ui/forms@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.npmmirror.com/@saas-ui/forms/-/forms-1.4.1.tgz#72dca4476df283e39ec074ce673f89bc25546751"
-  integrity sha512-pL1CsBZPYvOAEvy8m1yf869Mweo2OyMOSnteqqXz8pV6j7JZSR8Fd/f4+0q33eb/5ekRXBzTX2hTtB19+qDPSA==
+"@saas-ui/forms@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@saas-ui/forms/-/forms-1.5.2.tgz#9af3aa9d95b05ebeac850a5b6572c96716b3cedf"
+  integrity sha512-bG8ld8O/vn8GHhCUR28i0uQwZlAUi8rxCayqXPgi4v6nZqMB5YsFDDHyfEzAn315lBAWrDIKAH/KWtbvnnIAmA==
   dependencies:
-    "@chakra-ui/icons" "^2.0.12"
-    "@chakra-ui/react-utils" "^2.0.9"
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/icons" "^2.0.16"
+    "@chakra-ui/react-utils" "^2.0.11"
+    "@chakra-ui/utils" "^2.0.14"
     "@hookform/resolvers" "^2.9.10"
-    "@saas-ui/button" "1.3.0"
-    "@saas-ui/input-right-button" "1.3.0"
-    "@saas-ui/number-input" "1.3.0"
-    "@saas-ui/password-input" "1.3.0"
-    "@saas-ui/pin-input" "1.3.0"
-    "@saas-ui/radio" "1.3.0"
-    "@saas-ui/react-utils" "1.1.2"
-    "@saas-ui/select" "1.3.0"
-    "@saas-ui/stepper" "1.3.1"
-    react-hook-form "^7.39.4"
+    "@saas-ui/button" "1.4.0"
+    "@saas-ui/input-right-button" "1.4.0"
+    "@saas-ui/number-input" "1.4.0"
+    "@saas-ui/password-input" "1.4.0"
+    "@saas-ui/pin-input" "1.4.0"
+    "@saas-ui/radio" "1.4.1"
+    "@saas-ui/react-utils" "1.2.0"
+    "@saas-ui/select" "1.4.0"
+    "@saas-ui/stepper" "1.4.0"
+    react-hook-form "^7.42.1"
 
-"@saas-ui/hooks@1.1.2":
-  version "1.1.2"
-  resolved "https://registry.npmmirror.com/@saas-ui/hooks/-/hooks-1.1.2.tgz#f50a037347c0703c3f8a3ee7a7ef17cb5703b443"
-  integrity sha512-Ri8Q8fpGuCBBxxKbzvwBqkUjBIJyrzhCH9CK1lwYehfK5/V9857r9Sw0N2TsRBw17uI3yk2D0Bm6ar1l27vWyw==
+"@saas-ui/hooks@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/hooks/-/hooks-1.2.0.tgz#395c8134220ce71a1d2419e242fafb03536b4400"
+  integrity sha512-P4RVMX8PH54aW2K7m1vxWwwkYaBZr/GZj3dApirscGM7Yjy4Q9ktKA5QsrkIUI4xK8xJNeBtaEkgMkOBT74aMg==
 
-"@saas-ui/hotkeys@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/hotkeys/-/hotkeys-1.3.0.tgz#4fe20bc8553acaf50d78b7b973b18fa6ed8d9637"
-  integrity sha512-zKjqhpa8/X9VCV6eHxJ2SMZNWtYmeA0bZVK41hWN2rZMKs9Sn+POyVJFOu6YMw3aiF1uvZq+2RZPiMh/oHyaXw==
+"@saas-ui/hotkeys@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/hotkeys/-/hotkeys-1.4.0.tgz#a05bb72ab98e228888e6a3c5b10e0101320bdd8a"
+  integrity sha512-MLrgCiG0ZCTYzjbUkDTF+uBzjtR3mDpRwLp2DYqtbB4af1wKAyUwDICSPiSCd4+K1Td3jwZF9EJ9dIlNLyB46Q==
   dependencies:
-    "@chakra-ui/react-utils" "^2.0.9"
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/search-input" "1.3.0"
+    "@chakra-ui/react-utils" "^2.0.11"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/search-input" "1.4.0"
 
-"@saas-ui/input-right-button@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/input-right-button/-/input-right-button-1.3.0.tgz#e2497400d6ae645a6aa2f02d10e30df05cad7f2e"
-  integrity sha512-udH/N4YktvaPS1yVgyOKNzezT2YuVvn6PEOM79W5p1W3c+/dvs4EcGJBfkXFj/+MpVwuFL3hEb65DDNX2VYW4g==
+"@saas-ui/input-right-button@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/input-right-button/-/input-right-button-1.4.0.tgz#f5f3cd2629b41957b3e1b71a41a7b4ac5510e11d"
+  integrity sha512-X7G6Rng9COKlVU16zSWqkpneE1wdatyhRroAMx52WSXLGyH88MdWwyh6YSisG6/JtdGlVubo7l3u3d2iWrxrnQ==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/button" "1.3.0"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/button" "1.4.0"
 
-"@saas-ui/layout@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.npmmirror.com/@saas-ui/layout/-/layout-1.3.2.tgz#e7940a849f38ac904aec6c7c9ac48990fcaeb6c9"
-  integrity sha512-pVdRYV1Y2On3MLCZs+0MOMcB0jujDGC0/S2GK3sklUe5PcMM1br4AOe4e5Wq+MwRR8sKsjcPG8R/qav/bACCgQ==
+"@saas-ui/layout@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/layout/-/layout-1.4.0.tgz#3360527efbe3535a5010ab8e5b03faaa876f6c37"
+  integrity sha512-upDSsz7IEEUpRsZoKf/hIxjbrRjiL5xi8cZN4fozMutJY/R00aP2X8PTSoXh0fn/mVXKMSUeWp57dokbrq2bwg==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/provider" "1.1.8"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/provider" "1.2.0"
 
-"@saas-ui/list@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/list/-/list-1.3.0.tgz#c86a1891ec9d5afe4f9c8cc196c434a8b5c273db"
-  integrity sha512-98t47iXLG4GQ68icxXWtZweFMY0l5WQGXXgUVCtb27UjLJx+/vKqxtucEz85bLp+giYV1Z4UGiHDvap7AB5fGQ==
+"@saas-ui/list@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/list/-/list-1.4.0.tgz#f95ba4c784da9a2c9d5c74c9bcc464831b7e2a21"
+  integrity sha512-zpUIwfmT0GD17bXElcvZtKmks3vfW4PYjZ1b7hmBYjwkWKU5V223nJOaX3afA7oz3yjXlfdKu8kq9gG0HL2R+g==
   dependencies:
-    "@chakra-ui/icon" "^3.0.12"
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/button" "1.3.0"
+    "@chakra-ui/icon" "^3.0.15"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/button" "1.4.0"
 
-"@saas-ui/menu@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.npmmirror.com/@saas-ui/menu/-/menu-1.3.2.tgz#77530e9e74c726c51e23886f23cfa9f263c378b8"
-  integrity sha512-oE05cPJfENzJfPxTzMnAONp9KJhajdOl7yCYH+L7zWS9NfguzwIacfJqAikfm61Wp4nmpOTzzKSW/GzMqup4FA==
+"@saas-ui/menu@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/menu/-/menu-1.4.0.tgz#349e71949a95b26b98ae5a0701fa32b72ffd8cf2"
+  integrity sha512-jI8obAd6P9SY1EHT48U5beylXtm38cIAd1I4GXKRa+97a6DM00xfFvRXCyjjeKBtTutXcmprFCpXeVq+FMAXpg==
   dependencies:
-    "@chakra-ui/icons" "^2.0.12"
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/button" "1.3.0"
-    "@saas-ui/provider" "1.1.8"
+    "@chakra-ui/icons" "^2.0.16"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/button" "1.4.0"
+    "@saas-ui/provider" "1.2.0"
 
-"@saas-ui/modals@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.npmmirror.com/@saas-ui/modals/-/modals-1.4.2.tgz#90070d6e5fe6b60b50c672c3aff5c6805978fb8d"
-  integrity sha512-IT8+wWgagYStB7lw1X6I0Xb9aTYyuJYzxFhSbyIRilgwZDdhO4amwwdInQDxvlw7kNQOLORAYujgZQEhdtbYIA==
+"@saas-ui/modals@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@saas-ui/modals/-/modals-1.5.2.tgz#1450336294fc44b4234af2b02ca0e7b9e317c04b"
+  integrity sha512-AKv21HAAjbLLWV569v/4RhCT8ysR5AOK2SAtM7WYLkfQuyFUmysLLjVVG/k7kPqgDaU5xMG8pdPHSVxhrmwliA==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/button" "1.3.0"
-    "@saas-ui/forms" "1.4.1"
-    "@saas-ui/menu" "1.3.2"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/button" "1.4.0"
+    "@saas-ui/forms" "1.5.2"
+    "@saas-ui/menu" "1.4.0"
 
-"@saas-ui/nprogress@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/nprogress/-/nprogress-1.3.0.tgz#841009525e809f9c26df9e2871479a2bef1e0741"
-  integrity sha512-NUXjHPiE1GVXEWuYq0GRRx6nwvaqiMW17T2lByrficvHxEXv1P6W8JBG5PW34f+RMAPSz8vDf3mY6WbzNJJwlg==
+"@saas-ui/nprogress@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/nprogress/-/nprogress-1.4.0.tgz#d8e5da553f35e3388eab92ba6c56491eb57ef915"
+  integrity sha512-IwRXDLJJPpDm6vt3e1mYFYLAFy3qCmGpnAqNbK7xINSKG1JhDs45EmgHk1F0hUwCffsfyYB9L/2HF6fpV2wsSg==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/utils" "^2.0.14"
     "@tanem/react-nprogress" "^5.0.17"
 
-"@saas-ui/number-input@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/number-input/-/number-input-1.3.0.tgz#9a419718adbcf8a4382cff4bc12896b5701a75c4"
-  integrity sha512-jDaratm0UCjz6VTZLWzE+bFsIyx+HMNoyrnx8U/iGZgE4m4BHzoBHAAvtBJGtve2VKikVRQsbMBZuK0i9CalZw==
+"@saas-ui/number-input@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/number-input/-/number-input-1.4.0.tgz#c9837dc32047523bfde32285719422386ea95a0c"
+  integrity sha512-l1UX5QwanKzWt6HtZvfj9HmZOtUdrxd6ZSWUTmnFP24EIsdaDULG7mVSMhFsbU8fcXsYUs1VrviRtTvsPZt5+w==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/utils" "^2.0.14"
 
-"@saas-ui/palette@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/palette/-/palette-1.2.0.tgz#2e2afcfb9331c4404831a3bdc3946442240b4e1c"
-  integrity sha512-aU0xY6cS10D2nYUGMIoTqWN+6nukFjggBleFT8LEgnU31X94DIIhR28TtUTS75euDHcQ5zPBh/mPLd1eLEbhow==
+"@saas-ui/palette@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/palette/-/palette-1.3.0.tgz#f93daf3f8a586c2456473a21000fcc7b7700507c"
+  integrity sha512-d13MlyREDKsxqSXaqAlP2FCXH8hCTsCUW3eDSkmSws+SdLLkjt/uJSm20vedhHpS5B3PFMlXdqtYSj6/RfjucA==
   dependencies:
     chroma-js "^2.4.2"
 
-"@saas-ui/password-input@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/password-input/-/password-input-1.3.0.tgz#b586e1f4a9c980799b0dbcda96d46f93afd6a7cb"
-  integrity sha512-KgixdF5YtKCrVnhyZJF87XanuX90dgIGSo8iWUCBNL6r3Vg+8jdBQpH626trNDtvPiJfuAZuUJq/wO+Q8gW95w==
+"@saas-ui/password-input@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/password-input/-/password-input-1.4.0.tgz#4960736df022c397a17dd50eeef0a467c8f83b22"
+  integrity sha512-txp4B7EUZfXlaXf6KQjCjcNG6EPpG2LOlVPJCnHkcA2f+tkDPR/pr901focFd9lNLuVoMtvg0fCX30RS3U0OoA==
   dependencies:
-    "@chakra-ui/icons" "^2.0.12"
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/input-right-button" "1.3.0"
+    "@chakra-ui/icons" "^2.0.16"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/input-right-button" "1.4.0"
 
-"@saas-ui/persona@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/persona/-/persona-1.3.0.tgz#c83edcd196269bd6a13f75cd3760b7492fd22719"
-  integrity sha512-xvh0JhsNH7fh5TvvxnUgy1NRwUdPP1DZZ8V5Kw40TxdWwiEkY/Tz1Fm3FEOhegSg4AOr2IyToOdehHL/m8iYYw==
+"@saas-ui/persona@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/persona/-/persona-1.4.0.tgz#6aa5d549a3b415369a30b712b67e28794125e063"
+  integrity sha512-AoYwb1kt8VAOLgaPRnsF7qKYEFw+V5vOi5MB80WIq2HbK4eVsP/8wjsmHYtVHNVbJM2N4d1gvfnwWa1TpWxa2A==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/utils" "^2.0.14"
 
-"@saas-ui/pin-input@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/pin-input/-/pin-input-1.3.0.tgz#786f5820af0369115395ebeab07c42620001c443"
-  integrity sha512-EpW0LGMhc64L/2oZT3loGCTf4uy9zZNki+n5FcuDaIQAvYh/h7hgD3GZkd3PvgdRWvLBpmsGHZvvi5lD2rko4g==
+"@saas-ui/pin-input@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/pin-input/-/pin-input-1.4.0.tgz#c5c8a60fec96120e7edfefefa79cd3450d17999d"
+  integrity sha512-TMs8TM0AENiyDS8qETraT6cLWyRZt7ZKTIHGfTAaHo1aMsOtJN5qGSBvz4tD/I3K2uLGgPFbTSfAHbbpzkXcTQ==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/utils" "^2.0.14"
 
-"@saas-ui/property@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/property/-/property-1.3.0.tgz#7b58e24165c7f86d6d3d50ab360a4ac01259b47b"
-  integrity sha512-o9A1SBNzuWIOYCVIu7MOPfm/toRwWz9PNDMY7EQNt065+eEh6EMZndoDmBI6qGEMNbiTXkN+q4qwfOK4l9Qi1Q==
+"@saas-ui/property@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/property/-/property-1.4.0.tgz#a2ecaab69212555e6acdf417729ab404e6c4350a"
+  integrity sha512-19ocHJ0uIqXbZlA9PjvWmrChM7NRQeZKaTnE8ahFEbI2BNUe7INHpK8ly/BSg/XXyMing1doeWDm0JyhrEDbQg==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/list" "1.3.0"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/list" "1.4.0"
 
-"@saas-ui/provider@1.1.8":
-  version "1.1.8"
-  resolved "https://registry.npmmirror.com/@saas-ui/provider/-/provider-1.1.8.tgz#1b3e06128090f9879eacae167d6e80f041e9c4a9"
-  integrity sha512-zkkC8vIgyITbkTtz5J2DfMQcvPBIO8t9y3Dqgh+8E6AgIKqfzqB5OeCAJKIU+fIy80J5ml6GMmScGcLn1S9/uA==
+"@saas-ui/provider@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/provider/-/provider-1.2.0.tgz#aea51d6d18ed379717ee6e5498128924527373d3"
+  integrity sha512-UwafCcWaEn+ceSJY58LQHdzWKkSB8QpgODrkCrYJoK2deOJWq2OEXV0oVXsK55xzj6x5uaPadBykIAYL4ntsww==
   dependencies:
-    "@saas-ui/theme" "1.6.2"
+    "@saas-ui/theme" "1.7.0"
 
-"@saas-ui/radio@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/radio/-/radio-1.3.0.tgz#aa02a630d302acd89d893e026b25ccdd20ff40d0"
-  integrity sha512-oZ4b9iN3lHY+JpjyWbCHagBhDd9HjJC6pbjduOzujqxYbpKFwaNKqRsmOXvGk2vnKYsAXqal0uiGNl5D7jLl6g==
+"@saas-ui/radio@1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@saas-ui/radio/-/radio-1.4.1.tgz#21cfd0d564bd65947a853257976c58b48bf2094f"
+  integrity sha512-yO37FcNHdfrrcdBooapmSInQXlb1Z08uFi+dyXoieGN/YSncwLi/T1bhtC70np/koyWoq5eFT+m9RzlMjpsjkw==
   dependencies:
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/utils" "^2.0.14"
 
-"@saas-ui/react-utils@1.1.2":
-  version "1.1.2"
-  resolved "https://registry.npmmirror.com/@saas-ui/react-utils/-/react-utils-1.1.2.tgz#0cb97c02703021e4d9508a459b86c06be499f59d"
-  integrity sha512-FXSVHWGRjL5flnAWCJc8Ro88mpnmWFH3Gr7RU8GRIZP6V9MIPzEn39oi7UHVcZcTvWXJUqr1i8aZ/S6PG0g7XQ==
+"@saas-ui/react-utils@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/react-utils/-/react-utils-1.2.0.tgz#f0c0e73e864b6eedf3af08bc8a12963c4df6d66b"
+  integrity sha512-2eqoif5h21oxBbb2YaB7YK5JorUlDhQeU3AUogN/1Lp7fWSPqdRhlq0zkXECQhP7T4GBOAz/U07yOYGzBDcdcg==
 
-"@saas-ui/react@^1.4.4":
-  version "1.7.3"
-  resolved "https://registry.npmmirror.com/@saas-ui/react/-/react-1.7.3.tgz#e157035da48ae96b2933154569a1a61d3e7a94e0"
-  integrity sha512-jKjcthJm6ohh06DB0jxkvGjZevb/7+UofIDUvTjpMsaKO0kNSbGNniUqLNKEtK+fjxNFG8WzydGzWTg6tWiaOw==
+"@saas-ui/react@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@saas-ui/react/-/react-1.8.2.tgz#ed1aff680425e4f326ab998c9dcb9e7d42f668f7"
+  integrity sha512-iQbO7J1IHSGcKsjc6HYrgIyeWuQtLsIbT+8ghBsAVSDK7m1fjyKTIMxNxNdNHTWpW0kRLTOqQTp9EKY32cPDXA==
   dependencies:
-    "@chakra-ui/system" "^2.3.3"
-    "@saas-ui/app-shell" "1.0.0"
-    "@saas-ui/auth" "1.6.3"
-    "@saas-ui/banner" "1.3.0"
-    "@saas-ui/button" "1.3.0"
-    "@saas-ui/card" "1.4.0"
-    "@saas-ui/collapse" "1.3.0"
-    "@saas-ui/data-table" "1.3.2"
-    "@saas-ui/forms" "1.4.1"
-    "@saas-ui/hooks" "1.1.2"
-    "@saas-ui/hotkeys" "1.3.0"
-    "@saas-ui/input-right-button" "1.3.0"
-    "@saas-ui/layout" "1.3.2"
-    "@saas-ui/list" "1.3.0"
-    "@saas-ui/menu" "1.3.2"
-    "@saas-ui/modals" "1.4.2"
-    "@saas-ui/nprogress" "1.3.0"
-    "@saas-ui/number-input" "1.3.0"
-    "@saas-ui/palette" "1.2.0"
-    "@saas-ui/password-input" "1.3.0"
-    "@saas-ui/persona" "1.3.0"
-    "@saas-ui/pin-input" "1.3.0"
-    "@saas-ui/property" "1.3.0"
-    "@saas-ui/provider" "1.1.8"
-    "@saas-ui/radio" "1.3.0"
-    "@saas-ui/search-input" "1.3.0"
-    "@saas-ui/select" "1.3.0"
-    "@saas-ui/snackbar" "1.1.1"
-    "@saas-ui/stepper" "1.3.1"
-    "@saas-ui/theme" "1.6.2"
+    "@chakra-ui/system" "^2.3.8"
+    "@saas-ui/app-shell" "1.1.0"
+    "@saas-ui/auth" "1.7.2"
+    "@saas-ui/banner" "1.4.0"
+    "@saas-ui/button" "1.4.0"
+    "@saas-ui/card" "1.5.0"
+    "@saas-ui/collapse" "1.4.0"
+    "@saas-ui/data-table" "1.4.0"
+    "@saas-ui/forms" "1.5.2"
+    "@saas-ui/hooks" "1.2.0"
+    "@saas-ui/hotkeys" "1.4.0"
+    "@saas-ui/input-right-button" "1.4.0"
+    "@saas-ui/layout" "1.4.0"
+    "@saas-ui/list" "1.4.0"
+    "@saas-ui/menu" "1.4.0"
+    "@saas-ui/modals" "1.5.2"
+    "@saas-ui/nprogress" "1.4.0"
+    "@saas-ui/number-input" "1.4.0"
+    "@saas-ui/palette" "1.3.0"
+    "@saas-ui/password-input" "1.4.0"
+    "@saas-ui/persona" "1.4.0"
+    "@saas-ui/pin-input" "1.4.0"
+    "@saas-ui/property" "1.4.0"
+    "@saas-ui/provider" "1.2.0"
+    "@saas-ui/radio" "1.4.1"
+    "@saas-ui/search-input" "1.4.0"
+    "@saas-ui/select" "1.4.0"
+    "@saas-ui/snackbar" "1.2.0"
+    "@saas-ui/stepper" "1.4.0"
+    "@saas-ui/theme" "1.7.0"
 
-"@saas-ui/search-input@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/search-input/-/search-input-1.3.0.tgz#70c896f054edfd2b3c4c05fd92a254cd159eafdb"
-  integrity sha512-EY9Le1r4gS3KvnckByp+fQaU3TDNJv9Ca+cXaBI6HDpNBJ/MYeaiLhMOLE6ynRAyapcWlFRDMuljCWEcW69fqQ==
+"@saas-ui/search-input@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/search-input/-/search-input-1.4.0.tgz#66acbaa1988093df3e78542d4b2a73019a7cbc54"
+  integrity sha512-GjiRoShBNrh7h8ndfoyhaHXpMXUg8SV0UZRwFmchWiY+JpOVnfB5lRVGA3tbhOv89FCuJOTsOqP2CTQOwN5sBg==
   dependencies:
-    "@chakra-ui/icons" "^2.0.12"
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/icons" "^2.0.16"
+    "@chakra-ui/utils" "^2.0.14"
 
-"@saas-ui/select@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/@saas-ui/select/-/select-1.3.0.tgz#a6d990b05b28b8259eda0838233d11c55419a7bf"
-  integrity sha512-rl/dL01B2v6SsTehS1YbcNBQCkiaAJn+sCUkHP+ZB4C6XuQn1PhxPE6VEjlCUNmX94GZ0OUuwjOivyhIkedoLg==
+"@saas-ui/select@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/select/-/select-1.4.0.tgz#1a3f69fb1d844b99645dd598c708f4202c1c31d4"
+  integrity sha512-9PeU2xqg4dNsksUjcJlFtcN5lxBKJL7AqVejzdPFIjv0J+zPh7oVbgGtTAdPwXV4W+iNf4/MIO2/ILUQscYzpA==
   dependencies:
-    "@chakra-ui/icons" "^2.0.12"
-    "@chakra-ui/utils" "^2.0.12"
+    "@chakra-ui/icons" "^2.0.16"
+    "@chakra-ui/utils" "^2.0.14"
 
-"@saas-ui/snackbar@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.npmmirror.com/@saas-ui/snackbar/-/snackbar-1.1.1.tgz#2818655b07a7b42c412cfdc3dc54ccfe34293824"
-  integrity sha512-QFU0kQ5PInWF9VPfDGgoTOmIHb5uy7d5sNyrErf46mlZaZG12SVT4VTJ6migQFA0aQGLM2P+UxWCIXC1MUqSrg==
+"@saas-ui/snackbar@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/snackbar/-/snackbar-1.2.0.tgz#246812baed4dbd40b516716c235b21af2ee4d4d2"
+  integrity sha512-oHKMuPvC+uyVtbf8vY9nxED+1lJrjfblMQY1omzZRpc1IJsIixFt0C5yC7IFM150EtGudl5Npj9vMm+vaYHVOg==
 
-"@saas-ui/stepper@1.3.1":
-  version "1.3.1"
-  resolved "https://registry.npmmirror.com/@saas-ui/stepper/-/stepper-1.3.1.tgz#0fa7304112a4c0b9e46a6af47d4a1979a3ba4810"
-  integrity sha512-D9CNpD/TB3sSSJPEu7iaNBp690rUabSZTBNZ8ZBoqijugvA6tFDJ4PKXOJiwgQJUzVUtEVzxsybCVDDjl98jbA==
+"@saas-ui/stepper@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/stepper/-/stepper-1.4.0.tgz#8716ac76b8decc7596d92aa973730ebd686643b7"
+  integrity sha512-O5/5cXJPZWt60ZhZ6xJBH5pKUOofnhGk+E9mXV/01jlNuHSMwmt0MbDLOyip7SJcCySmlzKQYfMDarx3DNAHJw==
   dependencies:
-    "@chakra-ui/icons" "^2.0.12"
-    "@chakra-ui/react-utils" "^2.0.9"
-    "@chakra-ui/utils" "^2.0.12"
-    "@saas-ui/collapse" "1.3.0"
-    "@saas-ui/react-utils" "1.1.2"
+    "@chakra-ui/icons" "^2.0.16"
+    "@chakra-ui/react-utils" "^2.0.11"
+    "@chakra-ui/utils" "^2.0.14"
+    "@saas-ui/collapse" "1.4.0"
+    "@saas-ui/react-utils" "1.2.0"
 
 "@saas-ui/theme-glass@^0.1.1":
   version "0.1.1"
@@ -2508,14 +2593,14 @@
     "@chakra-ui/styled-system" "^2.3.5"
     "@chakra-ui/theme-tools" "^2.0.13"
 
-"@saas-ui/theme@1.6.2":
-  version "1.6.2"
-  resolved "https://registry.npmmirror.com/@saas-ui/theme/-/theme-1.6.2.tgz#1a84a4025784d045d757115af8b885b27a0630cc"
-  integrity sha512-/IvXdMUNOW3r+YG5Ldsw25H0E5uP3etCAznoeIwNl7bMDR33f6DJmfTmlVC1qjDNwEUE7OKJixpYfmRy7CWd4w==
+"@saas-ui/theme@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@saas-ui/theme/-/theme-1.7.0.tgz#886722e4aa4e1bb45bd411fc2623d91d21c09d12"
+  integrity sha512-iU15ji1XYQKEo9285QlL89jWmyW6jVm7YUbCfM1bwzB+a7exO+sucvy+YeYSwNDPt5S7waSspUXinZtvdqdkWg==
   dependencies:
-    "@chakra-ui/anatomy" "^2.1.0"
-    "@chakra-ui/styled-system" "^2.3.5"
-    "@chakra-ui/theme-tools" "^2.0.13"
+    "@chakra-ui/anatomy" "^2.1.1"
+    "@chakra-ui/styled-system" "^2.5.1"
+    "@chakra-ui/theme-tools" "^2.0.16"
 
 "@tanem/react-nprogress@^5.0.17":
   version "5.0.22"
@@ -4590,10 +4675,10 @@ react-focus-lock@^2.9.1:
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
-react-hook-form@^7.39.4:
-  version "7.41.3"
-  resolved "https://registry.npmmirror.com/react-hook-form/-/react-hook-form-7.41.3.tgz#1b85e95e70cb743d41cd9230ea2df71359d00151"
-  integrity sha512-5QNTmqJtDb88WV5n41b6+AmcDMVyaJ3tccPgHAgS215w3jZ3bmJhDO27kNTr8u4YHNYXmS7p1/4/KachBAlUtw==
+react-hook-form@^7.42.1:
+  version "7.43.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.43.0.tgz#d0c19b5c4ec561fbf8d652869ccb513c11c772e7"
+  integrity sha512-/rVEz7T0gLdSFwPqutJ1kn2e0sQNyb9ci/hmwEYr2YG0KF/LSuRLvNrf9QWJM+gj88CjDpDW5Bh/1AD7B2+z9Q==
 
 react-icons@^4.4.0:
   version "4.7.1"

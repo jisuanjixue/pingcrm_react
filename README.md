@@ -1,15 +1,12 @@
 # PingCRM on Rails
 
-A demo application built with Ruby on Rails and react.js and chakra-ui, not use tailwind css to style. [original PingCRM written in ruby on rails/vue and tailwind](https://github.com/ledermann/pingcrm) to illustrate how **[Inertia.js](https://inertiajs.com/)** works.
+A demo application built with Ruby on Rails and react.js and chakra-ui, not use tailwind css to style.
+[original PingCRM written in ruby on rails/vue and tailwind](https://github.com/ledermann/pingcrm) to illustrate how **[Inertia.js](https://inertiajs.com/)** works.
 
 ![Screenshot](screenshot.jpg)
 
-This is a port of the [original PingCRM written in Laravel/PHP](https://github.com/inertiajs/pingcrm) to Ruby on Rails. Now it's possible to dive into the beautiful world of **Inertia.js** without having to install PHP ;-)
-
-There is a hosted installation of this demo available at https://pingcrm.ledermann.dev. Login with:
-
-- **Username:** johndoe@example.com
-- **Password:** secret
+This is a port of the [original PingCRM written in Laravel/PHP](https://github.com/inertiajs/pingcrm) to Ruby on Rails. Now it's possible to dive into the beautiful world of **Inertia.js** without
+having to install PHP ;-)
 
 ## Lighthouse performance audit
 
@@ -20,7 +17,7 @@ There is a hosted installation of this demo available at https://pingcrm.lederma
 Clone the repo locally:
 
 ```
-git clone https://github.com/ledermann/pingcrm.git
+git clone https://github.com/jisuanjixue/pingcrm_react
 ```
 
 Setup (install dependencies, create and seed database):

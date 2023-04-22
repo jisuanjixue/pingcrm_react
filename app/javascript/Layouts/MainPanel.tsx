@@ -1,8 +1,16 @@
 import React from "react";
 import { usePage } from "@inertiajs/react";
-import { GithubFilled, InfoCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
+import {
+  GithubFilled,
+  InfoCircleFilled,
+  PlusCircleFilled,
+  QuestionCircleFilled,
+  SearchOutlined,
+} from '@ant-design/icons';
 import type { ProSettings } from '@ant-design/pro-components';
 import { PageContainer, ProLayout, SettingDrawer, ProCard } from '@ant-design/pro-components';
+import { Button, Input } from 'antd';
+
 import { useState } from 'react';
 import defaultProps from './_defaultProps';
 
@@ -15,7 +23,6 @@ const MainPanel: React.FC = props => {
   const {
     auth: { user },
   } = usePage().props as any;
-  console.log(user)
   const { variant, children, ...rest } = props as any;
 
   // Pass the computed styles into the `__css` prop
@@ -29,6 +36,29 @@ const MainPanel: React.FC = props => {
           }}
         >
           <ProLayout
+            token={{
+              header: {
+                colorBgHeader: '#292f33',
+                colorHeaderTitle: '#fff',
+                colorTextMenu: '#dfdfdf',
+                colorTextMenuSecondary: '#dfdfdf',
+                colorTextMenuSelected: '#fff',
+                colorBgMenuItemSelected: '#22272b',
+                colorTextMenuActive: 'rgba(255,255,255,0.85)',
+                colorTextRightActionsItem: '#dfdfdf',
+              },
+              colorTextAppListIconHover: '#fff',
+              colorTextAppListIcon: '#dfdfdf',
+              sider: {
+                colorMenuBackground: '#fff',
+                colorMenuItemDivider: '#dfdfdf',
+                colorBgMenuItemHover: '#f6f6f6',
+                colorTextMenu: '#595959',
+                colorTextMenuSelected: '#242424',
+                colorTextMenuActive: '#242424',
+                colorBgMenuItemCollapsedHover: '#242424',
+              },
+            }}
             siderWidth={216}
             bgLayoutImgList={[
               {
@@ -54,6 +84,9 @@ const MainPanel: React.FC = props => {
             location={{
               pathname,
             }}
+            menu={{
+              type: 'group',
+            }}
             avatarProps={{
               src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
               title: '七妮妮',
@@ -62,23 +95,95 @@ const MainPanel: React.FC = props => {
             actionsRender={(props) => {
               if (props.isMobile) return [];
               return [
+                props.layout !== 'side' && document.body.clientWidth > 1400 ? (
+                  <div
+                    key="SearchOutlined"
+                    aria-hidden
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      marginInlineEnd: 24,
+                    }}
+                    onMouseDown={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                    }}
+                  >
+                    <Input
+                      style={{
+                        borderRadius: 4,
+                        marginInlineEnd: 12,
+                        backgroundColor: 'rgba(57,62,67,1)',
+                        color: '#fff',
+                      }}
+                      prefix={
+                        <SearchOutlined
+                          style={{
+                            color: '#dfdfdf',
+                          }}
+                        />
+                      }
+                      placeholder="搜索方案"
+                      bordered={false}
+                    />
+                    <PlusCircleFilled
+                      style={{
+                        color: 'var(--ant-primary-color)',
+                        fontSize: 24,
+                      }}
+                    />
+                  </div>
+                ) : undefined,
                 <InfoCircleFilled key="InfoCircleFilled" />,
                 <QuestionCircleFilled key="QuestionCircleFilled" />,
                 <GithubFilled key="GithubFilled" />,
               ];
             }}
+            menuFooterRender={(props) => {
+              if (props?.collapsed) return undefined;
+              return (
+                <div
+                  style={{
+                    textAlign: 'center',
+                    paddingBlockStart: 12,
+                  }}
+                >
+                  <div>© 2021 Made with love</div>
+                  <div>by Ant Design</div>
+                </div>
+              );
+            }}
+            onMenuHeaderClick={(e) => console.log(e)}
             menuItemRender={(item, dom) => (
-              <div
+              <a
                 onClick={() => {
                   setPathname(item.path || '/welcome');
                 }}
               >
                 {dom}
-              </div>
+              </a>
             )}
             {...settings}
           >
-            <PageContainer>
+            <PageContainer
+              breadcrumb={{
+                routes: [],
+              }}
+              onBack={() => window.history.back()}
+              extra={[
+                <Button key="3">操作</Button>,
+                <Button key="2">操作</Button>,
+                <Button key="1" type="primary">
+                  主操作
+                </Button>,
+              ]}
+              footer={[
+                <Button key="3">重置</Button>,
+                <Button key="2" type="primary">
+                  提交
+                </Button>,
+              ]}
+            >
               <ProCard
                 style={{
                   height: '100vh',

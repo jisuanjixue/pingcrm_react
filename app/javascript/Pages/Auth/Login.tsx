@@ -15,7 +15,7 @@ import {
 } from '@ant-design/pro-components';
 import { message, Space, Tabs } from 'antd';
 import type { CSSProperties } from 'react';
-import { signal } from "@preact/signals-react";
+import { useSignal } from "@preact/signals-react";
 import { useForm } from '@inertiajs/react';
 import * as Routes from "../../utils/routes.js";
 
@@ -38,8 +38,15 @@ const waitTime = (time: number = 100) => {
 };
 
 export default () => {
-  const loginType = signal<LoginType>('phone');
-  const { data, setData, post, processing, errors } = useForm();
+  const defauleData = {
+    user: {
+      email: "johndoe@example.com",
+      password: "secret",
+      remember: null,
+    } as any,
+  };
+  const loginType = useSignal<LoginType>('account');
+  const { data, setData, post, processing, errors } = useForm(defauleData);
   return (
     <ProConfigProvider hashed={false}>
       <div style={{ backgroundColor: 'white' }}>
@@ -47,17 +54,12 @@ export default () => {
           onFinish={async (values) => {
             await waitTime(2000);
             post(Routes.user_session());
-            console.log(values);
             message.success('提交成功');
           }}
           params={data}
           onReset={(e) => console.log(e)}
           autoFocusFirstInput
-          initialValues={{
-            email: "johndoe@example.com",
-            password: "secret",
-            remember: null,
-          }}
+          initialValues={defauleData.user}
           logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
           title="Github"
           subTitle="全球最大的代码托管平台"
@@ -73,7 +75,9 @@ export default () => {
           <Tabs
             centered
             activeKey={loginType.value}
-            onChange={(activeKey) => loginType.value = activeKey as LoginType}
+            onChange={(activeKey) => {
+              loginType.value = activeKey as LoginType
+            }}
           >
             <Tabs.TabPane key={'account'} tab={'账号密码登录'} />
             <Tabs.TabPane key={'phone'} tab={'手机号登录'} />

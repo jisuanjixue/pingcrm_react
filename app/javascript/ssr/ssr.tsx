@@ -1,5 +1,5 @@
 // import ReactDOMServer from "react-dom/server";
-// import { createInertiaApp } from "@inertiajs/inertia-react";
+// import { createInertiaApp } from "@inertiajs/react";
 // import cjsCreateServer from "@inertiajs/server";
 
 // const pages = import.meta.globEagerDefault("../Pages/**/*.tsx");

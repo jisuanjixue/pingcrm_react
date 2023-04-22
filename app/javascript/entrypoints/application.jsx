@@ -7,15 +7,12 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import snakecaseKeys from "snakecase-keys";
 
-import { Inertia } from "@inertiajs/inertia";
+import { router } from "@inertiajs/react";
 import Plausible from "plausible-tracker";
 import axios from "axios";
-import theme from "../theme/theme";
-import { SaasProvider } from "@saas-ui/react";
 import MainPanel from "../Layouts/MainPanel";
 
-import { createInertiaApp } from "@inertiajs/inertia-react";
-import { InertiaProgress } from "@inertiajs/progress";
+import { createInertiaApp } from "@inertiajs/react";
 // import '../utils/setupHoneybadger.ts';
 
 const pages = import.meta.globEagerDefault("../Pages/**/*.tsx");
@@ -27,7 +24,7 @@ if (plausibleUrl) {
     apiHost: plausibleUrl,
   });
 
-  Inertia.on("navigate", () => {
+  router.on("navigate", () => {
     plausible.trackPageview();
   });
 }
@@ -38,8 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 axios.defaults.transformRequest = [data => snakecaseKeys(data, { deep: true }), ...axios.defaults.transformRequest];
-
-InertiaProgress.init();
 
 createInertiaApp({
   resolve: name => {
@@ -52,12 +47,6 @@ createInertiaApp({
   title: title => (title ? `${title} - Ping CRM` : "Ping CRM"),
 
   setup: ({ el, App, props }) => {
-    const root = createRoot(el);
-    root.render(
-      <SaasProvider theme={theme}>
-        <App {...props} />
-      </SaasProvider>,
-      el
-    );
-  },
+    createRoot(el).render(<App {...props} />)
+  }
 });

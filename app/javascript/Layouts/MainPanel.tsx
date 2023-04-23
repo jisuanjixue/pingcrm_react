@@ -10,16 +10,12 @@ import {
 import type { ProSettings } from '@ant-design/pro-components';
 import { PageContainer, ProLayout, SettingDrawer, ProCard } from '@ant-design/pro-components';
 import { Button, Input } from 'antd';
-
-import { useState } from 'react';
+import { useSignal } from "@preact/signals-react";
 import defaultProps from './_defaultProps';
 
 const MainPanel: React.FC = props => {
-  const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
-    layout: 'side',
-  });
-
-  const [pathname, setPathname] = useState('/list/sub-page/sub-sub-page1');
+  const settings = useSignal<Partial<ProSettings> | undefined>({ layout: 'side' })
+  const pathname = useSignal('/list/sub-page/sub-sub-page1')
   const {
     auth: { user },
   } = usePage().props as any;
@@ -81,9 +77,7 @@ const MainPanel: React.FC = props => {
               },
             ]}
             {...defaultProps}
-            location={{
-              pathname,
-            }}
+            location={{ pathname: pathname.value }}
             menu={{
               type: 'group',
             }}
@@ -157,7 +151,7 @@ const MainPanel: React.FC = props => {
             menuItemRender={(item, dom) => (
               <a
                 onClick={() => {
-                  setPathname(item.path || '/welcome');
+                  pathname.value = item.path || '/welcome';
                 }}
               >
                 {dom}
@@ -195,12 +189,12 @@ const MainPanel: React.FC = props => {
             </PageContainer>
           </ProLayout>
           <SettingDrawer
-            pathname={pathname}
+            pathname={pathname.value}
             enableDarkTheme
             getContainer={() => document.getElementById('test-pro-layout')}
-            settings={settings}
+            settings={settings.value}
             onSettingChange={(changeSetting) => {
-              setSetting(changeSetting);
+              settings.value = changeSetting
             }}
             disableUrlParams={false}
           />

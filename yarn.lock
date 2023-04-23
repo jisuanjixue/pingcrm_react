@@ -4846,10 +4846,10 @@ snake-case@^3.0.4:
     dot-case "^3.0.4"
     tslib "^2.0.3"
 
-snakecase-keys@^5.4.2:
-  version "5.4.4"
-  resolved "https://registry.npmmirror.com/snakecase-keys/-/snakecase-keys-5.4.4.tgz#28745b0175863ffc292ad97d96fe4e8e288a87a2"
-  integrity sha512-YTywJG93yxwHLgrYLZjlC75moVEX04LZM4FHfihjHe1FCXm+QaLOFfSf535aXOAd0ArVQMWUAe8ZPm4VtWyXaA==
+snakecase-keys@^5.4.5:
+  version "5.4.5"
+  resolved "https://registry.yarnpkg.com/snakecase-keys/-/snakecase-keys-5.4.5.tgz#1d452c1557faf8d68f17f04a4991ccfd27afa239"
+  integrity sha512-qSQVcgcWk8mQUN1miVGnRMAUye1dbj9+F9PVkR7wZUXNCidQwrl/kOKmoYf+WbH2ju6c9pXnlmbS2he7pb2/9A==
   dependencies:
     map-obj "^4.1.0"
     snake-case "^3.0.4"

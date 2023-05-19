@@ -1,6 +1,6 @@
 # PingCRM on Rails
 
-A demo application built with Ruby on Rails and react.js and chakra-ui, not use tailwind css to style.
+A demo application built with Ruby on Rails and react.js and antd, not use tailwind css to style.
 [original PingCRM written in ruby on rails/vue and tailwind](https://github.com/ledermann/pingcrm) to illustrate how **[Inertia.js](https://inertiajs.com/)** works.
 
 ![Screenshot](screenshot.jpg)

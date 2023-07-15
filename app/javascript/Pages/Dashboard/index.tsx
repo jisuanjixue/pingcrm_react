@@ -7,6 +7,7 @@ const Dashboard: React.FC = ({ git }: IProps) => {
   return (
     <>
       <Head title="Dashboard" />
+      <div>fddsfdgg</div>
     </>
   );
 };

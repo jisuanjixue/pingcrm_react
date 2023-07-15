@@ -11,16 +11,17 @@ export default {
     path: '/',
     routes: [
       {
-        path: '/welcome',
+        path: '/dashboard',
         name: '欢迎',
         icon: <SmileFilled />,
-        component: './Welcome',
+        component: './Dashboard',
+        breadcrumbName: 'Home',
       },
       {
         path: '/admin',
         name: '管理页',
         icon: <CrownFilled />,
-        access: 'canAdmin',
+        // access: 'canAdmin',
         component: './Admin',
         routes: [
           {

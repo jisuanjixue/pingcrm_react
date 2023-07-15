@@ -8,13 +8,13 @@ import {
   SearchOutlined,
 } from '@ant-design/icons';
 import type { ProSettings } from '@ant-design/pro-components';
-import { PageContainer, ProLayout, SettingDrawer, ProCard } from '@ant-design/pro-components';
-import { Button, Input } from 'antd';
+import { PageContainer, ProLayout, SettingDrawer, ProCard, ProBreadcrumb } from '@ant-design/pro-components';
+import { Breadcrumb, Button, Input } from 'antd';
 import { useSignal } from "@preact/signals-react";
 import defaultProps from './_defaultProps';
 
 const MainPanel: React.FC = props => {
-  const settings = useSignal<Partial<ProSettings> | undefined>({ layout: 'side' })
+  const settings = useSignal<Partial<ProSettings> | undefined>({ layout: 'side', splitMenus: true, })
   const pathname = useSignal('/list/sub-page/sub-sub-page1')
   const {
     auth: { user },
@@ -32,6 +32,8 @@ const MainPanel: React.FC = props => {
           }}
         >
           <ProLayout
+            {...defaultProps}
+            {...settings}
             token={{
               header: {
                 colorBgHeader: '#292f33',
@@ -76,10 +78,13 @@ const MainPanel: React.FC = props => {
                 width: '331px',
               },
             ]}
-            {...defaultProps}
             location={{ pathname: pathname.value }}
             menu={{
               type: 'group',
+            }}
+            breadcrumbRender={(route) => {
+              console.log(route)
+              return route
             }}
             avatarProps={{
               src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
@@ -149,20 +154,25 @@ const MainPanel: React.FC = props => {
             }}
             onMenuHeaderClick={(e) => console.log(e)}
             menuItemRender={(item, dom) => (
-              <a
+              <div
                 onClick={() => {
-                  pathname.value = item.path || '/welcome';
+                  pathname.value = item.path || '/dashboard';
                 }}
               >
                 {dom}
-              </a>
+              </div>
             )}
-            {...settings}
           >
             <PageContainer
               breadcrumb={{
                 routes: [],
               }}
+              // header={{
+              //   title: "标题",
+              //   breadcrumbRender: () => {
+              //     return <Breadcrumb routes={routes} itemRender={itemRender} />;
+              //   },
+              // }}
               onBack={() => window.history.back()}
               extra={[
                 <Button key="3">操作</Button>,
@@ -184,7 +194,9 @@ const MainPanel: React.FC = props => {
                   minHeight: 800,
                 }}
               >
-                <div></div>
+                <div>
+                  {children}
+                </div>
               </ProCard>
             </PageContainer>
           </ProLayout>

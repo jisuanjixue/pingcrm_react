@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
   def index
     pagy, paged_organizations = pagy(@organizations.search(params[:search]).trash_filter(params[:trashed]).order(:name))
 
-    render inertia: "Organizations/Index",
+    render inertia: "Organizations/index",
            props: {
              organizations:
                jbuilder do |json|
@@ -16,8 +16,16 @@ class OrganizationsController < ApplicationController
            }
   end
 
+  def show
+    render inertia: "Organizations/show",
+           props: {
+             organization: jbuilder do |json| json.(@organization, :id, :name, :email, :phone, :address, :city, :region, :country, :postal_code, :deleted_at) end,
+             contacts: -> { jbuilder { |json| json.array! @organization.contacts.order_by_name, :id, :name, :phone, :city, :deleted_at } },
+           }
+  end
+
   def edit
-    render inertia: "Organizations/Edit",
+    render inertia: "Organizations/edit",
            props: {
              organization: jbuilder do |json| json.(@organization, :id, :name, :email, :phone, :address, :city, :region, :country, :postal_code, :deleted_at) end,
              contacts: -> { jbuilder { |json| json.array! @organization.contacts.order_by_name, :id, :name, :phone, :city, :deleted_at } },

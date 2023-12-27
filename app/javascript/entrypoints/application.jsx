@@ -10,7 +10,7 @@ import snakecaseKeys from "snakecase-keys";
 import { router } from "@inertiajs/react";
 import Plausible from "plausible-tracker";
 import axios from "axios";
-import MainPanel from "../Layouts/MainPanel";
+import MainPanel from "@/Layouts/MainPanel";
 
 import { createInertiaApp } from "@inertiajs/react";
 // import '../utils/setupHoneybadger.ts';

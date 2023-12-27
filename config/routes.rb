@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :users, except: [:show] do
     member { put "restore" }
   end
-  resources :organizations, except: %i[show new] do
+  resources :organizations  do
     member { put "restore" }
   end
   resources :contacts, except: [:show] do

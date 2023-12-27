@@ -1,16 +1,17 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 3.2.2'
+ruby '~> 3.3.0'
 
 # Full-stack web application framework. (https://rubyonrails.org)
-gem 'rails', '~> 7.0.4'
+gem 'rails', '~> 7.1.2'
 
 # Pg is the Ruby interface to the PostgreSQL RDBMS (https://github.com/ged/ruby-pg)
 gem 'pg', '~> 1.5', '>= 1.5.3'
 
 # Puma is a simple, fast, threaded, and highly parallel HTTP 1.1 server for Ruby/Rack applications (https://puma.io)
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.4'
+gem 'io-console', '0.6.0'
 
 # Use Vite in Rails and bring joy to your JavaScript experience (https://github.com/ElMassimo/vite_ruby)
 gem 'vite_rails'
@@ -57,7 +58,7 @@ group :development do
   gem 'web-console'
 
   gem 'annotate', '~> 3.2.0'
-  gem 'bullet', '~> 7.0.3'
+  gem 'bullet', '~> 7.1.4'
 
   # Profiles loading speed for rack applications. (https://miniprofiler.com)
   gem 'rack-mini-profiler'
@@ -66,7 +67,7 @@ group :development do
   gem 'spring'
 
   # Brings Rails named routes to javascript (http://github.com/railsware/js-routes)
-  gem 'js-routes', require: false
+  gem 'js-routes', '~> 2.2', '>= 2.2.8'
     # Guard gem for RSpec (https://github.com/guard/guard-rspec)
   gem 'guard-rspec', require: false
 

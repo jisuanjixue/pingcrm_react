@@ -1,4 +1,5 @@
 import { ChromeFilled, CrownFilled, SmileFilled, TabletFilled } from '@ant-design/icons';
+import * as Routes from "../routes.js";
 // import * as Routes from "../utils/routes.js";
 // import DashboardMenus from "../variables/general";
 // import FlashMessages from "@/components/FlashMessages";
@@ -8,33 +9,29 @@ import { ChromeFilled, CrownFilled, SmileFilled, TabletFilled } from '@ant-desig
 
 export default {
   route: {
-    path: '/',
+    path: Routes.root_path,
     routes: [
       {
-        path: '/dashboard',
+        path: Routes.root_path(),
         name: '欢迎',
         icon: <SmileFilled />,
-        component: './Dashboard',
         breadcrumbName: 'Home',
       },
       {
-        path: '/admin',
+        path: "/",
         name: '管理页',
         icon: <CrownFilled />,
-        // access: 'canAdmin',
-        component: './Admin',
+        access: 'canAdmin',
         routes: [
           {
-            path: '/admin/sub-page1',
-            name: '一级页面',
+            path: Routes.organizations_path(),
+            name: '公司',
             icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
-            component: './Welcome',
           },
           {
-            path: '/admin/sub-page2',
-            name: '二级页面',
+            path: Routes.contacts_path(),
+            name: '联系人',
             icon: <CrownFilled />,
-            component: './Welcome',
           },
           {
             path: '/admin/sub-page3',

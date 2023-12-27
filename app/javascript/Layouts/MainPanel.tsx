@@ -1,5 +1,5 @@
 import React from "react";
-import { usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import {
   GithubFilled,
   InfoCircleFilled,
@@ -8,6 +8,8 @@ import {
   SearchOutlined,
 } from '@ant-design/icons';
 import type { ProSettings } from '@ant-design/pro-components';
+// import * as Routes from "../utils/routes.js";
+// import * as Routes from "../routes.js";
 import { PageContainer, ProLayout, SettingDrawer, ProCard, ProBreadcrumb } from '@ant-design/pro-components';
 import { Breadcrumb, Button, Input } from 'antd';
 import { useSignal } from "@preact/signals-react";
@@ -15,7 +17,7 @@ import defaultProps from './_defaultProps';
 
 const MainPanel: React.FC = props => {
   const settings = useSignal<Partial<ProSettings> | undefined>({ layout: 'side', splitMenus: true, })
-  const pathname = useSignal('/list/sub-page/sub-sub-page1')
+  const pathname = useSignal('')
   const {
     auth: { user },
   } = usePage().props as any;
@@ -78,12 +80,15 @@ const MainPanel: React.FC = props => {
                 width: '331px',
               },
             ]}
-            location={{ pathname: pathname.value }}
+            // location={{
+            //   route: pathname.value,
+            //   pathname: "/organizations"
+            // }}
             menu={{
               type: 'group',
             }}
             breadcrumbRender={(route) => {
-              console.log(route)
+              // console.log(route)
               return route
             }}
             avatarProps={{
@@ -153,15 +158,25 @@ const MainPanel: React.FC = props => {
               );
             }}
             onMenuHeaderClick={(e) => console.log(e)}
-            menuItemRender={(item, dom) => (
-              <div
-                onClick={() => {
-                  pathname.value = item.path || '/dashboard';
-                }}
-              >
-                {dom}
-              </div>
-            )}
+            menuItemRender={(item, dom) => {
+              console.log("🚀 ~ file: MainPanel.tsx:162 ~ dom:", "22222")
+              return (
+                <Link
+                  href={item.path}
+                  preserveState
+                >{
+                    dom
+                  }
+                </Link>
+                // <div
+                //   onClick={() => {
+                //     Route::inertia('/about', 'About');
+                //   }}
+                // >
+                //   {dom}
+                // </div>
+              )
+            }}
           >
             <PageContainer
               breadcrumb={{

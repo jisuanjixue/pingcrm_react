@@ -7,7 +7,7 @@ const Dashboard: React.FC = ({ git }: IProps) => {
   return (
     <>
       <Head title="Dashboard" />
-      <div>fddsfdgg</div>
+      <div>{git.commit_time}</div>
     </>
   );
 };

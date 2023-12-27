@@ -17,7 +17,7 @@ import { message, Space, Tabs } from 'antd';
 import type { CSSProperties } from 'react';
 import { useSignal } from "@preact/signals-react";
 import { useForm } from '@inertiajs/react';
-import * as Routes from "../../utils/routes.js";
+import * as Routes from "../../routes.js";
 
 type LoginType = 'phone' | 'account';
 
@@ -53,7 +53,7 @@ export default () => {
         <LoginForm
           onFinish={async (values) => {
             await waitTime(2000);
-            post(Routes.user_session());
+            post(Routes.user_session_path());
             message.success('提交成功');
           }}
           params={data}

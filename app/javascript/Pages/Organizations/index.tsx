@@ -48,18 +48,15 @@ const Dashboard: React.FC = ({ organizations }: IProps) => {
               });
             },
             detailRequest: async (id) => {
-              return new Promise<IResponseData<TBaseView>>(async (resolve, reject) => {
-                try {
-                  resolve({ data: organizations.data.find(f => f.id === id), success: true });
-                } catch (error) {
-                  reject(error);
-                }
-              });
-            }
+              await { data: organizations.data.find(f => f.id === id), success: true }
+            },
             // saveRequest: (values) => {
             //   return docSvc.save(valuesToSubmit);
             // },
-            // deleteRequest: docSvc.deleteById,
+            deleteRequest: async (id) => {
+              router.delete(Routes.organization_path(id))
+              await { success: true }
+            },
           }}
         />
       </PageContainer>

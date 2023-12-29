@@ -13,6 +13,7 @@ class OrganizationsController < ApplicationController
                  json.meta pagy_metadata(pagy)
                end,
              filters: params.slice(:search, :trashed),
+             total: @organizations.count
            }
   end
 
@@ -51,12 +52,12 @@ class OrganizationsController < ApplicationController
   def destroy
     if @organization.soft_delete
       if can? :edit, @organization
-        redirect_to edit_organization_path(@organization), notice: "Organization deleted."
-      else
         redirect_to organizations_path, notice: "Organization deleted."
+      else
+        redirect_to organizations_path, inertia: { errors: @organization.errors }
       end
     else
-      redirect_to edit_organization_path(@organization), alert: "Organization cannot be deleted!"
+      redirect_to organizations_path, inertia: { errors: @organization.errors }
     end
   end
 

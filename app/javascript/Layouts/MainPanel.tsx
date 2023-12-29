@@ -162,19 +162,14 @@ const MainPanel: React.FC = props => {
               console.log("🚀 ~ file: MainPanel.tsx:162 ~ dom:", "22222")
               return (
                 <Link
-                  href={item.path}
-                  preserveState
+                  href={item.path || '/'}
+                  preserveState={false}
+                  preserveScroll={true}
+                  only={["organizations"]}
                 >{
                     dom
                   }
                 </Link>
-                // <div
-                //   onClick={() => {
-                //     Route::inertia('/about', 'About');
-                //   }}
-                // >
-                //   {dom}
-                // </div>
               )
             }}
           >
@@ -189,30 +184,10 @@ const MainPanel: React.FC = props => {
               //   },
               // }}
               onBack={() => window.history.back()}
-              extra={[
-                <Button key="3">操作</Button>,
-                <Button key="2">操作</Button>,
-                <Button key="1" type="primary">
-                  主操作
-                </Button>,
-              ]}
-              footer={[
-                <Button key="3">重置</Button>,
-                <Button key="2" type="primary">
-                  提交
-                </Button>,
-              ]}
+              extra={undefined}
+              footer={undefined}
             >
-              <ProCard
-                style={{
-                  height: '100vh',
-                  minHeight: 800,
-                }}
-              >
-                <div>
-                  {children}
-                </div>
-              </ProCard>
+              {children}
             </PageContainer>
           </ProLayout>
           <SettingDrawer

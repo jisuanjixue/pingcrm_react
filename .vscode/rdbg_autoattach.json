@@ -3,7 +3,7 @@
   "name": "Attach with rdbg",
   "request": "attach",
   "rdbgPath": "/Users/xiaobo/.rbenv/versions/3.3.0/lib/ruby/gems/3.3.0/gems/debug-1.9.1/exe/rdbg",
-  "debugPort": "/var/folders/f4/v6w8kfh54lq5dx05px6lh6m80000gn/T/rdbg-501/rdbg-51135",
+  "debugPort": "/var/folders/f4/v6w8kfh54lq5dx05px6lh6m80000gn/T/rdbg-501/rdbg-27361",
   "localfs": true,
-  "autoAttach": "0.9241846933027158"
+  "autoAttach": "0.14588372676064365"
 }

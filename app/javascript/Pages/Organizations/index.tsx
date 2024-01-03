@@ -4,9 +4,19 @@ import { PageContainer } from "@ant-design/pro-components";
 import Table from "jet-pro/es/components/Table";
 import { router } from '@inertiajs/react'
 import * as Routes from "../../routes.js";
+import { Button } from "antd";
+import { useSignal } from "@preact/signals-react";
+import EditForm from "./EditForm";
 
 
 const Dashboard: React.FC = ({ organizations, total }: IProps) => {
+  const editState = useSignal<{
+    visible?: boolean;
+    detail?: any;
+  }>({})
+
+  const editProps = {
+  }
 
   return (
     <>
@@ -22,6 +32,34 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               },
               // { title: '邮箱', dataIndex: 'email', editProps: { required: true } },
             ],
+            toolbarProps: {
+              extra: (
+                <Button
+                  type="primary"
+                  size="small"
+                  onClick={() => {
+                    editState.value = { visible: true, detail: undefined }
+                  }}
+                >
+                  新增
+                </Button>
+              )
+            },
+            actionColumn: {
+              width: 20,
+              title: '操作',
+              render: (item) => (
+                <Button
+                  type="primary"
+                  size="small"
+                  onClick={() => {
+                    editState.value = { visible: true, detail: item }
+                  }}
+                >
+                  修改
+                </Button>
+              )
+            },
             queryEffectUrl: false,
             dataSource: organizations.data,
             pagination: {
@@ -43,6 +81,18 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
                 preserveScroll: true,
               })
             }
+          }}
+        />
+        <EditForm
+          {...{
+            ...editProps,
+            // columns: propsColumns,
+            visible: editState?.value.visible,
+            detail: editState?.value.detail,
+            onSuccess: () => {
+              // refAction.current?.reload?.();
+            },
+            onClose: () => editState.value = { visible: false, detail: undefined },
           }}
         />
       </PageContainer>

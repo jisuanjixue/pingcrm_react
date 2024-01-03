@@ -1,43 +1,64 @@
-import React, { } from "react";
 import { router } from '@inertiajs/react'
 import * as Routes from "../../routes.js";
 import { Button, message } from "antd";
-import { useSignal } from "@preact/signals-react";
-import { EditForm } from "jet-pro";
+// import { useSignal } from "@preact/signals-react";
+import { EditForm, EditFormItem } from "jet-pro";
 
 
 export default ({ visible, detail, onClose }) => {
-  const isUpdate = !!detail?.id;
+  console.log("🚀 ~ file: EditForm.tsx:9 ~ detail:", detail)
   const initDetail = async () => {
     let initData: any | undefined;
-    if (isUpdate) {
+    if (detail?.id) {
       try {
-        // const res = await detailRequest?.(detail?.id);
-        // if (!res?.success) {
-        //   message.error(res?.errorMessage);
-        //   return initData;
-        // }
-        // initData = res.data;
+        initData = detail
       } catch (e: any) {
         message.error(e.message);
       }
-    } else initData = detail;
-
-    // if (editProps?.transFormDataBeforeRender)
-    //   initData = await editProps.transFormDataBeforeRender(initData);
-
+    } else initData = undefined;
     return initData;
   }
   return (
     <EditForm.Drawer
-      title={`${detail?.editItemId ? '编辑' : '新增'}公司`}
+      title={`${detail?.id ? '编辑' : '新增'}公司`}
       width="30vw"
       footerProps={{ submitProps: { text: '确定' } }}
       visible={visible}
       onClose={onClose}
-      initDetail={async () => undefined}
-    >
+      initDetail={initDetail}
+      onSubmit={async (data) => {
+        console.log("🚀 ~ file: EditForm.tsx:29 ~ onSubmit={ ~ data:", data)
+        if (detail.id) {
+          router.patch(Routes.organization_path(detail.id), data, {
+            only: ["organizations"],
+            onSuccess: (page) => {
+              onClose()
+              router.reload()
+            },
+            onError: (errors) => {
+              message.error(errors.content)
+            }
+          })
+        } else {
+          console.log("sdfgdg")
 
+          router.post(Routes.organizations_path(data), data, {
+            only: ["organizations"],
+            onSuccess: (page) => {
+              console.log("🚀 ~ file: EditForm.tsx:53 ~ router.post ~ page:", page)
+              onClose()
+              router.reload()
+            },
+            onError: (errors) => {
+              message.error(errors.content)
+            }
+          })
+        }
+        return false;
+      }}
+    >
+      {/* <EditFormItem.Hidden name="id" style={{ display: "hide" }} /> */}
+      <EditFormItem.Text label="名称" name="name" required></EditFormItem.Text>
     </EditForm.Drawer>
   );
 }

@@ -3,7 +3,12 @@ class OrganizationsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    pagy, paged_organizations = pagy(@organizations.search(params[:search]).trash_filter(params[:trashed]).order(:name))
+    begin
+      pagy, paged_organizations = pagy(@organizations.search(params[:search]).trash_filter(params[:trashed]).order(:name))
+    rescue Pagy::OverflowError
+      pagy = Pagy.new(count: @organizations.count, page: params[:page], items: params[:items])
+      paged_organizations = @organizations.offset(pagy.offset).limit(pagy.items)
+    end
 
     render inertia: "Organizations/index",
            props: {
@@ -15,10 +20,9 @@ class OrganizationsController < ApplicationController
              filters: params.slice(:search, :trashed),
              total: @organizations.count
            }
-  end
-
+   end
   def show
-    render inertia: "Organizations/show",
+    render inertia: "Organizations/EditForm",
            props: {
              organization: jbuilder do |json| json.(@organization, :id, :name, :email, :phone, :address, :city, :region, :country, :postal_code, :deleted_at) end,
              contacts: -> { jbuilder { |json| json.array! @organization.contacts.order_by_name, :id, :name, :phone, :city, :deleted_at } },
@@ -43,9 +47,9 @@ class OrganizationsController < ApplicationController
 
   def update
     if @organization.update(organization_params)
-      redirect_to edit_organization_path(@organization), notice: "Organization updated."
+      redirect_to organizations_path, notice: "Organization updated."
     else
-      redirect_to edit_organization_path(@organization), inertia: { errors: @organization.errors }
+      redirect_to organizations_path, inertia: { errors: @organization.errors }
     end
   end
 

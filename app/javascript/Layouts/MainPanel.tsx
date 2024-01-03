@@ -159,7 +159,6 @@ const MainPanel: React.FC = props => {
             }}
             onMenuHeaderClick={(e) => console.log(e)}
             menuItemRender={(item, dom) => {
-              console.log("🚀 ~ file: MainPanel.tsx:162 ~ dom:", "22222")
               return (
                 <Link
                   href={item.path || '/'}

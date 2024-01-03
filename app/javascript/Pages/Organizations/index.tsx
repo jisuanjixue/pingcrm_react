@@ -16,6 +16,7 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
   }>({})
 
   const editProps = {
+    editState
   }
 
   return (
@@ -38,7 +39,7 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
                   type="primary"
                   size="small"
                   onClick={() => {
-                    editState.value = { visible: true, detail: undefined }
+                    editState.value = { visible: true, detail: {} }
                   }}
                 >
                   新增
@@ -66,13 +67,14 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               pageSize: organizations.meta.items,
               total: total,
               current: organizations.meta.page,
-              showTotal: (total) => `Total ${total} items`,
+              showTotal: (total) => `总 ${total} 条`,
               defaultPageSize: 20,
               defaultCurrent: 1,
               hideOnSinglePage: true,
               showQuickJumper: true,
             },
             onChange(pagination, filters, sorter, extra) {
+              console.log("🚀 ~ file: index.tsx:77 ~ onChange ~ pagination:", pagination)
               router.get(Routes.organizations_path(), {
                 page: pagination.current,
                 items: pagination.pageSize

@@ -33,21 +33,17 @@ export default ({ visible, detail, onClose }) => {
             only: ["organizations"],
             onSuccess: (page) => {
               onClose()
-              router.reload()
             },
             onError: (errors) => {
               message.error(errors.content)
             }
           })
         } else {
-          console.log("sdfgdg")
 
           router.post(Routes.organizations_path(data), data, {
             only: ["organizations"],
             onSuccess: (page) => {
-              console.log("🚀 ~ file: EditForm.tsx:53 ~ router.post ~ page:", page)
               onClose()
-              router.reload()
             },
             onError: (errors) => {
               message.error(errors.content)

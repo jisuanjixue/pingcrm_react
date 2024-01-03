@@ -4,7 +4,7 @@ import { PageContainer } from "@ant-design/pro-components";
 import Table from "jet-pro/es/components/Table";
 import { router } from '@inertiajs/react'
 import * as Routes from "../../routes.js";
-import { Button } from "antd";
+import { Button, Divider, Popconfirm, message } from "antd";
 import { useSignal } from "@preact/signals-react";
 import EditForm from "./EditForm";
 
@@ -50,15 +50,33 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               width: 20,
               title: '操作',
               render: (item) => (
-                <Button
-                  type="primary"
-                  size="small"
-                  onClick={() => {
-                    editState.value = { visible: true, detail: item }
-                  }}
-                >
-                  修改
-                </Button>
+                <>
+                  <Button
+                    type="primary"
+                    size="small"
+                    onClick={() => {
+                      editState.value = { visible: true, detail: item }
+                    }}
+                  >
+                    修改
+                  </Button>
+                  <Divider type="vertical" />
+                  <Popconfirm
+                    title="是否确定删除？"
+                    onConfirm={() => {
+                      router.delete(Routes.organization_path(item.id), {
+                        onSuccess: () => {
+                          message.success("删除成功！")
+                        }
+                      })
+                    }}
+                  >
+                    <Button size="small" type="default" danger color="#f42f2f">
+                      删除
+                    </Button>
+                    <Divider type="vertical" />
+                  </Popconfirm>
+                </>
               )
             },
             queryEffectUrl: false,
@@ -74,12 +92,11 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               showQuickJumper: true,
             },
             onChange(pagination, filters, sorter, extra) {
-              console.log("🚀 ~ file: index.tsx:77 ~ onChange ~ pagination:", pagination)
               router.get(Routes.organizations_path(), {
                 page: pagination.current,
                 items: pagination.pageSize
               }, {
-                preserveState: false,
+                preserveState: true,
                 preserveScroll: true,
               })
             }
@@ -88,12 +105,8 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
         <EditForm
           {...{
             ...editProps,
-            // columns: propsColumns,
             visible: editState?.value.visible,
             detail: editState?.value.detail,
-            onSuccess: () => {
-              // refAction.current?.reload?.();
-            },
             onClose: () => editState.value = { visible: false, detail: undefined },
           }}
         />

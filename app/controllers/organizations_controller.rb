@@ -14,7 +14,7 @@ class OrganizationsController < ApplicationController
            props: {
              organizations:
                jbuilder do |json|
-                 json.data(paged_organizations, :id, :name, :phone, :city, :deleted_at)
+                 json.data(paged_organizations)
                  json.meta pagy_metadata(pagy)
                end,
              filters: params.slice(:search, :trashed),
@@ -22,7 +22,7 @@ class OrganizationsController < ApplicationController
            }
    end
   def show
-    render inertia: "Organizations/EditForm",
+    render inertia: "Organizations/show",
            props: {
              organization: jbuilder do |json| json.(@organization, :id, :name, :email, :phone, :address, :city, :region, :country, :postal_code, :deleted_at) end,
              contacts: -> { jbuilder { |json| json.array! @organization.contacts.order_by_name, :id, :name, :phone, :city, :deleted_at } },

@@ -29,15 +29,18 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
                 title: '名称',
                 dataIndex: 'name',
                 editProps: { required: true },
+                width: 80
                 // render: (value) => console.log(value)
               },
-              // { title: '邮箱', dataIndex: 'email', editProps: { required: true } },
+              { title: '邮箱', dataIndex: 'email', width: 80, editProps: { required: true } },
+              { title: '手机', dataIndex: 'phone', width: 80, editProps: { required: true } },
+              { title: '地址', dataIndex: 'address', width: 80, editProps: { required: true } },
             ],
             toolbarProps: {
               extra: (
                 <Button
                   type="primary"
-                  size="middle"
+                  size="small"
                   onClick={() => {
                     editState.value = { visible: true, detail: {} }
                   }}
@@ -47,13 +50,13 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               )
             },
             actionColumn: {
-              width: 20,
+              width: 60,
               title: '操作',
               render: (item) => (
                 <>
                   <Button
                     type="primary"
-                    size="middle"
+                    size="small"
                     onClick={() => {
                       editState.value = { visible: true, detail: item }
                     }}

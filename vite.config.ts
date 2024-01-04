@@ -47,7 +47,7 @@ export default defineConfig({
   server: {
     hmr: {
       host: "localhost",
-      usePolling: true,
+      overlay: true,
       clientPort: 443,
     },
   },

@@ -55,6 +55,8 @@ export default ({ visible, detail, onClose }) => {
     >
       {/* <EditFormItem.Hidden name="id" style={{ display: "hide" }} /> */}
       <EditFormItem.Text label="名称" name="name" required></EditFormItem.Text>
+      <EditFormItem.Text label="手机" name="phone" required></EditFormItem.Text>
+      <EditFormItem.Text label="地址" name="address" required></EditFormItem.Text>
     </EditForm.Drawer>
   );
 }

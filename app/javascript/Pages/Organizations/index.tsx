@@ -37,7 +37,7 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               extra: (
                 <Button
                   type="primary"
-                  size="small"
+                  size="middle"
                   onClick={() => {
                     editState.value = { visible: true, detail: {} }
                   }}
@@ -53,7 +53,7 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
                 <>
                   <Button
                     type="primary"
-                    size="small"
+                    size="middle"
                     onClick={() => {
                       editState.value = { visible: true, detail: item }
                     }}

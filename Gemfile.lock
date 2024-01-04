@@ -384,6 +384,8 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
     uniform_notifier (1.16.0)
+    vite_plugin_legacy (3.0.2)
+      vite_ruby (~> 3.0, >= 3.0.4)
     vite_rails (3.0.17)
       railties (>= 5.1, < 8)
       vite_ruby (~> 3.0, >= 3.2.2)
@@ -451,6 +453,7 @@ DEPENDENCIES
   spring
   types_from_serializers
   tzinfo-data
+  vite_plugin_legacy (~> 3.0, >= 3.0.2)
   vite_rails
   web-console
   webdrivers

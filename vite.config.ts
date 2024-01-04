@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import { brotliCompressSync } from "zlib";
 import gzipPlugin from "rollup-plugin-gzip";
 import tsconfigPaths from "vite-tsconfig-paths";
+import WindiCSS from 'vite-plugin-windicss';
 
 export default defineConfig({
   // esbuild: {
@@ -30,6 +31,12 @@ export default defineConfig({
     }),
     // Create gzip copies of relevant assets
     gzipPlugin(),
+    WindiCSS({
+      scan: {
+        fileExtensions: ['html', 'js', 'ts', 'jsx', 'tsx'],
+        dirs: ['app/views', 'app/javascript'], // or app/javascript, or app/packs
+      },
+    }),
     // viteCommonjs(),
     // Create brotli copies of relevant assets
     gzipPlugin({

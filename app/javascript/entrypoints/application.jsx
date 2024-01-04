@@ -13,6 +13,7 @@ import axios from "axios";
 import MainPanel from "@/Layouts/MainPanel";
 
 import { createInertiaApp } from "@inertiajs/react";
+import 'virtual:windi.css'
 // import '../utils/setupHoneybadger.ts';
 
 const pages = import.meta.globEagerDefault("../Pages/**/*.tsx");

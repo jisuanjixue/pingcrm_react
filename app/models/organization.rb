@@ -24,5 +24,9 @@ class Organization < ApplicationRecord
 
   include SoftDelete
 
-  scope :search, ->(query) { query.present? ? where("organizations.name ILIKE ?", "%#{query}%") : all }
+  def self.ransackable_attributes(auth_object = nil)
+    %w(name email phone address city region country postal_code created_at)
+  end
+
+  # scope :search, ->(query) { query.present? ? where("organizations.name ILIKE ?", "%#{query}%") : all }
 end

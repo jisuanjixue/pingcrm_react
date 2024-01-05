@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://gems.ruby-china.com/'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 3.3.0'
@@ -122,3 +122,5 @@ group :production do
   # Error reports you can be happy about. (https://github.com/honeybadger-io/honeybadger-ruby)
 
 end
+
+gem "ransack", "~> 4.1"

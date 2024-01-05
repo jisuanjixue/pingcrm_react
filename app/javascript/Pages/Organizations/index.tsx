@@ -1,15 +1,20 @@
-import React, { } from "react";
+import React, { useEffect, useRef } from "react";
 import type { IProps } from "@/data-types/dashboard";
 import { PageContainer } from "@ant-design/pro-components";
 import Table from "jet-pro/es/components/Table";
 import { router } from '@inertiajs/react'
 import * as Routes from "../../routes.js";
-import { Button, Divider, Popconfirm, message } from "antd";
-import { useSignal } from "@preact/signals-react";
-import EditForm from "./EditForm";
+import { Button, Card, Divider, Popconfirm, message, Form, Space, FormInstance, Flex } from "antd";
+import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
+import EditForms from "./EditForm";
+import { EditForm, EditFormItem } from "jet-pro";
 
 
 const Dashboard: React.FC = ({ organizations, total }: IProps) => {
+  const initialLoadSignal = useSignal(false);
+  const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })
+  const refForm = useRef<FormInstance>();
+  // const [form] = Form.useForm()
   const editState = useSignal<{
     visible?: boolean;
     detail?: any;
@@ -19,9 +24,72 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
     editState
   }
 
+  const convertToQueryParams = (obj) => {
+    console.log("🚀 ~ file: index.tsx:28 ~ convertToQueryParams ~ obj:", obj)
+    if (typeof obj !== 'undefined') {
+      let result = {};
+      for (let key in obj) {
+        if (!obj[key]) delete obj[key];
+        result[key + '_cont'] = obj[key];
+      }
+      return result;
+    }
+  }
+
+  useSignalEffect(() => {
+    if (initialLoadSignal.value) {
+      console.log(queryParams.value.filter)
+      router.get(Routes.organizations_path(), {
+        page: queryParams.value.page,
+        items: queryParams.value.items,
+        q: convertToQueryParams(queryParams.value.filter)
+      }, {
+        preserveState: true,
+        preserveScroll: true,
+        onFinish: () => {
+          initialLoadSignal.value = false
+        }
+      })
+    }
+  })
+
   return (
     <>
       <PageContainer>
+        <EditForm
+          {...{
+            refForm,
+            initDetail: async () => undefined,
+            footer: <div className="flex justify-end"></div>
+
+          }}
+        >
+          <Flex justify="space-between">
+            <Flex wrap="wrap" gap="middle" justify="flex-start" align="center">
+              <EditFormItem.Text name="name" label="名称"></EditFormItem.Text>
+              <EditFormItem.Text name="phone" label="手机"></EditFormItem.Text>
+            </Flex>
+            <Flex justify="flex-start" gap="small">
+              <Button
+                onClick={() => {
+                  batch(() => {
+                    queryParams.value.filter = undefined
+                    initialLoadSignal.value = true
+                  })
+                  refForm.current?.resetFields()
+                }}>重置</Button>
+              <Button
+                type="primary"
+                onClick={() => {
+                  batch(() => {
+                    initialLoadSignal.value = true
+                    queryParams.value.filter = refForm?.current?.getFieldsValue()
+                    queryParams.value.page = 1
+                  })
+                }}>查询</Button>
+            </Flex>
+          </Flex>
+        </EditForm>
         <Table.Pro
           {...{
             columns: [
@@ -29,7 +97,8 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
                 title: '名称',
                 dataIndex: 'name',
                 editProps: { required: true },
-                width: 80
+                width: 80,
+                sorter: (a, b) => a.name.length - b.name.length,
                 // render: (value) => console.log(value)
               },
               { title: '邮箱', dataIndex: 'email', width: 80, editProps: { required: true } },
@@ -82,6 +151,7 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
                 </>
               )
             },
+
             queryEffectUrl: false,
             dataSource: organizations.data,
             pagination: {
@@ -94,18 +164,20 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               hideOnSinglePage: true,
               showQuickJumper: true,
             },
-            onChange(pagination, filters, sorter, extra) {
-              router.get(Routes.organizations_path(), {
-                page: pagination.current,
-                items: pagination.pageSize
-              }, {
-                preserveState: true,
-                preserveScroll: true,
+            onChange(pagination) {
+              console.log("🚀 ~ file: index.tsx:166 ~ onChange ~ sorter:", pagination)
+              batch(() => {
+                initialLoadSignal.value = true
+                queryParams.value = {
+                  ...queryParams.value,
+                  page: pagination.current ?? 1,
+                  items: pagination.pageSize ?? 20
+                }
               })
             }
           }}
         />
-        <EditForm
+        <EditForms
           {...{
             ...editProps,
             visible: editState?.value.visible,

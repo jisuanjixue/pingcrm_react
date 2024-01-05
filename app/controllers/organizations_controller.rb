@@ -4,7 +4,10 @@ class OrganizationsController < ApplicationController
 
   def index
     begin
-      pagy, paged_organizations = pagy(@organizations.search(params[:search]).trash_filter(params[:trashed]).order(:name))
+      @q = Organization.ransack(params[:q])
+      @q.sorts = ['name asc', 'created_at desc'] if @q.sorts.empty?
+      @organizations = @q.result(distinct: true)
+      pagy, paged_organizations = pagy(@organizations)
     rescue Pagy::OverflowError
       pagy = Pagy.new(count: @organizations.count, page: params[:page], items: params[:items])
       paged_organizations = @organizations.offset(pagy.offset).limit(pagy.items)
@@ -17,7 +20,6 @@ class OrganizationsController < ApplicationController
                  json.data(paged_organizations)
                  json.meta pagy_metadata(pagy)
                end,
-             filters: params.slice(:search, :trashed),
              total: @organizations.count
            }
    end

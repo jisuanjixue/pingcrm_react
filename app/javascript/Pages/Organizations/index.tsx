@@ -8,6 +8,8 @@ import { Button, Card, Divider, Popconfirm, message, Form, Space, FormInstance, 
 import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
 import EditForms from "./EditForm";
 import { EditForm, EditFormItem } from "jet-pro";
+import { isType } from "@/utils/util.js";
+
 
 
 const Dashboard: React.FC = ({ organizations, total }: IProps) => {
@@ -175,8 +177,8 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               showQuickJumper: true,
             },
             onChange(pagination, filter, sorter) {
-              const sorterCol = sorter?.map(v => `${v.field} ${v.order === 'ascend' ? 'asc' : 'desc'}`)
-              console.log("🚀 ~ file: index.tsx:166 ~ onChange ~ sorter:", filter, sorter)
+              const newSorter = isType(sorter, 'array') ? sorter : [sorter]
+              const sorterCol = newSorter?.map(v => `${v.field} ${v.order === 'ascend' ? 'asc' : 'desc'}`)
               batch(() => {
                 initialLoadSignal.value = true
                 queryParams.value = {

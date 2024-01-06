@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import type { IProps } from "@/data-types/dashboard";
 import { PageContainer } from "@ant-design/pro-components";
 import Table from "jet-pro/es/components/Table";
@@ -14,7 +14,6 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
   const initialLoadSignal = useSignal(false);
   const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })
   const refForm = useRef<FormInstance>();
-  // const [form] = Form.useForm()
   const editState = useSignal<{
     visible?: boolean;
     detail?: any;
@@ -25,7 +24,6 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
   }
 
   const convertToQueryParams = (obj) => {
-    console.log("🚀 ~ file: index.tsx:28 ~ convertToQueryParams ~ obj:", obj)
     if (typeof obj !== 'undefined') {
       let result = {};
       for (let key in obj) {
@@ -42,7 +40,7 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
       router.get(Routes.organizations_path(), {
         page: queryParams.value.page,
         items: queryParams.value.items,
-        q: convertToQueryParams(queryParams.value.filter)
+        q: { ...convertToQueryParams(queryParams.value.filter), sorts: queryParams.value.sorter }
       }, {
         preserveState: true,
         preserveScroll: true,
@@ -100,11 +98,21 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
                 dataIndex: 'name',
                 editProps: { required: true },
                 width: 80,
-                sorter: (a, b) => a.name.length - b.name.length,
+                sorter: {
+                  compare: (a, b) => a.name.length - b.name.length,
+                  multiple: 2,
+                },
                 // render: (value) => console.log(value)
               },
               { title: '邮箱', dataIndex: 'email', width: 80, editProps: { required: true } },
-              { title: '手机', dataIndex: 'phone', width: 80, editProps: { required: true } },
+              {
+                title: '手机', dataIndex: 'phone', width: 80,
+                sorter: {
+                  compare: (a, b) => a?.phone?.length - b?.phone?.length,
+                  multiple: 1,
+                },
+                editProps: { required: true }
+              },
               { title: '地址', dataIndex: 'address', width: 80, editProps: { required: true } },
             ],
             toolbarProps: {
@@ -166,14 +174,16 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               hideOnSinglePage: true,
               showQuickJumper: true,
             },
-            onChange(pagination) {
-              console.log("🚀 ~ file: index.tsx:166 ~ onChange ~ sorter:", pagination)
+            onChange(pagination, filter, sorter) {
+              const sorterCol = sorter?.map(v => `${v.field} ${v.order === 'ascend' ? 'asc' : 'desc'}`)
+              console.log("🚀 ~ file: index.tsx:166 ~ onChange ~ sorter:", filter, sorter)
               batch(() => {
                 initialLoadSignal.value = true
                 queryParams.value = {
                   ...queryParams.value,
                   page: pagination.current ?? 1,
-                  items: pagination.pageSize ?? 20
+                  items: pagination.pageSize ?? 20,
+                  sorter: sorterCol
                 }
               })
             }

@@ -5,7 +5,6 @@ class OrganizationsController < ApplicationController
   def index
     begin
       @q = Organization.ransack(params[:q])
-      @q.sorts = ['name asc', 'created_at desc'] if @q.sorts.empty?
       @organizations = @q.result(distinct: true)
       pagy, paged_organizations = pagy(@organizations)
     rescue Pagy::OverflowError

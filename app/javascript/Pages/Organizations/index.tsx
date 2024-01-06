@@ -56,40 +56,42 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
   return (
     <>
       <PageContainer>
-        <EditForm
-          {...{
-            refForm,
-            initDetail: async () => undefined,
-            footer: <div className="flex justify-end"></div>
+        <div className="mb-8">
+          <EditForm
+            {...{
+              refForm,
+              initDetail: async () => undefined,
+              footer: <div className="flex justify-end"></div>
 
-          }}
-        >
-          <Flex justify="space-between">
-            <Flex wrap="wrap" gap="middle" justify="flex-start" align="center">
-              <EditFormItem.Text name="name" label="名称"></EditFormItem.Text>
-              <EditFormItem.Text name="phone" label="手机"></EditFormItem.Text>
+            }}
+          >
+            <Flex justify="space-between" align="center">
+              <Flex wrap="wrap" gap="middle" justify="flex-start" align="center">
+                <EditFormItem.Text name="name" label="名称"></EditFormItem.Text>
+                <EditFormItem.Text name="phone" label="手机"></EditFormItem.Text>
+              </Flex>
+              <Flex justify="flex-start" gap="small">
+                <Button
+                  onClick={() => {
+                    batch(() => {
+                      queryParams.value.filter = undefined
+                      initialLoadSignal.value = true
+                    })
+                    refForm.current?.resetFields()
+                  }}>重置</Button>
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    batch(() => {
+                      initialLoadSignal.value = true
+                      queryParams.value.filter = refForm?.current?.getFieldsValue()
+                      queryParams.value.page = 1
+                    })
+                  }}>查询</Button>
+              </Flex>
             </Flex>
-            <Flex justify="flex-start" gap="small">
-              <Button
-                onClick={() => {
-                  batch(() => {
-                    queryParams.value.filter = undefined
-                    initialLoadSignal.value = true
-                  })
-                  refForm.current?.resetFields()
-                }}>重置</Button>
-              <Button
-                type="primary"
-                onClick={() => {
-                  batch(() => {
-                    initialLoadSignal.value = true
-                    queryParams.value.filter = refForm?.current?.getFieldsValue()
-                    queryParams.value.page = 1
-                  })
-                }}>查询</Button>
-            </Flex>
-          </Flex>
-        </EditForm>
+          </EditForm>
+        </div>
         <Table.Pro
           {...{
             columns: [

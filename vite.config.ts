@@ -1,9 +1,10 @@
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import RubyPlugin from "vite-plugin-ruby";
 import FullReload from "vite-plugin-full-reload";
-import react from "@vitejs/plugin-react";
+import ViteReact from "@vitejs/plugin-react";
 import { brotliCompressSync } from "zlib";
 import gzipPlugin from "rollup-plugin-gzip";
+import ViteLegacy from '@vitejs/plugin-legacy'
 import tsconfigPaths from "vite-tsconfig-paths";
 import WindiCSS from 'vite-plugin-windicss';
 
@@ -26,15 +27,19 @@ export default defineConfig({
     RubyPlugin(),
     // babel(),
     FullReload(["config/routes.rb", "app/views/**/*", "app/serializers/**/*.rb"]),
-    react({
-      include: "**/*.tsx",
+    ViteReact({
+      include: [/\.tsx$/, /\.md$/],
+    }),
+    ViteLegacy({
+      targets: ['defaults', 'not IE 11'],
     }),
     // Create gzip copies of relevant assets
     gzipPlugin(),
     WindiCSS({
+      root: __dirname,
       scan: {
-        fileExtensions: ['html', 'js', 'ts', 'jsx', 'tsx'],
-        dirs: ['app/views', 'app/javascript'], // or app/javascript, or app/packs
+        fileExtensions: ['erb', 'html', 'jsx', 'tsx'], // and maybe haml
+        dirs: ['app/views', 'app/javascript'], // or app/javascript
       },
     }),
     // viteCommonjs(),

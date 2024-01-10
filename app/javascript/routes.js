@@ -595,6 +595,14 @@ export const new_contact_path = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],
 
 /**
  * Generates rails route to
+ * /organizations/new(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const new_organization_path = /*#__PURE__*/ __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"organizations"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
  * /users/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path

@@ -39,7 +39,7 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    if @organization.update(organization_params)
+    if @organization.create!(organization_params)
       redirect_to organizations_path, notice: "Organization created."
     else
       redirect_to organizations_path, inertia: { errors: @organization.errors }
@@ -47,7 +47,7 @@ class OrganizationsController < ApplicationController
   end
 
   def update
-    if @organization.update(organization_params)
+    if @organization.update!(organization_params)
       redirect_to organizations_path, notice: "Organization updated."
     else
       redirect_to organizations_path, inertia: { errors: @organization.errors }

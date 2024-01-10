@@ -164,7 +164,6 @@ const MainPanel: React.FC = props => {
                   href={item.path || '/'}
                   preserveState={false}
                   preserveScroll={true}
-                  only={["organizations"]}
                 >{
                     dom
                   }

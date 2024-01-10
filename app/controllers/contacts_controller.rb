@@ -3,23 +3,25 @@ class ContactsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    pagy, paged_contacts = pagy(
-      @contacts.
-        includes(:organization).
-        search(params[:search]).
-        trash_filter(params[:trashed]).
-        order_by_name
-    )
+      begin
+      @q = Contact.ransack(params[:q])
+      @contacts = @q.result(distinct: true)
+      pagy, paged_contacts = pagy(@contacts)
+    rescue Pagy::OverflowError
+      pagy = Pagy.new(count: @contacts.count, page: params[:page], items: params[:items])
+      paged_contacts = @contacts.offset(pagy.offset).limit(pagy.items)
+    end
 
-    render inertia: 'Contacts/Index', props: {
+    render inertia: 'Contacts/index', props: {
       contacts: jbuilder do |json|
-        json.data(paged_contacts) do |contact|
+        json.data(paged_contacts.includes(:organization)) do |contact|
           json.(contact, :id, :name, :phone, :city, :deleted_at)
           json.organization(contact.organization, :name) if contact.organization
         end
         json.meta pagy_metadata(pagy)
       end,
-      filters: params.slice(:search, :trashed)
+
+      total: @contacts.count
     }
   end
 
@@ -55,8 +57,8 @@ class ContactsController < ApplicationController
   end
 
   def update
-    if @contact.update(contact_params)
-      redirect_to edit_contact_path(@contact), notice: 'Contact updated.'
+    if @contact.update!(contact_params)
+      redirect_to contacts_path, notice: 'Contact updated.'
     else
       redirect_to edit_contact_path(@contact), inertia: { errors: @contact.errors }
     end

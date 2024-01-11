@@ -1,5 +1,5 @@
 import React from "react";
-import { Head } from "@inertiajs/react";
+// import { Head } from "@inertiajs/react";
 // import * as timeago from "timeago.js";
 import type { IProps } from "@/data-types/dashboard";
 import { PageContainer } from "@ant-design/pro-components";
@@ -11,23 +11,26 @@ import { useSignal, useSignalEffect } from "@preact/signals-react";
 
 const Index: React.FC = ({ contacts, total }: IProps) => {
   const initialLoadSignal = useSignal(false);
+  const queryParams = useSignal({ page: 1, pageSize: 20, filters: [], sorts: [] })
+  const convertToQueryParams = (arr) => {
+    if (arr.length > 0) {
+      let result = {};
+      for (let key in arr) {
+        if (!arr[key]) delete arr[key];
+        result[key + '_cont'] = arr[key];
+      }
+      return result;
+    }
+  }
 
   console.log("🚀 ~ file: index.tsx:12 ~ organizations:", contacts)
-  // const query = async (params) => {
-  //   const response = await router.get(Routes.organizations_path(Object.keys(params).length ? params : { remember: "forget" }), {
-  //     preserveState: true,
-  //     preserveScroll: true,
-  //     replace: false,
-  //     only: ["organizations"],
-  //   });
-
-  //   // Assuming the response data is in the format expected by IResponseListDataWithTotal<TBaseView>
-  //   return { data: organizations.data, total: 10 };
-  // };
 
   useSignalEffect(() => {
     if (initialLoadSignal.value) {
-      router.get(Routes.organizations_path(), {
+      router.get(Routes.contacts_path(), {
+        page: queryParams.value.page,
+        items: queryParams.value.pageSize,
+        q: { ...convertToQueryParams(queryParams.value.filters), sorts: queryParams.value.sorts }
       }, {
         preserveState: true,
         preserveScroll: true,
@@ -53,34 +56,34 @@ const Index: React.FC = ({ contacts, total }: IProps) => {
               },
               // { title: '邮箱', dataIndex: 'email', editProps: { required: true } },
             ],
+            queryEffectUrl: false,
             queryRequest: (params) => {
-              console.log("🚀 ~ file: index.tsx:1 ~ params:", params)
+              queryParams.value = { ...params }
               return { data: contacts.data, total: total, success: true }
             },
             detailRequest: (id) => {
               return { data: contacts.data.find(f => f.id === id), success: true }
             },
+            pagination: {
+              onChange: () => {
+                initialLoadSignal.value = true
+              },
+            },
             saveRequest: (values) => {
               if (values.id) {
                 router.patch(Routes.contact_path(values.id), values, {
-                  // onSuccess: () => {
-                  //   router.reload()
-                  // },
                   only: ['contacts']
                 })
               } else {
                 router.post(Routes.contacts_path(), values, {
-                  // onSuccess: () => {
-                  //   router.reload()
-                  // },
                   only: ['contacts']
                 })
               }
               return { success: true }
             },
-            deleteRequest: async (id) => {
-              router.delete(Routes.organization_path(id))
-              await { success: true }
+            deleteRequest: (id) => {
+              router.delete(Routes.contact_path(id))
+              return { success: true }
             },
           }}
         />

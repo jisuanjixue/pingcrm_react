@@ -10,8 +10,6 @@ import EditForms from "./EditForm";
 import { EditForm, EditFormItem } from "jet-pro";
 import { isType } from "@/utils/util.js";
 
-
-
 const Dashboard: React.FC = ({ organizations, total }: IProps) => {
   const initialLoadSignal = useSignal(false);
   const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })

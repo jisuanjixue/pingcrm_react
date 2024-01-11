@@ -28,18 +28,23 @@ class Contact < ApplicationRecord
 
   scope :order_by_name, -> { order(:last_name, :first_name) }
 
-  scope :search, ->(query) do
-    if query.present?
-      left_joins(:organization).
-        where("contacts.first_name ILIKE :query OR
-               contacts.last_name  ILIKE :query OR
-               contacts.email      ILIKE :query OR
-               organizations.name  ILIKE :query",
-              query: "%#{query}%")
-    else
-      all
-    end
+  def self.ransackable_attributes(auth_object = nil)
+    %w(name email phone address city region country postal_code created_at)
   end
+
+
+  # scope :search, ->(query) do
+  #   if query.present?
+  #     left_joins(:organization).
+  #       where("contacts.first_name ILIKE :query OR
+  #              contacts.last_name  ILIKE :query OR
+  #              contacts.email      ILIKE :query OR
+  #              organizations.name  ILIKE :query",
+  #             query: "%#{query}%")
+  #   else
+  #     all
+  #   end
+  # end
 
   def name
     "#{last_name}, #{first_name}"

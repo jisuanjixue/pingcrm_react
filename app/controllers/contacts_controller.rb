@@ -67,12 +67,12 @@ class ContactsController < ApplicationController
   def destroy
     if @contact.soft_delete
       if can? :edit, @contact
-        redirect_to edit_contact_path(@contact), notice: 'Contact deleted.'
+        redirect_to contacts_path, notice: 'Contact deleted.'
       else
         redirect_to contacts_path, notice: 'Contact deleted.'
       end
     else
-      redirect_to edit_contact_path(@contact), alert: 'Contact cannot be deleted!'
+      redirect_to contacts_path, alert: 'Contact cannot be deleted!'
     end
   end
 

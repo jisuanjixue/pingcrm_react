@@ -4,7 +4,7 @@ import { PageContainer } from "@ant-design/pro-components";
 import Table from "jet-pro/es/components/Table";
 import { router } from '@inertiajs/react'
 import * as Routes from "../../routes.js";
-import { Button, Card, Divider, Popconfirm, message, Form, Space, FormInstance, Flex } from "antd";
+import { Button, Divider, Popconfirm, message, FormInstance, Flex } from "antd";
 import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
 import EditForms from "./EditForm";
 import { EditForm, EditFormItem } from "jet-pro";
@@ -174,7 +174,7 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
               hideOnSinglePage: true,
               showQuickJumper: true,
             },
-            onChange(pagination, filter, sorter) {
+            onChange(pagination, _, sorter) {
               const newSorter = isType(sorter, 'array') ? sorter : [sorter]
               const sorterCol = newSorter?.map(v => `${v.field} ${v.order === 'ascend' ? 'asc' : 'desc'}`)
               batch(() => {

@@ -15,7 +15,7 @@ class ContactsController < ApplicationController
     render inertia: 'Contacts/index', props: {
       contacts: jbuilder do |json|
         json.data(paged_contacts.includes(:organization)) do |contact|
-          json.(contact, :id, :name, :phone, :city, :deleted_at)
+          json.(contact, :id, :first_name, :last_name, :name, :phone, :city, :deleted_at)
           json.organization(contact.organization, :name) if contact.organization
         end
         json.meta pagy_metadata(pagy)

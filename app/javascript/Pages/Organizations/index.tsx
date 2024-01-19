@@ -12,6 +12,7 @@ import type { Organization } from '../../types/serializers'
 
 const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Organization, meta: any, total: number }) => {
   const initialLoadSignal = useSignal(false);
+  const selectedRowKeys = useSignal<React.Key[]>([])
   const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })
   const refForm = useRef<FormInstance>();
   const editState = useSignal<{
@@ -50,6 +51,16 @@ const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Or
       })
     }
   })
+
+  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+    console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+    selectedRowKeys.value = newSelectedRowKeys
+  };
+
+  const rowSelection = {
+    selectedRowKeys: selectedRowKeys.value,
+    onChange: onSelectChange,
+  };
 
   return (
     <>
@@ -128,6 +139,7 @@ const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Or
                 </Button>
               )
             },
+            rowSelection: { rowSelection },
             actionColumn: {
               width: 60,
               title: '操作',

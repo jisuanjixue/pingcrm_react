@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import type { IProps } from "@/data-types/dashboard";
 import { PageContainer } from "@ant-design/pro-components";
 import Table from "jet-pro/es/components/Table";
 import { router } from '@inertiajs/react'
@@ -9,8 +8,9 @@ import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
 import EditForms from "./EditForm";
 import { EditForm, EditFormItem } from "jet-pro";
 import { isType } from "@/utils/util.js";
+import type { Organization } from '../../types/serializers'
 
-const Dashboard: React.FC = ({ organizations, total }: IProps) => {
+const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Organization, meta: any, total: number }) => {
   const initialLoadSignal = useSignal(false);
   const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })
   const refForm = useRef<FormInstance>();
@@ -163,11 +163,11 @@ const Dashboard: React.FC = ({ organizations, total }: IProps) => {
             },
 
             queryEffectUrl: false,
-            dataSource: organizations.data,
+            dataSource: organizations,
             pagination: {
-              pageSize: organizations.meta.items,
+              pageSize: meta.items,
               total: total,
-              current: organizations.meta.page,
+              current: meta.page,
               showTotal: (total) => `总 ${total} 条`,
               defaultPageSize: 20,
               defaultCurrent: 1,

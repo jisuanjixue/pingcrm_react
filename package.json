@@ -51,7 +51,7 @@
     "typescript": "^4.7.4",
     "vite": "^4.0.0",
     "vite-plugin-babel": "^1.1.2",
-    "vite-plugin-full-reload": "^1.0.3",
+    "vite-plugin-full-reload": "^1.1.0",
     "vite-plugin-ruby": "^5.0.0",
     "vite-plugin-windicss": "^1.9.3",
     "vite-tsconfig-paths": "^3.5.1",

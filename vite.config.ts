@@ -26,7 +26,7 @@ export default defineConfig({
     tsconfigPaths(),
     RubyPlugin(),
     // babel(),
-    FullReload(["config/routes.rb", "app/views/**/*", "app/serializers/**/*.rb"]),
+    FullReload(["config/routes.rb", "app/views/**/*", "app/serializers/**/*.rb"], { delay: 200 }),
     ViteReact({
       include: [/\.tsx$/, /\.md$/],
     }),

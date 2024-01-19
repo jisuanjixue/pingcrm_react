@@ -15,10 +15,12 @@ class OrganizationsController < ApplicationController
     render inertia: "Organizations/index",
            props: {
              organizations:
-               jbuilder do |json|
-                 json.data(paged_organizations)
-                 json.meta pagy_metadata(pagy)
-               end,
+             OrganizationSerializer.many(paged_organizations),
+             meta: pagy_metadata(pagy),
+              #  jbuilder do |json|
+              #    json.data(paged_organizations)
+              #    json.meta pagy_metadata(pagy)
+              #  end,
              total: @organizations.count
            }
    end

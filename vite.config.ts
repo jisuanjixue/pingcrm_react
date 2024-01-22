@@ -31,7 +31,6 @@ export default defineConfig({
       DEBUG: 'false',
 
       // Required: will fail if the API_KEY environment variable is not provided.
-      API_KEY: undefined,
 
       // Optional: will not fail if the APP_VERSION environment variable is missing.
       APP_VERSION: null,

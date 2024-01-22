@@ -41,12 +41,12 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    if @organization.create!(organization_params)
-      redirect_to organizations_path, notice: "Organization created."
+    if @organization.update(organization_params)
+      redirect_to organizations_path, notice: 'Organization created.'
     else
       redirect_to organizations_path, inertia: { errors: @organization.errors }
     end
-  end
+   end
 
   def update
     if @organization.update!(organization_params)
@@ -57,7 +57,7 @@ class OrganizationsController < ApplicationController
   end
 
   def destroy
-    if @organization.soft_delete
+    if @organization.destroy
       if can? :edit, @organization
         redirect_to organizations_path, notice: "Organization deleted."
       else

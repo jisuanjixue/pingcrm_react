@@ -37,7 +37,7 @@ const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Or
 
   useSignalEffect(() => {
     if (initialLoadSignal.value) {
-      console.log(queryParams.value.filter)
+      console.log(queryParams.value)
       router.get(Routes.organizations_path(), {
         page: queryParams.value.page,
         items: queryParams.value.items,

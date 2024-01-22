@@ -26,13 +26,13 @@ export default ({ visible, detail, onClose }) => {
       visible={visible}
       onClose={onClose}
       initDetail={initDetail}
-      onSubmit={async (data) => {
-        console.log("🚀 ~ file: EditForm.tsx:29 ~ onSubmit={ ~ data:", data)
+      onSubmit={(data) => {
         if (detail.id) {
           router.patch(Routes.organization_path(detail.id), data, {
             only: ["organizations"],
-            onSuccess: (page) => {
+            onSuccess: () => {
               onClose()
+              router.reload()
             },
             onError: (errors) => {
               message.error(errors.content)
@@ -40,9 +40,9 @@ export default ({ visible, detail, onClose }) => {
           })
         } else {
 
-          router.post(Routes.organizations_path(data), data, {
+          router.post(Routes.organizations_path(), data, {
             only: ["organizations"],
-            onSuccess: (page) => {
+            onSuccess: () => {
               onClose()
             },
             onError: (errors) => {

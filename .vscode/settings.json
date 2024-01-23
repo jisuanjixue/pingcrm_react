@@ -31,5 +31,11 @@
   },
 
   "eslint.validate": ["javascript", "react"],
-  "cSpell.words": ["Cheveron"]
+  "cSpell.words": ["Cheveron"],
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }

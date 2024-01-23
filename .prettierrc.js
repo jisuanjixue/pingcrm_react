@@ -1,4 +1,10 @@
 module.exports = {
+  rubyPlugins: "plugin/single_quotes,plugin/trailing_comma",
+  plugins: [
+    "@prettier/plugin-ruby",
+    "prettier-plugin-react",
+    "prettier-plugin-tailwindcss"
+  ],
   trailingComma: "es5",
   arrowParens: "avoid",
   printWidth: 200,

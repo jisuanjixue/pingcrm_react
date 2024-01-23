@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "esNext",
     "types": ["vite/client", "cypress", "node"],
-    "module": "esnext",
+    "module": "esNext",
     "isolatedModules": true,
     "useDefineForClassFields": true,
     "removeComments": true,
@@ -24,6 +24,7 @@
     "lib": ["WebWorker", "DOM"],
     "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types", "global.d.ts"],
+    "verbatimModuleSyntax": false,
     "paths": {
       "@/*": ["app/javascript/*"],
       "@components": ["app/javascript/components/*"],
@@ -31,6 +32,7 @@
       "@data-types": ["app/javascript/data-types/*"]
     }
   },
-  "exclude": ["node_modules"],
+  "include": [ "app/javascript/**/*" ],
+  "exclude": ["node_modules", "public"],
   "compileOnSave": false
 }

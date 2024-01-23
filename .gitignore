@@ -25,6 +25,9 @@
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
 
 /public/assets
 
@@ -47,3 +50,6 @@ yarn-debug.log*
 /public/vite
 /public/vite-dev
 /public/vite-test
+
+/app/javascript/routes.js
+/app/javascript/routes.d.ts

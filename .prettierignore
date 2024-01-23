@@ -1,4 +1,5 @@
-/app/javascript/utils/routes.js
+app/javascript/routes.d.ts
+app/javascript/routes.js
 db/schema.rb
 tsconfig.json
 public/*

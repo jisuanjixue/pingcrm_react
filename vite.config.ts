@@ -7,6 +7,7 @@ import gzipPlugin from "rollup-plugin-gzip";
 import ViteLegacy from '@vitejs/plugin-legacy'
 import tsconfigPaths from "vite-tsconfig-paths";
 import WindiCSS from 'vite-plugin-windicss';
+import { fileURLToPath, URL } from 'url';
 import EnvironmentPlugin from "vite-plugin-environment";
 
 export default defineConfig({
@@ -18,6 +19,9 @@ export default defineConfig({
   },
   resolve: {
     dedupe: ["axios"],
+    alias: {
+      '@': fileURLToPath(new URL('./app/javascript', import.meta.url)),
+    },
   },
   optimizeDeps: {
     include: ["@inertiajs/inertia"],

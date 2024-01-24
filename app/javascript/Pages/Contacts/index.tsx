@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 // import { Head } from "@inertiajs/react";
 // import * as timeago from "timeago.js";
-import type { IProps } from "@/data-types/dashboard";
 import { PageContainer } from "@ant-design/pro-components";
 import Table from "jet-pro/es/components/Table";
 import { router } from '@inertiajs/react'
@@ -9,7 +8,7 @@ import * as Routes from "../../routes.js";
 import { useSignal, useSignalEffect } from "@preact/signals-react";
 
 
-const Index: React.FC = ({ contacts, total }: IProps) => {
+const Index: React.FC = ({ contacts, total }) => {
   // const refTableAction = useRef()
   const initialLoadSignal = useSignal(false);
   const defaultData = useSignal(contacts.data);

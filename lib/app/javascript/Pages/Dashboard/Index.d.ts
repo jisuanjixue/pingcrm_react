@@ -1,4 +1,3 @@
 /// <reference types="react" />
-import type { IProps } from "@/data-types/dashboard";
-declare const Dashboard: ({ git }: IProps) => JSX.Element;
+declare const Dashboard: ({ git }) => JSX.Element;
 export default Dashboard;

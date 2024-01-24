@@ -7,10 +7,11 @@ import { Button, Divider, Popconfirm, message, FormInstance, Flex } from "antd";
 import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
 import EditForms from "./EditForm";
 import { EditForm, EditFormItem } from "jet-pro";
+import { formatDateTime } from 'jet-pro/es/utils/dateUtils';
 import { isType } from "@/utils/util.js";
 import type { Organization } from '../../types/serializers'
 
-const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Organization, meta: any, total: number }) => {
+const Index: React.FC = ({ organizations, meta, total }: { organizations: Organization, meta: any, total: number }) => {
   const initialLoadSignal = useSignal(false);
   const selectedRowKeys = useSignal<React.Key[]>([])
   const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })
@@ -21,7 +22,7 @@ const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Or
   }>({})
 
   const editProps = {
-    editState
+    initialLoadSignal
   }
 
   const convertToQueryParams = (obj) => {
@@ -35,7 +36,9 @@ const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Or
     }
   }
 
+
   useSignalEffect(() => {
+
     if (initialLoadSignal.value) {
       console.log(queryParams.value)
       router.get(Routes.organizations_path(), {
@@ -45,7 +48,12 @@ const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Or
       }, {
         preserveState: true,
         preserveScroll: true,
-        onFinish: () => {
+        onBefore: visit => {
+          // console.log("🚀 ~ router.get ~ response:", visit)
+
+        },
+        onFinish: (response) => {
+          console.log("🚀 ~ router.get ~ response:", response)
           initialLoadSignal.value = false
         }
       })
@@ -125,6 +133,13 @@ const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Or
                 editProps: { required: true }
               },
               { title: '地址', dataIndex: 'address', width: 80, editProps: { required: true } },
+              {
+                title: '创建时间',
+                dataIndex: 'created_at',
+                width: 80,
+                hideEdit: true,
+                render: (val) => formatDateTime(val, "YYYY-MM-DD HH:mm:ss")
+              },
             ],
             toolbarProps: {
               extra: (
@@ -214,5 +229,5 @@ const Dashboard: React.FC = ({ organizations, meta, total }: { organizations: Or
   );
 };
 
-export default Dashboard;
+export default Index;
 

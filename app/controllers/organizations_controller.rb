@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
   def index
     begin
       @q = Organization.ransack(params[:q])
-      @organizations = @q.result(distinct: true)
+      @organizations = @q.result(distinct: true).order(created_at: :desc)
       pagy, paged_organizations = pagy(@organizations)
     rescue Pagy::OverflowError
       pagy = Pagy.new(count: @organizations.count, page: params[:page], items: params[:items])

@@ -5,8 +5,7 @@ import { Button, message } from "antd";
 import { EditForm, EditFormItem } from "jet-pro";
 
 
-export default ({ visible, detail, onClose }) => {
-  console.log("🚀 ~ file: EditForm.tsx:9 ~ detail:", detail)
+export default ({ visible, detail, onClose, initialLoadSignal }) => {
   const initDetail = async () => {
     let initData: any | undefined;
     if (detail?.id) {
@@ -32,7 +31,7 @@ export default ({ visible, detail, onClose }) => {
             only: ["organizations"],
             onSuccess: () => {
               onClose()
-              router.reload()
+              initialLoadSignal.value = true
             },
             onError: (errors) => {
               message.error(errors.content)
@@ -56,6 +55,7 @@ export default ({ visible, detail, onClose }) => {
       {/* <EditFormItem.Hidden name="id" style={{ display: "hide" }} /> */}
       <EditFormItem.Text label="名称" name="name" required></EditFormItem.Text>
       <EditFormItem.Text label="手机" name="phone" required></EditFormItem.Text>
+      <EditFormItem.Text label="邮箱" name="email"></EditFormItem.Text>
       <EditFormItem.Text label="地址" name="address" required></EditFormItem.Text>
     </EditForm.Drawer>
   );

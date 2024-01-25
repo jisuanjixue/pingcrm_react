@@ -3,20 +3,30 @@
 # Table name: contacts
 #
 #  id              :bigint           not null, primary key
-#  account_id      :bigint           not null
-#  organization_id :bigint
-#  first_name      :string           not null
-#  last_name       :string           not null
-#  email           :string
-#  phone           :string
 #  address         :string
 #  city            :string
-#  region          :string
 #  country         :string
-#  postal_code     :string
 #  deleted_at      :datetime
+#  email           :string
+#  first_name      :string           not null
+#  last_name       :string           not null
+#  phone           :string
+#  postal_code     :string
+#  region          :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  account_id      :bigint           not null
+#  organization_id :bigint
+#
+# Indexes
+#
+#  index_contacts_on_account_id       (account_id)
+#  index_contacts_on_organization_id  (organization_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (account_id => accounts.id)
+#  fk_rails_...  (organization_id => organizations.id)
 #
 require 'faker'
 

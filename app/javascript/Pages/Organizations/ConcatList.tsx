@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { PageContainer } from "@ant-design/pro-components";
 import Table from "jet-pro/es/components/Table";
@@ -5,78 +6,78 @@ import { router } from '@inertiajs/react'
 import * as Routes from "../../routes.js";
 import { Button, Divider, Popconfirm, message, FormInstance, Flex } from "antd";
 import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
-import EditForms from "./EditForm";
-import { EditForm, EditFormItem } from "jet-pro";
+// import EditForms from "./EditForm";
+// import { EditForm, EditFormItem } from "jet-pro";
 import { formatDateTime } from 'jet-pro/es/utils/dateUtils';
 import { isType } from "@/utils/util.js";
-import type { Organization } from '../../types/serializers'
+// import type { Organization } from '../../types/serializers'
 
-const Index: React.FC = ({ organizations, meta, total }: { organizations: Organization, meta: any, total: number }) => {
+const Index: React.FC = ({ contacts }: { contacts: any }) => {
   const initialLoadSignal = useSignal(false);
-  const selectedRowKeys = useSignal<React.Key[]>([])
-  const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })
-  const refForm = useRef<FormInstance>();
-  const editState = useSignal<{
-    visible?: boolean;
-    detail?: any;
-  }>({})
+  // const selectedRowKeys = useSignal<React.Key[]>([])
+  // const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })
+  // const refForm = useRef<FormInstance>();
+  // const editState = useSignal<{
+  //   visible?: boolean;
+  //   detail?: any;
+  // }>({})
 
-  const editProps = {
-    initialLoadSignal
-  }
+  // const editProps = {
+  //   initialLoadSignal
+  // }
 
-  const convertToQueryParams = (obj) => {
-    if (typeof obj !== 'undefined') {
-      let result = {};
-      for (let key in obj) {
-        if (!obj[key]) delete obj[key];
-        result[key + '_cont'] = obj[key];
-      }
-      return result;
-    }
-  }
+  // const convertToQueryParams = (obj) => {
+  //   if (typeof obj !== 'undefined') {
+  //     let result = {};
+  //     for (let key in obj) {
+  //       if (!obj[key]) delete obj[key];
+  //       result[key + '_cont'] = obj[key];
+  //     }
+  //     return result;
+  //   }
+  // }
 
 
   useSignalEffect(() => {
 
-    if (initialLoadSignal.value) {
-      console.log(queryParams.value)
-      router.get(Routes.organizations_path(), {
-        page: queryParams.value.page,
-        items: queryParams.value.items,
-        q: { ...convertToQueryParams(queryParams.value.filter), sorts: queryParams.value.sorter }
-      }, {
-        preserveState: true,
-        preserveScroll: true,
-        onBefore: visit => {
-          // console.log("🚀 ~ router.get ~ response:", visit)
+    // if (initialLoadSignal.value) {
+    //   console.log(queryParams.value)
+    //   router.get(Routes.organizations_path(), {
+    //     page: queryParams.value.page,
+    //     items: queryParams.value.items,
+    //     q: { ...convertToQueryParams(queryParams.value.filter), sorts: queryParams.value.sorter }
+    //   }, {
+    //     preserveState: true,
+    //     preserveScroll: true,
+    //     onBefore: visit => {
+    //       // console.log("🚀 ~ router.get ~ response:", visit)
 
-        },
-        onFinish: (response) => {
-          console.log("🚀 ~ router.get ~ response:", response)
-          initialLoadSignal.value = false
-        }
-      })
-    }
+    //     },
+    //     onFinish: (response) => {
+    //       console.log("🚀 ~ router.get ~ response:", response)
+    //       initialLoadSignal.value = false
+    //     }
+    //   })
+    // }
   })
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-    selectedRowKeys.value = newSelectedRowKeys
-  };
+  // const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+  //   console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+  //   selectedRowKeys.value = newSelectedRowKeys
+  // };
 
-  const rowSelection = {
-    selectedRowKeys: selectedRowKeys.value,
-    onChange: onSelectChange,
-  };
+  // const rowSelection = {
+  //   selectedRowKeys: selectedRowKeys.value,
+  //   onChange: onSelectChange,
+  // };
 
   return (
     <>
       <PageContainer>
         <div className="mb-8">
-          <EditForm
+          {/* <EditForm
             {...{
-              refForm,
+              // refForm,
               initDetail: async () => undefined,
               footer: <div className="flex justify-end"></div>
 
@@ -107,7 +108,7 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
                   }}>查询</Button>
               </Flex>
             </Flex>
-          </EditForm>
+          </EditForm> */}
         </div>
         <Table.Pro
           {...{
@@ -146,15 +147,15 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
                 <Button
                   type="primary"
                   size="small"
-                  onClick={() => {
-                    editState.value = { visible: true, detail: {} }
-                  }}
+                // onClick={() => {
+                //   editState.value = { visible: true, detail: {} }
+                // }}
                 >
                   新增
                 </Button>
               )
             },
-            rowSelection: { rowSelection },
+            // rowSelection: { rowSelection },
             actionColumn: {
               width: 100,
               title: '操作',
@@ -166,9 +167,9 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
                   <Button
                     type="primary"
                     size="small"
-                    onClick={() => {
-                      editState.value = { visible: true, detail: item }
-                    }}
+                  // onClick={() => {
+                  //   editState.value = { visible: true, detail: item }
+                  // }}
                   >
                     修改
                   </Button>
@@ -193,11 +194,11 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
             },
 
             queryEffectUrl: false,
-            dataSource: organizations,
+            dataSource: contacts.lists,
             pagination: {
-              pageSize: meta.items,
-              total: total,
-              current: meta.page,
+              pageSize: contacts.meta.items,
+              total: contacts.total,
+              current: contacts.meta.page,
               showTotal: (total) => `总 ${total} 条`,
               defaultPageSize: 20,
               defaultCurrent: 1,
@@ -207,26 +208,26 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
             onChange(pagination, _, sorter) {
               const newSorter = isType(sorter, 'array') ? sorter : [sorter]
               const sorterCol = newSorter?.map(v => `${v.field} ${v.order === 'ascend' ? 'asc' : 'desc'}`)
-              batch(() => {
-                initialLoadSignal.value = true
-                queryParams.value = {
-                  ...queryParams.value,
-                  page: pagination.current ?? 1,
-                  items: pagination.pageSize ?? 20,
-                  sorter: sorterCol
-                }
-              })
+              // batch(() => {
+              //   initialLoadSignal.value = true
+              //   queryParams.value = {
+              //     ...queryParams.value,
+              //     page: pagination.current ?? 1,
+              //     items: pagination.pageSize ?? 20,
+              //     sorter: sorterCol
+              //   }
+              // })
             }
           }}
         />
-        <EditForms
+        {/* <EditForms
           {...{
             ...editProps,
             visible: editState?.value.visible,
             detail: editState?.value.detail,
             onClose: () => editState.value = { visible: false, detail: undefined },
           }}
-        />
+        /> */}
       </PageContainer>
     </>
   );

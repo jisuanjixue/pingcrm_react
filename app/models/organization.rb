@@ -3,18 +3,26 @@
 # Table name: organizations
 #
 #  id          :bigint           not null, primary key
-#  account_id  :bigint           not null
-#  name        :string           not null
-#  email       :string
-#  phone       :string
 #  address     :string
 #  city        :string
-#  region      :string
 #  country     :string
-#  postal_code :string
 #  deleted_at  :datetime
+#  email       :string
+#  name        :string           not null
+#  phone       :string
+#  postal_code :string
+#  region      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  account_id  :bigint           not null
+#
+# Indexes
+#
+#  index_organizations_on_account_id  (account_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (account_id => accounts.id)
 #
 class Organization < ApplicationRecord
   belongs_to :account

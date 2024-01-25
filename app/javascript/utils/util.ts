@@ -28,6 +28,17 @@ export const isType = <T>(data: T, type: string) => {
   return typeName === type; // 判断该数据类型是否为传入的类型
 };
 
+export const convertToQueryParams = <T>(arr: T[] | undefined) => {
+  if (!isType(arr, 'undefined')) {
+    let result = {};
+    for (let key in arr) {
+      if (!arr[key]) delete arr[key];
+      result[key + '_cont'] = arr[key];
+    }
+    return result;
+  }
+}
+
 // Dynamic exclusion attribute
 export const removeProperty =
   (prop: any) =>

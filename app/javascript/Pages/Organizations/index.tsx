@@ -1,4 +1,16 @@
-import React, { useRef } from "react";
+/**
+ * React functional component for rendering the index page.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Organization} props.organizations - The organizations data.
+ * @param {Object} props.meta - The meta data.
+ * @param {number} props.total - The total number of organizations.
+ * @returns {JSX.Element} - The rendered component.
+ */
+
+import React, { useCallback, useMemo, useRef } from "react";
+import type { Organization } from '../../types/serializers';
 import { PageContainer } from "@ant-design/pro-components";
 import Table from "jet-pro/es/components/Table";
 import { router } from '@inertiajs/react'
@@ -8,10 +20,9 @@ import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
 import EditForms from "./EditForm";
 import { EditForm, EditFormItem } from "jet-pro";
 import { formatDateTime } from 'jet-pro/es/utils/dateUtils';
-import { isType } from "@/utils/util.js";
-import type { Organization } from '../../types/serializers'
+import { isType, convertToQueryParams } from "@/utils/util.js";
 
-const Index: React.FC = ({ organizations, meta, total }: { organizations: Organization, meta: any, total: number }) => {
+const Index = ({ organizations, meta, total }: { organizations: Organization, meta: any, total: number }) => {
   const initialLoadSignal = useSignal(false);
   const selectedRowKeys = useSignal<React.Key[]>([])
   const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })
@@ -21,54 +32,41 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
     detail?: any;
   }>({})
 
-  const editProps = {
+  const editProps = useMemo(() => ({
     initialLoadSignal
-  }
+  }), [initialLoadSignal]);
 
-  const convertToQueryParams = (obj) => {
-    if (typeof obj !== 'undefined') {
-      let result = {};
-      for (let key in obj) {
-        if (!obj[key]) delete obj[key];
-        result[key + '_cont'] = obj[key];
+  const refresh = () => {
+    router.get(Routes.organizations_path(), {
+      page: queryParams.value.page,
+      items: queryParams.value.items,
+      q: { ...convertToQueryParams(queryParams.value.filter), sorts: queryParams.value.sorter }
+    }, {
+      preserveState: true,
+      preserveScroll: true,
+      onFinish: (response) => {
+        console.log("🚀 ~ router.get ~ response:", response)
+        initialLoadSignal.value = false
       }
-      return result;
-    }
+    })
   }
 
 
   useSignalEffect(() => {
-
     if (initialLoadSignal.value) {
-      console.log(queryParams.value)
-      router.get(Routes.organizations_path(), {
-        page: queryParams.value.page,
-        items: queryParams.value.items,
-        q: { ...convertToQueryParams(queryParams.value.filter), sorts: queryParams.value.sorter }
-      }, {
-        preserveState: true,
-        preserveScroll: true,
-        onBefore: visit => {
-          // console.log("🚀 ~ router.get ~ response:", visit)
-
-        },
-        onFinish: (response) => {
-          console.log("🚀 ~ router.get ~ response:", response)
-          initialLoadSignal.value = false
-        }
-      })
+      refresh()
     }
   })
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+  const onSelectChange = useCallback((newSelectedRowKeys: React.Key[]) => {
     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
     selectedRowKeys.value = newSelectedRowKeys
-  };
+  }, [selectedRowKeys.value])
 
-  const rowSelection = {
+  const rowSelection = useMemo(() => ({
     selectedRowKeys: selectedRowKeys.value,
     onChange: onSelectChange,
-  };
+  }), [selectedRowKeys.value]);
 
   return (
     <>
@@ -79,7 +77,6 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
               refForm,
               initDetail: async () => undefined,
               footer: <div className="flex justify-end"></div>
-
             }}
           >
             <Flex justify="space-between" align="center">
@@ -121,7 +118,6 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
                   compare: (a, b) => a.name.length - b.name.length,
                   multiple: 2,
                 },
-                // render: (value) => console.log(value)
               },
               { title: '邮箱', dataIndex: 'email', width: 80, editProps: { required: true } },
               {
@@ -142,6 +138,9 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
               },
             ],
             toolbarProps: {
+              onLoad: () => {
+                refresh()
+              },
               extra: (
                 <Button
                   type="primary"
@@ -163,6 +162,7 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
                   <Button type="link" onClick={() => router.get(Routes.organization_path(item.id))}>
                     详情
                   </Button>
+                  <Divider type="vertical" />
                   <Button
                     type="primary"
                     size="small"
@@ -191,7 +191,6 @@ const Index: React.FC = ({ organizations, meta, total }: { organizations: Organi
                 </>
               )
             },
-
             queryEffectUrl: false,
             dataSource: organizations,
             pagination: {

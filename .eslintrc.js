@@ -5,9 +5,10 @@ module.exports = {
     node: true,
     es6: true,
     commonjs: true,
+    jest_globals: true
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["react", "prettier", "import", "react-hooks", "cypress"],
+  plugins: ["react", "prettier", "import", "react-hooks", "cypress", "jest"],
   extends: [
     "eslint:recommended",
     "plugin:json/recommended",
@@ -17,6 +18,7 @@ module.exports = {
     // 'prettier/@typescript-eslint',
     "eslint:recommended",
     "prettier",
+    "plugin:jest/recommended",
     "plugin:prettier/recommended",
     "plugin:cypress/recommended",
   ],

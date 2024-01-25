@@ -53,3 +53,5 @@ yarn-debug.log*
 
 /app/javascript/routes.js
 /app/javascript/routes.d.ts
+
+.codiumai.toml

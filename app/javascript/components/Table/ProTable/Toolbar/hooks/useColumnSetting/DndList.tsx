@@ -1,7 +1,7 @@
 import type { FixedType } from 'rc-table/lib/interface';
 import type { TProColumnsType, TBaseView } from '../../../interface';
 import type { IColumnConfig } from '../../interface';
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useSafeState } from 'ahooks';
 import update from 'immutability-helper';
 import DndItem from './DndItem';

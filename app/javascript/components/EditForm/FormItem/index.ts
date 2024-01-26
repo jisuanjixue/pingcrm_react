@@ -1,6 +1,6 @@
 import FormItem from './FormItem';
 // import Hidden from './FormHidden';
-// import Text from './FormText';
+import Text from './FormText';
 // import TextArea from './FormTextArea';
 // import Number from './FormNumber';
 // import Checkbox from './FormCheckbox';

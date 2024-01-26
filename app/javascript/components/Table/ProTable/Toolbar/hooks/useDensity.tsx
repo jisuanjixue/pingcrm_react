@@ -1,7 +1,6 @@
 import { ColumnHeightOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Tooltip } from 'antd';
 import type { SizeType } from 'antd/lib/config-provider/SizeContext';
-import React from 'react';
 import { useSafeState } from 'ahooks';
 import type { IDensityProps, TDensity } from '../interface';
 

@@ -1,7 +1,7 @@
 import type { FixedType } from 'rc-table/lib/interface';
 import type { DragSourceMonitor, DropTargetMonitor, XYCoord } from 'react-dnd';
 import type { TBaseView, TProColumnType } from '../../../interface';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { Button, Tooltip } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import {

@@ -9,7 +9,7 @@ import type {
 } from './interface';
 import type { ColumnType } from 'antd/es/table/interface';
 import type { FixedType } from 'rc-table/lib/interface';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { Card, Table } from 'antd';
 import { genColumnsFromProps, isGroupColumn, fixedColumn } from './utils';
 import useToolbar from './Toolbar';
@@ -85,9 +85,9 @@ const ProTable = <TListView extends TBaseView>({
               sorter: { multiple: 1 },
               ...(typeof sorterProps === 'object'
                 ? {
-                    showSorterTooltip: sorterProps.showTooltip,
-                    sortDirections: sorterProps.directions,
-                  }
+                  showSorterTooltip: sorterProps.showTooltip,
+                  sortDirections: sorterProps.directions,
+                }
                 : {}),
             };
 

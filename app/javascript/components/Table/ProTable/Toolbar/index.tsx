@@ -1,6 +1,5 @@
 import { ReloadOutlined } from '@ant-design/icons';
 import { Button, Space, Tooltip } from 'antd';
-import React from 'react';
 import type { TBaseView } from '../interface';
 import useColumnSetting from './hooks/useColumnSetting';
 import useDensity from './hooks/useDensity';

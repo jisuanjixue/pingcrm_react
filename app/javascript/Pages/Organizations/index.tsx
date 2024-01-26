@@ -12,14 +12,14 @@
 import React, { useCallback, useMemo, useRef } from "react";
 import type { Organization } from '../../types/serializers';
 import { PageContainer } from "@ant-design/pro-components";
-// import Table from "@/components/Table";
+import ProTable from "@/components/Table/ProTable";
 import { router } from '@inertiajs/react'
 import * as Routes from "../../routes.js";
 import { Button, Divider, Popconfirm, message, FormInstance, Flex } from "antd";
 import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
 import EditForms from "./EditForm";
-// import { EditForm, EditFormItem } from "../../components";
 import EditForm from "@/components/EditForm";
+import FormText from "@/components/EditForm/FormItem/FormText";
 import { formatDateTime } from '@/utils/dateUtils';
 import { isType, convertToQueryParams } from "@/utils/util.js";
 
@@ -82,9 +82,8 @@ const Index = ({ organizations, meta, total }: { organizations: Organization, me
           >
             <Flex justify="space-between" align="center">
               <Flex wrap="wrap" gap="middle" justify="flex-start" align="center">
-                <></>
-                {/* <EditFormItem.Text name="name" label="名称"></EditFormItem.Text>
-                <EditFormItem.Text name="phone" label="手机"></EditFormItem.Text> */}
+                <FormText name="name" label="名称"></FormText>
+                <FormText name="phone" label="手机"></FormText>
               </Flex>
               <Flex justify="flex-start" gap="small">
                 <Button
@@ -108,7 +107,7 @@ const Index = ({ organizations, meta, total }: { organizations: Organization, me
             </Flex>
           </EditForm>
         </div>
-        {/* <Table.Pro
+        <ProTable
           {...{
             columns: [
               {
@@ -219,7 +218,7 @@ const Index = ({ organizations, meta, total }: { organizations: Organization, me
               })
             }
           }}
-        /> */}
+        />
         <EditForms
           {...{
             ...editProps,

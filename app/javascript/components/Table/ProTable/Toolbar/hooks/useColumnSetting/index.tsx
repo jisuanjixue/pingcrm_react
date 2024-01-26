@@ -1,7 +1,7 @@
 import { SettingOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Popover, Tooltip } from 'antd';
 import type { FixedType } from 'rc-table/lib/interface';
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import type { TBaseView, TProColumnsType } from '../../../interface';

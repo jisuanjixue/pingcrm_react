@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 // import { Head } from "@inertiajs/react";
 // import * as timeago from "timeago.js";
 import { PageContainer } from "@ant-design/pro-components";
-// import { Table } from "@/components";
+import Table from "jet-pro/es/components/Table";
 import { router } from '@inertiajs/react'
 import * as Routes from "../../routes.js";
 import { useSignal, useSignalEffect } from "@preact/signals-react";
@@ -50,7 +50,7 @@ const Index: React.FC = ({ contacts, total }) => {
   return (
     <>
       <PageContainer>
-        {/* <Table.CRUD
+        <Table.CRUD
           {...{
             // refAction: refTableAction,
             columns: [
@@ -99,7 +99,7 @@ const Index: React.FC = ({ contacts, total }) => {
               return { success: true }
             },
           }}
-        /> */}
+        />
       </PageContainer>
     </>
   );

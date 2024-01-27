@@ -1,14 +1,14 @@
 
 import React, { useRef } from "react";
 import { PageContainer } from "@ant-design/pro-components";
-// import Table from "@/components/Table";
+import Table from "jet-pro/es/components/Table";
 import { router } from '@inertiajs/react'
 import * as Routes from "../../routes.js";
 import { Button, Divider, Popconfirm, message, FormInstance, Flex } from "antd";
-import { useSignal, useSignalEffect } from "@preact/signals-react";
+import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
 // import EditForms from "./EditForm";
 // import { EditForm, EditFormItem } from "jet-pro";
-import { formatDateTime } from '@/utils/dateUtils';
+import { formatDateTime } from 'jet-pro/es/utils/dateUtils';
 import { isType } from "@/utils/util.js";
 // import type { Organization } from '../../types/serializers'
 
@@ -110,7 +110,7 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
             </Flex>
           </EditForm> */}
         </div>
-        {/* <Table.Pro
+        <Table.Pro
           {...{
             columns: [
               {
@@ -219,7 +219,7 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
               // })
             }
           }}
-        /> */}
+        />
         {/* <EditForms
           {...{
             ...editProps,

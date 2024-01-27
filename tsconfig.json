@@ -27,8 +27,8 @@
     "verbatimModuleSyntax": false,
     "paths": {
       "@/*": ["app/javascript/*"],
-      // "@/components/*": ["app/javascript/components/*"],
-      // "@hooks": ["app/javascript/hooks/*"],
+      "@components": ["app/javascript/components/*"],
+      "@hooks": ["app/javascript/hooks/*"],
       "react": [ "./node_modules/@types/react" ]
     }
   },

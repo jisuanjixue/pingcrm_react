@@ -20,7 +20,7 @@ import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
 import EditForms from "./EditForm";
 import { EditForm, EditFormItem } from "jet-pro";
 import { formatDateTime } from 'jet-pro/es/utils/dateUtils';
-import { isType, convertToQueryParams } from "@/utils/util.js";
+import { isType, convertToQueryParams } from "../../utils/util.js";
 
 const Index = ({ organizations, meta, total }: { organizations: Organization, meta: any, total: number }) => {
   const initialLoadSignal = useSignal(false);

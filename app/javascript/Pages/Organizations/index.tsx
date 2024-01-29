@@ -24,44 +24,42 @@ import { isType, convertToQueryParams } from "../../utils/util.js";
 
 const Index = ({ organizations, meta, total }: { organizations: Organization, meta: any, total: number }) => {
   const initialLoadSignal = useSignal(false);
-  const selectedRowKeys = useSignal<React.Key[]>([])
-  const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined })
+  const selectedRowKeys = useSignal<React.Key[]>([]);
+  const queryParams = useSignal({ page: 1, items: 20, filter: undefined, sorter: undefined });
   const refForm = useRef<FormInstance>();
-  const editState = useSignal<{
-    visible?: boolean;
-    detail?: any;
-  }>({})
+  const editState = useSignal<{ visible?: boolean; detail?: any; }>({});
 
-  const editProps = useMemo(() => ({
-    initialLoadSignal
-  }), [initialLoadSignal]);
+  const editProps = useMemo(() => ({ initialLoadSignal }), [initialLoadSignal]);
 
   const refresh = () => {
-    router.get(Routes.organizations_path(), {
-      page: queryParams.value.page,
-      items: queryParams.value.items,
-      q: { ...convertToQueryParams(queryParams.value.filter), sorts: queryParams.value.sorter }
-    }, {
-      preserveState: true,
-      preserveScroll: true,
-      onFinish: (response) => {
-        console.log("🚀 ~ router.get ~ response:", response)
-        initialLoadSignal.value = false
+    router.get(
+      Routes.organizations_path(),
+      {
+        page: queryParams.value.page,
+        items: queryParams.value.items,
+        q: { ...convertToQueryParams(queryParams.value.filter), sorts: queryParams.value.sorter }
+      },
+      {
+        preserveState: true,
+        preserveScroll: true,
+        onFinish: (response) => {
+          console.log("🚀 ~ router.get ~ response:", response);
+          initialLoadSignal.value = false;
+        }
       }
-    })
-  }
-
+    );
+  };
 
   useSignalEffect(() => {
     if (initialLoadSignal.value) {
-      refresh()
+      refresh();
     }
-  })
+  });
 
   const onSelectChange = useCallback((newSelectedRowKeys: React.Key[]) => {
     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-    selectedRowKeys.value = newSelectedRowKeys
-  }, [selectedRowKeys.value])
+    selectedRowKeys.value = newSelectedRowKeys;
+  }, [selectedRowKeys.value]);
 
   const rowSelection = useMemo(() => ({
     selectedRowKeys: selectedRowKeys.value,

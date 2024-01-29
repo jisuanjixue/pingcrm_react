@@ -42,8 +42,7 @@ const Index = ({ organizations, meta, total }: { organizations: Organization, me
       {
         preserveState: true,
         preserveScroll: true,
-        onFinish: (response) => {
-          console.log("🚀 ~ router.get ~ response:", response);
+        onFinish: () => {
           initialLoadSignal.value = false;
         }
       }

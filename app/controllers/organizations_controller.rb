@@ -17,32 +17,13 @@ class OrganizationsController < ApplicationController
              organizations:
              OrganizationSerializer.many(paged_organizations),
              meta: pagy_metadata(pagy),
-              #  jbuilder do |json|
-              #    json.data(paged_organizations)
-              #    json.meta pagy_metadata(pagy)
-              #  end,
              total: @organizations.count
            }
    end
   def show
-    begin
-      @q = @organization.contacts.ransack(params[:q])
-      @contacts = @q.result(distinct: true).order_by_name
-      pagy, paged_contacts = pagy(@contacts)
-    rescue Pagy::OverflowError
-      pagy = Pagy.new(count: @contacts.count, page: params[:page], items: params[:items])
-      paged_contacts = @contacts.offset(pagy.offset).limit(pagy.items)
-    end
     render inertia: "Organizations/show",
            props: {
             organization:  OrganizationWithContactsSerializer.one(@organization),
-            contacts: {
-              lists: paged_contacts,
-              meta: pagy_metadata(pagy),
-              total: @contacts.count
-            }
-            #  organization: jbuilder do |json| json.(@organization, :id, :name, :email, :phone, :address, :city, :region, :country, :postal_code, :deleted_at) end,
-            #  contacts: -> { jbuilder { |json| json.array! @organization.contacts.order_by_name, :id, :name, :phone, :city, :deleted_at } },
            }
   end
 

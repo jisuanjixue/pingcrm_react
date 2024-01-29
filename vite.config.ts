@@ -1,6 +1,6 @@
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import RubyPlugin from "vite-plugin-ruby";
-import FullReload from "vite-plugin-full-reload";
+import reloadOnChange from "vite-plugin-full-reload";
 import ViteReact from "@vitejs/plugin-react";
 import { brotliCompressSync } from "zlib";
 import gzipPlugin from "rollup-plugin-gzip";
@@ -43,7 +43,7 @@ export default defineConfig({
     tsconfigPaths(),
     RubyPlugin(),
     // babel(),
-    FullReload(["config/routes.rb", "app/views/**/*", "app/serializers/**/*.rb"], { delay: 200 }),
+    reloadOnChange(["config/routes.rb", "app/views/**/*", "app/serializers/**/*.rb", "app/javascript/**/**/.ts"], { delay: 200 }),
     ViteReact({
       include: [/\.tsx$/, /\.md$/],
     }),

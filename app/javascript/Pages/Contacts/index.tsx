@@ -6,6 +6,7 @@ import * as Routes from "../../routes.js";
 import { batch, useSignal, useSignalEffect } from "@preact/signals-react";
 import { convertToQueryParams } from "../../utils/util.js";
 import type { Contact } from '../../types/serializers';
+import { formatDateTime } from 'jet-pro/es/utils/dateUtils';
 
 
 const Index: React.FC = ({ contacts, total }: { contacts: Contact, meta: any, total: number }) => {
@@ -46,6 +47,13 @@ const Index: React.FC = ({ contacts, total }: { contacts: Contact, meta: any, to
                 dataIndex: 'first_name',
                 editProps: { required: true },
               },
+              {
+                title: '创建时间',
+                dataIndex: 'created_at',
+                width: 80,
+                hideEdit: true,
+                render: (val) => formatDateTime(val, "YYYY-MM-DD HH:mm:ss")
+              },
             ],
             filterProps: {
               onSearch: () => {
@@ -57,6 +65,7 @@ const Index: React.FC = ({ contacts, total }: { contacts: Contact, meta: any, to
               return { data: contacts, total: total, success: true }
             },
             detailRequest: (id) => {
+              console.log(contacts.find(f => f.id === id))
               return { data: contacts.find(f => f.id === id), success: true }
             },
             pagination: {
@@ -70,9 +79,13 @@ const Index: React.FC = ({ contacts, total }: { contacts: Contact, meta: any, to
               },
             },
             saveRequest: (values) => {
+              console.log("🚀 ~ values:", values)
               if (values.id) {
                 router.patch(Routes.contact_path(values.id), values, {
-                  only: ['contacts']
+                  only: ['contacts'],
+                  onSuccess: () => {
+                    refresh()
+                  }
                 })
               } else {
                 router.post(Routes.contacts_path(), values, {

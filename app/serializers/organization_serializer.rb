@@ -38,6 +38,4 @@ class OrganizationSerializer < BaseSerializer
      :postal_code,
      :created_at
   )
-
-  # has_one :composer, serializer: ComposerSerializer
 end

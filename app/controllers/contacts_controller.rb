@@ -5,7 +5,7 @@ class ContactsController < ApplicationController
   def index
       begin
       @q = Contact.ransack(params[:q])
-      @contacts = @q.result(distinct: true)
+      @contacts = @q.result(distinct: true).order(created_at: :desc)
       pagy, paged_contacts = pagy(@contacts)
     rescue Pagy::OverflowError
       pagy = Pagy.new(count: @contacts.count, page: params[:page], items: params[:items])
@@ -13,15 +13,10 @@ class ContactsController < ApplicationController
     end
 
     render inertia: 'Contacts/index', props: {
-      contacts: jbuilder do |json|
-        json.data(paged_contacts.includes(:organization)) do |contact|
-          json.(contact, :id, :first_name, :last_name, :name, :phone, :city, :deleted_at)
-          json.organization(contact.organization, :name) if contact.organization
-        end
-        json.meta pagy_metadata(pagy)
-      end,
-
-      total: @contacts.count
+      contacts:
+      ContactSerializer.many(paged_contacts),
+      meta: pagy_metadata(pagy),
+      total:  @contacts.count
     }
   end
 

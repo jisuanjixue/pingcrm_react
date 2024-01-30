@@ -39,7 +39,7 @@ class Contact < ApplicationRecord
   scope :order_by_name, -> { order(:last_name, :first_name) }
 
   def self.ransackable_attributes(auth_object = nil)
-    %w(first_name last_name name email phone address city region country postal_code created_at)
+    %w(first_name last_name name email phone address city region country postal_code created_at updated_at)
   end
 
 

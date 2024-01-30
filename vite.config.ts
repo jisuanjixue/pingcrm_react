@@ -67,10 +67,12 @@ export default defineConfig({
     }),
   ],
   server: {
-    hmr: {
-      host: "localhost",
-      overlay: true,
-      clientPort: 443,
-    },
+    hmr: true,
+    // hmr: {
+    //   host: "localhost",
+    //   overlay: true,
+    //   usePolling: true,
+    //   clientPort: 443,
+    // },
   },
 });

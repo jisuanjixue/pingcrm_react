@@ -29,18 +29,17 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Contact < ApplicationRecord
+  include SoftDelete
+  include Ransackable
   belongs_to :account
   belongs_to :organization, optional: true
 
   validates :first_name, :last_name, presence: true
 
-  include SoftDelete
-
   scope :order_by_name, -> { order(:last_name, :first_name) }
 
-  def self.ransackable_attributes(auth_object = nil)
-    %w(first_name last_name name email phone address city region country postal_code created_at updated_at)
-  end
+  RANSACK_ATTRIBUTES = %w[first_name last_name name email phone address city region country postal_code created_at updated_at].freeze
+
 
 
   # scope :search, ->(query) do

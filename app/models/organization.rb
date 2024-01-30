@@ -25,16 +25,14 @@
 #  fk_rails_...  (account_id => accounts.id)
 #
 class Organization < ApplicationRecord
+  include SoftDelete
+  include Ransackable
   belongs_to :account
   has_many :contacts, dependent: :destroy
 
   validates :name, presence: true
 
-  include SoftDelete
-
-  def self.ransackable_attributes(auth_object = nil)
-    %w(name email phone address city region country postal_code created_at updated_at)
-  end
+  RANSACK_ATTRIBUTES = %w[name email phone address city region country postal_code created_at updated_at].freeze
 
   # scope :search, ->(query) { query.present? ? where("organizations.name ILIKE ?", "%#{query}%") : all }
 end

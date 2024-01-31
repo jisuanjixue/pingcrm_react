@@ -9,21 +9,23 @@ import type { Contact } from '../../types/serializers';
 import { formatDateTime } from 'jet-pro/es/utils/dateUtils';
 
 
-const Index: React.FC = ({ contacts, total }: { contacts: Contact, meta: any, total: number }) => {
+const Index: React.FC = ({ contacts, total }: { contacts: Contact[], meta: any, total: number }) => {
   console.log("🚀 ~ contacts:", contacts)
   const initialLoadSignal = useSignal(false);
+  // const lists = useSignal(contacts);
   const queryParams = useSignal({ page: 1, pageSize: 20, filters: undefined, sorts: undefined });
 
   const refresh = () => {
-    console.log(queryParams.value)
     router.get(Routes.contacts_path(), {
       page: queryParams.value.page,
       items: queryParams.value.pageSize,
       q: { ...convertToQueryParams(queryParams.value.filters), sorts: queryParams.value.sorts }
     }, {
+      replace: true,
       preserveState: true,
       preserveScroll: true,
-      onFinish: () => {
+      // onSuccess: () => {},
+      onFinish: (visit) => {
         initialLoadSignal.value = false
       }
     })
@@ -65,15 +67,15 @@ const Index: React.FC = ({ contacts, total }: { contacts: Contact, meta: any, to
               return { data: contacts, total: total, success: true }
             },
             detailRequest: (id) => {
-              console.log(contacts.find(f => f.id === id))
+              console.log(contacts.find(f => f.id === id), id)
               return { data: contacts.find(f => f.id === id), success: true }
             },
             pagination: {
               onChange: (page, pageSize) => {
                 batch(() => {
-                  queryParams.value = { ...queryParams.value, page: page, pageSize: pageSize };
+                  initialLoadSignal.value = true;
                   batch(() => {
-                    initialLoadSignal.value = true;
+                    queryParams.value = { ...queryParams.value, page: page, pageSize: pageSize };
                   })
                 });
               },
@@ -84,12 +86,15 @@ const Index: React.FC = ({ contacts, total }: { contacts: Contact, meta: any, to
                 router.patch(Routes.contact_path(values.id), values, {
                   only: ['contacts'],
                   onSuccess: () => {
-                    refresh()
+                    router.reload()
                   }
                 })
               } else {
                 router.post(Routes.contacts_path(), values, {
-                  only: ['contacts']
+                  only: ['contacts'],
+                  onSuccess: () => {
+                    router.reload()
+                  }
                 })
               }
               return { success: true }

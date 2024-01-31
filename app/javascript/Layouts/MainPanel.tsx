@@ -162,7 +162,7 @@ const MainPanel: React.FC = props => {
               return (
                 <Link
                   href={item.path || '/'}
-                  preserveState={false}
+                  preserveState={true}
                   preserveScroll={true}
                 >{
                     dom

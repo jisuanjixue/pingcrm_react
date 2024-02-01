@@ -46,6 +46,16 @@ createInertiaApp({
   },
 
   title: title => (title ? `${title} - Ping CRM` : "Ping CRM"),
+  progress: {
+    // The delay after which the progress bar will appear, in milliseconds...
+    delay: 50,
+
+    // Whether to include the default NProgress styles...
+    includeCSS: true,
+
+    // Whether the NProgress spinner will be shown...
+    showSpinner: false,
+  },
 
   setup: ({ el, App, props }) => {
     createRoot(el).render(<App {...props} />)

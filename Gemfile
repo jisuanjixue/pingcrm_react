@@ -118,6 +118,8 @@ gem 'cancancan'
 # Automatically generate TypeScript interfaces from your JSON serializers.
 gem 'types_from_serializers'
 
+gem 'request_store_rails'
+
 group :production do
   # Error reports you can be happy about. (https://github.com/honeybadger-io/honeybadger-ruby)
 

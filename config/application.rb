@@ -58,6 +58,32 @@ module Pingcrm
     # (Rails.env.development? || Rails.env.test?) &&
     #   ActiveModel::Type::Boolean.new.cast(ENV.fetch('CYPRESS', false))
 
-    config.exceptions_app = ->(env) { ExceptionsController.action(:show).call(env) }
+    # To allow Inertia.js handle backend exceptions, we need to register an
+    # exceptions_app to show the exceptions via the `Error` Vue component.
+    # This app needs to be a middleware. To keep things simple we define an
+    # anonymous controller with a `show` method. This allows us to use
+    # `render inertia: ...`
+    #
+    # The exception app will be used if `consider_all_requests_local` is set to false,
+    # which is by default in production only
+    #
+    # More details about exceptions_app:
+    # https://guides.rubyonrails.org/configuring.html#rails-general-configuration
+    # https://github.com/rails/rails/blob/6-0-stable/actionpack/lib/action_dispatch/middleware/public_exceptions.rb
+    #
+    config.exceptions_app = ->(env) do
+        Class.new(ActionController::Base) do # rubocop:disable Rails/ApplicationController
+          layout "application"
+
+          def show
+            # Get the status code from the path, which is /500 or /404 etc.
+            status = request.path_info.delete_prefix("/").to_i
+
+            render inertia: "error",
+              props: {status: status}, # Make the status code available to the Vue component
+              status: status             # Return the same status code in the request header
+          end
+        end.action(:show).call(env)
+    end
   end
 end

@@ -46,6 +46,9 @@ export default defineConfig({
     reloadOnChange(["config/routes.rb", "app/views/**/*", "app/serializers/**/*.rb", "app/javascript/**/**/.ts"], { delay: 200 }),
     ViteReact({
       include: [/\.tsx$/, /\.md$/],
+      babel: {
+        plugins: ['babel-plugin-macros', 'babel-plugin-styled-components'],
+      },
     }),
     ViteLegacy({
       targets: ['defaults', 'not IE 11'],
@@ -67,12 +70,10 @@ export default defineConfig({
     }),
   ],
   server: {
-    hmr: true,
-    // hmr: {
-    //   host: "localhost",
-    //   overlay: true,
-    //   usePolling: true,
-    //   clientPort: 443,
-    // },
+    hmr: {
+      host: "localhost",
+      overlay: true,
+      clientPort: 443,
+    },
   },
 });

@@ -13,36 +13,35 @@ class OrganizationsController < ApplicationController
     end
 
     render inertia: "Organizations/index",
-           props: {
-             organizations:
-             OrganizationSerializer.many(paged_organizations),
-             meta: pagy_metadata(pagy),
-             total: @organizations.count
-           }
-   end
+      props: {
+        organizations: OrganizationSerializer.many(paged_organizations),
+        meta: pagy_metadata(pagy),
+        total: @organizations.count,
+      }
+  end
+
   def show
     render inertia: "Organizations/show",
-           props: {
-            organization:  OrganizationWithContactsSerializer.one(@organization),
-           }
+      props: {
+        organization: OrganizationWithContactsSerializer.one(@organization),
+      }
   end
 
   def edit
-
     render inertia: "Organizations/edit",
-           props: {
-             organization: jbuilder do |json| json.(@organization, :id, :name, :email, :phone, :address, :city, :region, :country, :postal_code, :deleted_at) end,
-             contacts: -> { jbuilder { |json| json.array! @organization.contacts.order_by_name, :id, :name, :phone, :city, :deleted_at } },
-           }
+      props: {
+        organization: jbuilder { |json| json.call(@organization, :id, :name, :email, :phone, :address, :city, :region, :country, :postal_code, :deleted_at) },
+        contacts: -> { jbuilder { |json| json.array! @organization.contacts.order_by_name, :id, :name, :phone, :city, :deleted_at } },
+      }
   end
 
   def create
     if @organization.update(organization_params)
-      redirect_to organizations_path, notice: 'Organization created.'
+      redirect_to organizations_path, notice: "Organization created."
     else
       redirect_to organizations_path, inertia: { errors: @organization.errors }
     end
-   end
+  end
 
   def update
     if @organization.update!(organization_params)

@@ -446,6 +446,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  guard
   guard-rspec
   honeybadger (~> 5.0)
   image_processing (~> 1.2)

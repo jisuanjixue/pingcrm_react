@@ -55,3 +55,14 @@ yarn-debug.log*
 /app/javascript/routes.d.ts
 
 .codiumai.toml
+
+.DS_Store
+/public/.DS_Store
+.env
+.env.test
+.idea/
+debug.log
+.solargraph.yml
+/config/definitions.rb
+.vscode/settings.json
+.vscode/settings.json

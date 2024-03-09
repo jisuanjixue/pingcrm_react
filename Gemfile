@@ -56,6 +56,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'guard'
   # A debugging tool for your Ruby on Rails applications. (https://github.com/rails/web-console)
   gem 'web-console'
 

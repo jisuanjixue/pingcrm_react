@@ -12,6 +12,7 @@ gem 'pg', '~> 1.5', '>= 1.5.3'
 # Puma is a simple, fast, threaded, and highly parallel HTTP 1.1 server for Ruby/Rack applications (https://puma.io)
 gem 'puma', '~> 6.4'
 gem 'io-console', '0.6.0'
+gem 'reline', '0.4.3'
 
 # Use Vite in Rails and bring joy to your JavaScript experience (https://github.com/ElMassimo/vite_ruby)
 gem 'vite_rails'

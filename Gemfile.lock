@@ -154,6 +154,7 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
+    hiredis (0.6.3)
     honeybadger (5.6.0)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
@@ -298,6 +299,7 @@ GEM
       abbrev
     rdoc (6.6.2)
       psych (>= 4.0.0)
+    redis (4.5.1)
     regexp_parser (2.9.0)
     reline (0.4.3)
       io-console (~> 0.5)
@@ -446,6 +448,7 @@ DEPENDENCIES
   faker
   guard
   guard-rspec
+  hiredis
   honeybadger (~> 5.0)
   image_processing (~> 1.2)
   inertia_rails (~> 3.0.0)
@@ -461,6 +464,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 7.1.2)
   ransack (~> 4.1)
+  redis (< 4.6)
   reline (= 0.4.3)
   request_store_rails
   rspec-rails

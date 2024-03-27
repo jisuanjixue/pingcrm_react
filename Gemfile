@@ -128,3 +128,6 @@ group :production do
 end
 
 gem "ransack", "~> 4.1"
+
+gem "hiredis"
+gem "redis", "< 4.6"

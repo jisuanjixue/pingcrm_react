@@ -3,7 +3,7 @@ require_relative "boot"
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
-# require "active_job/railtie"
+require "active_job/railtie"
 require "active_record/railtie"
 require "active_storage/engine"
 require "action_controller/railtie"
@@ -34,6 +34,8 @@ module Pingcrm
     # config.eager_load_paths << Rails.root.join("extras")
 
     # config.active_storage.variant_processor = :vips
+
+    config.active_job.queue_adapter = :sidekiq
 
     config.x.git.commit_version = ENV.fetch("COMMIT_VERSION") { `git describe --always`.chomp }
 

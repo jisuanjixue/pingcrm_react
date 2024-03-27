@@ -1,0 +1,15 @@
+---
+:concurrency: 5
+:pidfile: tmp/pids/sidekiq.pid
+development:
+  :concurrency: 10
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 10
+  :url: <%= ENV["REDIS_URL"] %>
+:queues:
+  - critical
+  - mailers
+  - default
+  - google_calendar_sync

@@ -56,6 +56,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'debugbar'
   gem 'guard'
   gem "rails_live_reload"
   # A debugging tool for your Ruby on Rails applications. (https://github.com/rails/web-console)

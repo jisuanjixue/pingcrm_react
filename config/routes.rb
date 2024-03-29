@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   #   end
   # end
 
+  if defined? Debugbar
+    mount Debugbar::Engine => Debugbar.config.prefix
+  end
+
   devise_for :users, skip: %i[sessions passwords registrations]
   as :user do
     get "login", to: "users/sessions#new", as: :new_user_session

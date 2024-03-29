@@ -117,6 +117,9 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
+    debugbar (0.2.2)
+      actioncable
+      rails
     devise (4.9.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -467,6 +470,7 @@ DEPENDENCIES
   cancancan
   capybara
   debug (~> 1.6, >= 1.6.2)
+  debugbar
   devise
   dotenv-rails
   factory_bot_rails

@@ -1,6 +1,9 @@
 class OrganizationsController < ApplicationController
   # Let CanCanCan load and authorize the instance variables
   load_and_authorize_resource
+  before_action do
+    Debugbar.msg("before_action", {params: params.permit!.to_h, callee: __callee__})
+  end
 
   def index
     begin

@@ -57,6 +57,8 @@ end
 
 group :development do
   gem 'debugbar'
+  gem 'pp_sql'
+  gem 'rails_sql_prettifier'
   gem 'guard'
   gem "rails_live_reload"
   # A debugging tool for your Ruby on Rails applications. (https://github.com/rails/web-console)

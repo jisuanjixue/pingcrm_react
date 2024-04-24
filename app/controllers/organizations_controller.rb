@@ -5,6 +5,7 @@ class OrganizationsController < ApplicationController
     Debugbar.msg("before_action", {params: params.permit!.to_h, callee: __callee__})
   end
 
+  # @route GET /organizations (organizations)
   def index
     begin
       @q = Organization.ransack(params[:q])
@@ -23,6 +24,7 @@ class OrganizationsController < ApplicationController
       }
   end
 
+  # @route GET /organizations/:id (organization)
   def show
     render inertia: "Organizations/show",
       props: {
@@ -30,6 +32,7 @@ class OrganizationsController < ApplicationController
       }
   end
 
+  # @route GET /organizations/:id/edit (edit_organization)
   def edit
     render inertia: "Organizations/edit",
       props: {
@@ -38,6 +41,7 @@ class OrganizationsController < ApplicationController
       }
   end
 
+  # @route POST /organizations (organizations)
   def create
     if @organization.update(organization_params)
       redirect_to organizations_path, notice: "Organization created."
@@ -46,6 +50,8 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  # @route PATCH /organizations/:id (organization)
+  # @route PUT /organizations/:id (organization)
   def update
     if @organization.update!(organization_params)
       redirect_to organizations_path, notice: "Organization updated."
@@ -54,6 +60,7 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  # @route DELETE /organizations/:id (organization)
   def destroy
     if @organization.destroy
       if can? :edit, @organization
@@ -66,6 +73,7 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  # @route PUT /organizations/:id/restore (restore_organization)
   def restore
     if @organization.restore
       redirect_to edit_organization_path(@organization), notice: "Organization restored."

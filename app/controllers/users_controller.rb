@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   # Let CanCanCan load and authorize the instance variables
   load_and_authorize_resource
 
+  # @route GET /users (users)
   def index
     @users = @users.
              search(params[:search]).
@@ -26,6 +27,7 @@ class UsersController < ApplicationController
     }
   end
 
+  # @route GET /users/new (new_user)
   def new
     render inertia: 'Users/New', props: {
       user: jbuilder do |json|
@@ -34,6 +36,7 @@ class UsersController < ApplicationController
     }
   end
 
+  # @route GET /users/:id/edit (edit_user)
   def edit
     render inertia: 'Users/Edit', props: {
       user: jbuilder do |json|
@@ -46,6 +49,7 @@ class UsersController < ApplicationController
     }
   end
 
+  # @route POST /users (users)
   def create
     if @user.update(user_params)
       redirect_to users_path, notice: 'User created.'
@@ -54,6 +58,8 @@ class UsersController < ApplicationController
     end
   end
 
+  # @route PATCH /users/:id (user)
+  # @route PUT /users/:id (user)
   def update
     if @user.demo?
       redirect_to edit_user_path(@user), alert: 'Updating the demo user is not allowed.'
@@ -67,6 +73,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # @route DELETE /users/:id (user)
   def destroy
     if @user.demo?
       redirect_to edit_user_path(@user), alert: 'Deleting the demo user is not allowed.'
@@ -80,6 +87,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # @route PUT /users/:id/restore (restore_user)
   def restore
     if @user.restore
       redirect_to edit_user_path(@user), notice: 'User restored.'

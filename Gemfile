@@ -56,6 +56,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "chusaku", require: false
   gem 'debugbar'
   gem 'pp_sql'
   gem 'rails_sql_prettifier'

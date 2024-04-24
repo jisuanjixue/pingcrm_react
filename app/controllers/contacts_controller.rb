@@ -2,6 +2,7 @@ class ContactsController < ApplicationController
   # Let CanCanCan load and authorize the instance variables
   load_and_authorize_resource
 
+  # @route GET /contacts (contacts)
   def index
       begin
       @q = Contact.ransack(params[:q])
@@ -20,6 +21,7 @@ class ContactsController < ApplicationController
     }
   end
 
+  # @route GET /contacts/new (new_contact)
   def new
     render inertia: 'Contacts/New', props: {
       organizations: -> {
@@ -30,6 +32,7 @@ class ContactsController < ApplicationController
     }
   end
 
+  # @route GET /contacts/:id/edit (edit_contact)
   def edit
     render inertia: 'Contacts/Edit', props: {
       contact: jbuilder do |json|
@@ -43,6 +46,7 @@ class ContactsController < ApplicationController
     }
   end
 
+  # @route POST /contacts (contacts)
   def create
     if @contact.update(contact_params)
       redirect_to contacts_path, notice: 'Contact created.'
@@ -51,6 +55,8 @@ class ContactsController < ApplicationController
     end
   end
 
+  # @route PATCH /contacts/:id (contact)
+  # @route PUT /contacts/:id (contact)
   def update
     if @contact.update!(contact_params)
       redirect_to contacts_path, notice: 'Contact updated.'
@@ -59,6 +65,7 @@ class ContactsController < ApplicationController
     end
   end
 
+  # @route DELETE /contacts/:id (contact)
   def destroy
     if @contact.soft_delete
       if can? :edit, @contact
@@ -71,6 +78,7 @@ class ContactsController < ApplicationController
     end
   end
 
+  # @route PUT /contacts/:id/restore (restore_contact)
   def restore
     if @contact.restore
       redirect_to edit_contact_path(@contact), notice: 'Contact restored.'

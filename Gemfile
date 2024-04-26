@@ -3,18 +3,42 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 3.3.0'
 
+# Server
 # Full-stack web application framework. (https://rubyonrails.org)
 gem 'rails', '~> 7.1.3.2'
-
 # Pg is the Ruby interface to the PostgreSQL RDBMS (https://github.com/ged/ruby-pg)
 gem 'pg', '~> 1.5', '>= 1.5.3'
-
 # Puma is a simple, fast, threaded, and highly parallel HTTP 1.1 server for Ruby/Rack applications (https://puma.io)
 gem 'puma', '~> 6.4'
 gem 'reline', '0.4.3'
 
+# Assets
 # Use Vite in Rails and bring joy to your JavaScript experience (https://github.com/ElMassimo/vite_ruby)
 gem 'vite_rails'
+# Inertia adapter for Rails (https://github.com/inertiajs/inertia-rails)
+gem 'inertia_rails', '~> 3.0.0'
+
+
+# Models
+# The kick-ass pagination ruby gem (https://github.com/ddnexus/pagy)
+gem 'pagy'
+# Flexible authentication solution for Rails with Warden (https://github.com/heartcombo/devise)
+gem 'devise'
+# A fast JSON parser and serializer. (http://www.ohler.com/oj)
+gem 'oj'
+# Faster JSON serialization for Ruby on Rails. Easily migrate away from Active Model Serializers (https://github.com/ElMassimo/oj_serializers)
+gem 'oj_serializers'
+# Simple authorization solution for Rails. (https://github.com/CanCanCommunity/cancancan)
+gem 'cancancan'
+# Automatically generate TypeScript interfaces from your JSON serializers.
+gem 'types_from_serializers'
+gem 'request_store_rails'
+gem "ransack", "~> 4.1"
+gem "hiredis"
+gem "redis", "< 4.6"
+gem 'sidekiq', '~> 7.2', '>= 7.2.2'
+gem "nilify_blanks"
+
 
 # Create JSON structures via a Builder-style DSL (https://github.com/rails/jbuilder)
 gem 'jbuilder'
@@ -103,43 +127,13 @@ end
 # Timezone Data for TZInfo (https://tzinfo.github.io)
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Inertia adapter for Rails (https://github.com/inertiajs/inertia-rails)
-gem 'inertia_rails', '~> 3.0.0'
-
 # Easily generate fake data (https://github.com/faker-ruby/faker)
 gem 'faker', require: false
 
-# The kick-ass pagination ruby gem (https://github.com/ddnexus/pagy)
-gem 'pagy'
-
-# Flexible authentication solution for Rails with Warden (https://github.com/heartcombo/devise)
-gem 'devise'
-
-# A fast JSON parser and serializer. (http://www.ohler.com/oj)
-gem 'oj'
-
-# Faster JSON serialization for Ruby on Rails. Easily migrate away from Active Model Serializers (https://github.com/ElMassimo/oj_serializers)
-gem 'oj_serializers'
-
-# Simple authorization solution for Rails. (https://github.com/CanCanCommunity/cancancan)
-gem 'cancancan'
-
-# Automatically generate TypeScript interfaces from your JSON serializers.
-gem 'types_from_serializers'
-
-gem 'request_store_rails'
 
 group :production do
   # Error reports you can be happy about. (https://github.com/honeybadger-io/honeybadger-ruby)
 
 end
 
-gem "ransack", "~> 4.1"
-
-gem "hiredis"
-gem "redis", "< 4.6"
-
-gem "nilify_blanks"
-
-gem 'sidekiq', '~> 7.2', '>= 7.2.2'
 gem 'io-console', '0.7.2'

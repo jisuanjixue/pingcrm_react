@@ -418,7 +418,7 @@ const __jsr = (
                 : encodeURI(result);
         }
         get_prefix() {
-            const prefix = this.configuration.prefix;
+            const {prefix} = this.configuration;
             return prefix.match("/$")
                 ? prefix.substring(0, prefix.length - 1)
                 : prefix;
@@ -527,11 +527,11 @@ const __jsr = (
     Utils.define_module("ESM", result);
     return result;
 })();
-export const configure = __jsr.configure;
+export const {configure} = __jsr;
 
-export const config = __jsr.config;
+export const {config} = __jsr;
 
-export const serialize = __jsr.serialize;
+export const {serialize} = __jsr;
 
 /**
  * Generates rails route to

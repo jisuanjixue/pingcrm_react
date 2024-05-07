@@ -1,4 +1,4 @@
-import type Organization from './serializers/Organization'
+import type Organization from "./serializers/Organization";
 
-type AnyModel = Organization
-export default AnyModel
+type AnyModel = Organization;
+export default AnyModel;

@@ -1,5 +1,5 @@
-import { Dashboard, OfficeIcon, UsersIcon, PrinterIcon } from "../components/icons/Icons";
 import * as Routes from "../utils/routes";
+import { Dashboard, OfficeIcon, PrinterIcon, UsersIcon } from "../components/icons/Icons";
 
 const DashboardMenus = [
   {

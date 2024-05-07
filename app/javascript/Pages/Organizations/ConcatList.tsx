@@ -1,14 +1,16 @@
-
+import { isType } from "@/utils/util.js";
+import { router } from "@inertiajs/react";
+import { batch, useSignal, useSignalEffect } from "@preact/signals-react";
+import { Button, Divider, Flex, FormInstance, Popconfirm, message } from "antd";
 import React from "react";
+
 import Table from "jet-pro/es/components/Table";
-import { router } from '@inertiajs/react'
-import * as Routes from "../../routes.js";
-import { Button, Divider, Popconfirm, message, FormInstance, Flex } from "antd";
-import { useSignal, useSignalEffect, batch } from "@preact/signals-react";
 // import EditForms from "./EditForm";
 // import { EditForm, EditFormItem } from "jet-pro";
-import { formatDateTime } from 'jet-pro/es/utils/dateUtils';
-import { isType } from "@/utils/util.js";
+import { formatDateTime } from "jet-pro/es/utils/dateUtils";
+
+import * as Routes from "../../routes.js";
+
 // import type { Organization } from '../../types/serializers'
 
 const Index: React.FC = ({ contacts }: { contacts: any }) => {
@@ -36,9 +38,7 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
   //   }
   // }
 
-
   useSignalEffect(() => {
-
     // if (initialLoadSignal.value) {
     //   console.log(queryParams.value)
     //   router.get(Routes.organizations_path(), {
@@ -50,7 +50,6 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
     //     preserveScroll: true,
     //     onBefore: visit => {
     //       // console.log("🚀 ~ router.get ~ response:", visit)
-
     //     },
     //     onFinish: (response) => {
     //       console.log("🚀 ~ router.get ~ response:", response)
@@ -58,7 +57,7 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
     //     }
     //   })
     // }
-  })
+  });
 
   // const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
   //   console.log('selectedRowKeys changed: ', newSelectedRowKeys);
@@ -76,8 +75,8 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
         {...{
           columns: [
             {
-              title: '名称',
-              dataIndex: 'name',
+              title: "名称",
+              dataIndex: "name",
               editProps: { required: true },
               width: 80,
               sorter: {
@@ -85,22 +84,24 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
                 multiple: 2,
               },
             },
-            { title: '邮箱', dataIndex: 'email', width: 80, editProps: { required: true } },
+            { title: "邮箱", dataIndex: "email", width: 80, editProps: { required: true } },
             {
-              title: '手机', dataIndex: 'phone', width: 80,
+              title: "手机",
+              dataIndex: "phone",
+              width: 80,
               sorter: {
                 compare: (a, b) => a?.phone?.length - b?.phone?.length,
                 multiple: 1,
               },
-              editProps: { required: true }
+              editProps: { required: true },
             },
-            { title: '地址', dataIndex: 'address', width: 80, editProps: { required: true } },
+            { title: "地址", dataIndex: "address", width: 80, editProps: { required: true } },
             {
-              title: '创建时间',
-              dataIndex: 'created_at',
+              title: "创建时间",
+              dataIndex: "created_at",
               width: 80,
               hideEdit: true,
-              render: (val) => formatDateTime(val, "YYYY-MM-DD HH:mm:ss")
+              render: val => formatDateTime(val, "YYYY-MM-DD HH:mm:ss"),
             },
           ],
           toolbarProps: {
@@ -108,19 +109,19 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
               <Button
                 type="primary"
                 size="small"
-              // onClick={() => {
-              //   editState.value = { visible: true, detail: {} }
-              // }}
+                // onClick={() => {
+                //   editState.value = { visible: true, detail: {} }
+                // }}
               >
                 新增
               </Button>
-            )
+            ),
           },
           // rowSelection: { rowSelection },
           actionColumn: {
             width: 100,
-            title: '操作',
-            render: (item) => (
+            title: "操作",
+            render: item => (
               <>
                 <Button type="link" onClick={() => router.get(Routes.organization_path(item.id))}>
                   详情
@@ -128,9 +129,9 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
                 <Button
                   type="primary"
                   size="small"
-                // onClick={() => {
-                //   editState.value = { visible: true, detail: item }
-                // }}
+                  // onClick={() => {
+                  //   editState.value = { visible: true, detail: item }
+                  // }}
                 >
                   修改11
                 </Button>
@@ -140,9 +141,9 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
                   onConfirm={() => {
                     router.delete(Routes.organization_path(item.id), {
                       onSuccess: () => {
-                        message.success("删除成功！")
-                      }
-                    })
+                        message.success("删除成功！");
+                      },
+                    });
                   }}
                 >
                   <Button size="small" type="default" danger color="#f42f2f">
@@ -151,7 +152,7 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
                   <Divider type="vertical" />
                 </Popconfirm>
               </>
-            )
+            ),
           },
           queryEffectUrl: false,
           dataSource: contacts,
@@ -170,4 +171,3 @@ const Index: React.FC = ({ contacts }: { contacts: any }) => {
 };
 
 export default Index;
-

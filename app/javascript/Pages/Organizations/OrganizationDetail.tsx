@@ -1,6 +1,7 @@
-import { Button, Descriptions } from 'antd';
+import { Button, Descriptions } from "antd";
+
 const Index = ({ organization }) => (
-  <div style={{ overflow: 'auto' }}>
+  <div style={{ overflow: "auto" }}>
     <Descriptions title="公司详情">
       <Descriptions.Item label="名称">{organization?.name}</Descriptions.Item>
       <Descriptions.Item label="手机号">{organization?.phone}</Descriptions.Item>

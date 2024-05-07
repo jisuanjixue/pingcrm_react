@@ -1,8 +1,9 @@
-import { router } from '@inertiajs/react'
-import * as Routes from "../../routes.js";
+import { router } from "@inertiajs/react";
 import { Button, message } from "antd";
 // import { useSignal } from "@preact/signals-react";
 import { EditForm, EditFormItem } from "jet-pro";
+
+import * as Routes from "../../routes.js";
 
 /**
  * This is a functional component that renders a form drawer for editing or adding a company.
@@ -43,25 +44,25 @@ export default function Default({ visible, detail, onClose, initialLoadSignal })
    * @param {object} data - The form data.
    * @returns {boolean} - Whether the form should submit or not.
    */
-  const handleSubmit = (data) => {
+  const handleSubmit = data => {
     if (detail.id) {
       router.patch(Routes.organization_path(detail.id), data, {
-        only: ['organizations'],
+        only: ["organizations"],
         onSuccess: () => {
           onClose();
           initialLoadSignal.value = true;
         },
-        onError: (errors) => {
+        onError: errors => {
           message.error(errors.content);
         },
       });
     } else {
       router.post(Routes.organizations_path(), data, {
-        only: ['organizations'],
+        only: ["organizations"],
         onSuccess: () => {
           onClose();
         },
-        onError: (errors) => {
+        onError: errors => {
           message.error(errors.content);
         },
       });
@@ -71,9 +72,9 @@ export default function Default({ visible, detail, onClose, initialLoadSignal })
 
   return (
     <EditForm.Drawer
-      title={`${detail?.id ? '编辑' : '新增'}公司`}
+      title={`${detail?.id ? "编辑" : "新增"}公司`}
       width="30vw"
-      footerProps={{ submitProps: { text: '确定' } }}
+      footerProps={{ submitProps: { text: "确定" } }}
       visible={visible}
       onClose={onClose}
       initDetail={initDetail}

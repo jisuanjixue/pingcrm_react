@@ -5,7 +5,6 @@ module.exports = {
     node: true,
     es6: true,
     commonjs: true,
-    jest_globals: true
   },
   parser: "@typescript-eslint/parser",
   plugins: ["react", "prettier", "import", "react-hooks", "cypress", "jest"],
@@ -34,6 +33,16 @@ module.exports = {
     withDefaults: "readonly",
   },
   rules: {
+    "prefer-destructuring": [
+      "error",
+      {
+        array: true,
+        object: true,
+      },
+      {
+        enforceForRenamedProperties: false,
+      },
+    ],
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-explicit-any": ["off"],
     "react/display-name": "off",
@@ -91,6 +100,6 @@ module.exports = {
       jsx: true,
     },
     sourceType: "module", // allow the use of imports statements
-    ecmaVersion: 2020, // allow the parsing of modern ecmascript
+    ecmaVersion: 2022, // allow the parsing of modern ecmascript
   },
 };

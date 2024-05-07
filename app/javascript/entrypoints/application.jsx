@@ -2,18 +2,16 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
-
+import MainPanel from "@/Layouts/MainPanel";
+import { router } from "@inertiajs/react";
+import { createInertiaApp } from "@inertiajs/react";
+import axios from "axios";
+import Plausible from "plausible-tracker";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import snakecaseKeys from "snakecase-keys";
+import "virtual:windi.css";
 
-import { router } from "@inertiajs/react";
-import Plausible from "plausible-tracker";
-import axios from "axios";
-import MainPanel from "@/Layouts/MainPanel";
-
-import { createInertiaApp } from "@inertiajs/react";
-import 'virtual:windi.css'
 // import '../utils/setupHoneybadger.ts';
 
 const pages = import.meta.globEagerDefault("../Pages/**/*.tsx");
@@ -58,6 +56,6 @@ createInertiaApp({
   },
 
   setup: ({ el, App, props }) => {
-    createRoot(el).render(<App {...props} />)
-  }
+    createRoot(el).render(<App {...props} />);
+  },
 });

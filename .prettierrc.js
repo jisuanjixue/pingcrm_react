@@ -1,10 +1,6 @@
 module.exports = {
   rubyPlugins: "plugin/single_quotes,plugin/trailing_comma",
-  plugins: [
-    "@prettier/plugin-ruby",
-    "prettier-plugin-react",
-    "prettier-plugin-tailwindcss"
-  ],
+  plugins: ["@prettier/plugin-ruby", "prettier-plugin-react", "prettier-plugin-tailwindcss"],
   trailingComma: "es5",
   arrowParens: "avoid",
   printWidth: 200,
@@ -19,4 +15,9 @@ module.exports = {
   bracketSameLine: false,
   proseWrap: "always",
   endOfLine: "lf",
+  importOrder: ["^jet-pro/(.*)$", "^../../routes/(.*)$", "^../../utils/(.*)$", "^../../types/(.*)$", "^[./]"],
+  importOrderSeparation: true,
+  importOrderGroupNamespaceSpecifiers: true,
+  importOrderSortSpecifiers: true,
+  plugins: ["@trivago/prettier-plugin-sort-imports"],
 };

@@ -4,3 +4,6 @@ db/schema.rb
 tsconfig.json
 public/*
 public/*
+lib/*
+node_modules_local/*
+*.yml

@@ -74,6 +74,7 @@ module Pingcrm
     #  配置Active Record允许在YAML列中使用的类。这是一个安全措施，确保只有指定的类可以被序列化和反序列化，防止潜在的安全问题。
      config.active_record.yaml_column_permitted_classes = [Symbol, Hash, Array, Time, Date, ActiveRecord::Base, ActiveSupport::HashWithIndifferentAccess]
     #  配置Rails凭据的密钥路径和内容路径。Rails凭据是一种安全地存储敏感信息（如API密钥）的方法，它使用加密的YAML文件。这里指定了密钥文件和加密凭据文件的路径。
+
      config.credentials.key_path = Rails.root.join("config/secrets/master.key")
      config.credentials.content_path = Rails.root.join("config/secrets/credentials.yml.enc")
 

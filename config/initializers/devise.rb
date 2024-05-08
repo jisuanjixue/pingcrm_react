@@ -271,6 +271,7 @@ Devise.setup do |config|
   # end
 
   config.warden do |manager|
+    manager.intercept_401 = true
     manager.failure_app = AuthFailure
   end
 

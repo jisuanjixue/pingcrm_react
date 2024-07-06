@@ -1,11 +1,9 @@
-class AuthFailure < Devise::FailureApp
+class CustomFailure < Devise::FailureApp
   def respond
     if http_auth?
       respond_to_failure_types
     elsif warden_options[:recall]
       recall
-    elsif request.inertia?
-      false
     else
       redirect
     end
@@ -22,6 +20,9 @@ class AuthFailure < Devise::FailureApp
     # Account with unconfirmed email
     elsif message == :unconfirmed
       redirect_to new_user_confirmation_path({ email: params[:user][:email] })
+    elsif message == :unauthenticated
+      self.headers['x-inertia'] = true
+      redirect_to new_user_session_path
     end
   end
 

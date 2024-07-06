@@ -272,7 +272,7 @@ Devise.setup do |config|
 
   config.warden do |manager|
     manager.intercept_401 = true
-    manager.failure_app = AuthFailure
+    manager.failure_app = CustomFailure
   end
 
   # ==> Mountable engine configurations

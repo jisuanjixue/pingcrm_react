@@ -24,18 +24,21 @@
 #
 #  fk_rails_...  (account_id => accounts.id)
 #
-class OrganizationSerializer < BaseSerializer
+class OrganizationSerializer < ApplicationSerializer
+  object_as :organization
+
   attributes(
-    :id,
-     :account_id,
-     :name,
-     :email,
-     :phone,
-     :address,
-     :city,
-     :region,
-     :country,
-     :postal_code,
-     :created_at
+    :account_id,
+    :name,
+    :email,
+    :phone,
+    :address,
+    :city,
+    :region,
+    :country,
+    :postal_code,
+    :deleted_at,
   )
+
+  has_many :contacts, serializer: ContactSerializer
 end

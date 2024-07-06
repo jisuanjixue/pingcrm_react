@@ -28,22 +28,21 @@
 #  fk_rails_...  (account_id => accounts.id)
 #  fk_rails_...  (organization_id => organizations.id)
 #
-class ContactSerializer < BaseSerializer
-attributes(
-:id,
-:address,
-:city,
-:country,
-:deleted_at,
-:email ,
-:first_name,
-:last_name,
-:phone,
-:postal_code,
-:region,
-:created_at,
-:updated_at,
-:account_id,
-:organization_id
-)
+class ContactSerializer < ApplicationSerializer
+  object_as :contact
+
+  attributes(
+    :account_id,
+    :organization_id,
+    :first_name,
+    :last_name,
+    :email,
+    :phone,
+    :address,
+    :city,
+    :region,
+    :country,
+    :postal_code,
+    :deleted_at,
+  )
 end

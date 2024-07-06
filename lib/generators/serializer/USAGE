@@ -1,0 +1,9 @@
+Description:
+  Generates custom serializer
+
+Example:
+  bin/rails generate serializer model index show
+
+  This will create:
+    app/serializers/model/index_serializer.rb
+    app/serializers/model/show_serializer.rb

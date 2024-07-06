@@ -1,0 +1,8 @@
+class <%= model_name.pluralize.camelize %>::ShowSerializer < <%= model_name.camelize %>Serializer
+  attributes(<% if model_attributes.include?("slug") %>
+    :slug,<% end %>
+    :id,
+    :updated_at,
+    :created_at,
+  )
+end

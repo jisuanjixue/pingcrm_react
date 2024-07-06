@@ -18,7 +18,8 @@ class OrganizationsController < ApplicationController
 
     render inertia: "Organizations/index",
       props: {
-        organizations: OrganizationSerializer.many(paged_organizations),
+        # organizations: OrganizationSerializer.many(paged_organizations),
+        organizations: paged_organizations.render,
         meta: pagy_metadata(pagy),
         total: @organizations.count,
       }
@@ -28,7 +29,8 @@ class OrganizationsController < ApplicationController
   def show
     render inertia: "Organizations/show",
       props: {
-        organization: OrganizationWithContactsSerializer.one(@organization),
+        # organization: OrganizationWithContactsSerializer.one(@organization),
+        organization: @organization.render(view: :show),
       }
   end
 

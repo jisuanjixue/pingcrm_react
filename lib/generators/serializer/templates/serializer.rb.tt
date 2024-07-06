@@ -1,0 +1,9 @@
+class <%= model_name.camelize %>Serializer < ApplicationSerializer
+  object_as :<%= model_name %>
+
+  <% if model_attributes.include?("slug") %>identifier :slug<% end %>
+
+  attributes(<% model_attributes&.reject{ |attr| ["id", "slug", "updated_at", "created_at"].include?(attr) }&.each do |attribute| %>
+    :<%= attribute %>,<% end %>
+  )
+end

@@ -40,5 +40,5 @@ export const convertToQueryParams = <T>(arr: T[] | undefined) => {
 // Dynamic exclusion attribute
 export const removeProperty =
   (prop: any) =>
-    ({ [prop]: _, ...rest }) =>
-      rest;
+  ({ [prop]: _, ...rest }) =>
+    rest;

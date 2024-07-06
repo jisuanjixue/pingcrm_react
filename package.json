@@ -103,5 +103,9 @@
     "*.{css,less,scss,html,json,js,ts,d.ts,tsx,jsx}": [
       "prettier --write ."
     ]
+  },
+  "volta": {
+    "node": "18.19.1",
+    "yarn": "1.19.2"
   }
 }
